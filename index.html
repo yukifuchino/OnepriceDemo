@@ -1527,6 +1527,247 @@ function AdminDashboard({setScreen}) {
   );
 }
 
+/* ─── 相場分布マトリクス ─── */
+const SOUBA_MODELS = ['VW Golf','Audi A3','Audi A4','BMW 3シリーズ','Mercedes Cクラス','BMW X3','Audi Q5','VW Tiguan','Lexus RX','ランドクルーザー'];
+const SOUBA_REGIONS = ['全国','関東','関西','東海','九州'];
+const SOUBA_YEARS = ['2018年','2019年','2020年','2021年','2022年','2023年','2024年','2025年'];
+const SOUBA_PRICE_RANGES = ['500万〜','700万〜','900万〜','1100万〜','1500万〜','2000万〜','3000万〜'];
+
+// 全国ベースデータ（行=価格帯7、列=年式8）
+const SOUBA_BASE = {
+  'VW Golf': [
+    [4, 6, 9, 8, 7, 5, 3, 1],
+    [2, 4, 6, 7, 8, 6, 4, 2],
+    [0, 1, 2, 3, 4, 5, 4, 2],
+    [0, 0, 1, 1, 2, 2, 2, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+  ],
+  'Audi A3': [
+    [3, 5, 7, 6, 5, 3, 1, 0],
+    [2, 4, 7, 9, 8, 6, 3, 1],
+    [0, 1, 3, 5, 6, 5, 4, 2],
+    [0, 0, 1, 2, 3, 3, 2, 1],
+    [0, 0, 0, 0, 0, 1, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+  ],
+  'Audi A4': [
+    [1, 2, 3, 2, 1, 0, 0, 0],
+    [2, 4, 6, 7, 6, 4, 2, 0],
+    [1, 2, 5, 8,10, 8, 5, 2],
+    [0, 1, 2, 4, 6, 7, 5, 2],
+    [0, 0, 0, 1, 2, 3, 3, 1],
+    [0, 0, 0, 0, 0, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+  ],
+  'BMW 3シリーズ': [
+    [0, 1, 2, 2, 1, 0, 0, 0],
+    [1, 3, 5, 6, 5, 3, 1, 0],
+    [2, 4, 7, 9, 8, 6, 4, 1],
+    [0, 1, 3, 5, 7, 8, 5, 2],
+    [0, 0, 1, 2, 3, 4, 3, 1],
+    [0, 0, 0, 0, 1, 1, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+  ],
+  'Mercedes Cクラス': [
+    [0, 1, 2, 1, 1, 0, 0, 0],
+    [1, 2, 4, 5, 4, 3, 1, 0],
+    [1, 3, 6, 8, 9, 7, 4, 1],
+    [0, 1, 3, 5, 7, 9, 6, 2],
+    [0, 0, 1, 2, 3, 5, 4, 1],
+    [0, 0, 0, 0, 1, 2, 2, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+  ],
+  'BMW X3': [
+    [0, 0, 1, 1, 0, 0, 0, 0],
+    [0, 1, 2, 3, 3, 2, 1, 0],
+    [1, 2, 4, 6, 7, 6, 3, 1],
+    [0, 1, 3, 5, 8, 9, 6, 3],
+    [0, 0, 1, 2, 4, 5, 4, 2],
+    [0, 0, 0, 0, 1, 2, 2, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+  ],
+  'Audi Q5': [
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 2, 2, 1, 1, 0, 0],
+    [1, 2, 4, 5, 6, 5, 3, 1],
+    [1, 2, 4, 6, 9,10, 7, 3],
+    [0, 0, 1, 3, 5, 6, 5, 2],
+    [0, 0, 0, 1, 2, 3, 3, 1],
+    [0, 0, 0, 0, 0, 1, 1, 0],
+  ],
+  'VW Tiguan': [
+    [0, 1, 2, 2, 1, 0, 0, 0],
+    [1, 3, 5, 6, 5, 4, 2, 1],
+    [0, 2, 4, 6, 8, 7, 4, 2],
+    [0, 0, 1, 3, 5, 6, 4, 2],
+    [0, 0, 0, 1, 2, 3, 2, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+  ],
+  'Lexus RX': [
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 1, 1, 0, 0, 0, 0],
+    [1, 2, 3, 4, 3, 2, 1, 0],
+    [1, 3, 5, 7, 9, 8, 5, 2],
+    [0, 1, 3, 5, 7, 9, 7, 3],
+    [0, 0, 1, 2, 4, 5, 4, 2],
+    [0, 0, 0, 0, 1, 2, 2, 1],
+  ],
+  'ランドクルーザー': [
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [1, 1, 2, 3, 2, 1, 0, 0],
+    [2, 3, 5, 7, 9, 8, 5, 2],
+    [1, 2, 4, 6, 8,10, 7, 3],
+    [0, 1, 2, 3, 4, 5, 4, 2],
+  ],
+};
+
+// 地域ごとのスケール係数（全国=1.0）
+const SOUBA_REGION_SCALE = {'全国':1.0,'関東':0.42,'関西':0.28,'東海':0.18,'九州':0.14};
+
+function getSoubaMatrix(model, region) {
+  const base = SOUBA_BASE[model];
+  const scale = SOUBA_REGION_SCALE[region];
+  return base.map(row => row.map(v => Math.max(0, Math.round(v * scale))));
+}
+
+function SoubaMatrix() {
+  const [model, setModel] = useState('Audi A4');
+  const [region, setRegion] = useState('全国');
+  const matrix = getSoubaMatrix(model, region);
+  const maxVal = Math.max(1, ...matrix.flat());
+  const rowTotals = matrix.map(row => row.reduce((s,v) => s+v, 0));
+  const totalCars = rowTotals.reduce((s,v) => s+v, 0);
+
+  const getCellStyle = (val) => {
+    if (val === 0) return {background:'transparent', color:'transparent'};
+    const ratio = val / maxVal;
+    const r = 255;
+    const g = Math.round(243 - ratio * (243 - 101));
+    const b = Math.round(224 - ratio * 224);
+    return {
+      background: `rgb(${r},${g},${b})`,
+      color: ratio > 0.55 ? '#fff' : '#7B3A10',
+      fontWeight: 700,
+    };
+  };
+
+  return (
+    <Card>
+      {/* ヘッダー */}
+      <div style={{marginBottom:14}}>
+        <div style={{display:'flex',alignItems:'baseline',gap:10,marginBottom:12}}>
+          <div style={{fontWeight:700,fontSize:14}}>相場分布マトリクス</div>
+          <div style={{fontSize:11,color:C.textMid}}>本体価格 × 年式（{totalCars}台）</div>
+          {/* 凡例 */}
+          <div style={{display:'flex',alignItems:'center',gap:5,marginLeft:'auto'}}>
+            <span style={{fontSize:10,color:C.textMid}}>少</span>
+            <div style={{width:60,height:8,borderRadius:2,background:'linear-gradient(to right, #FFF3E0, #E65100)'}}/>
+            <span style={{fontSize:10,color:C.textMid}}>多</span>
+          </div>
+        </div>
+
+        {/* 車種タブ（スクロール可） */}
+        <div style={{marginBottom:10}}>
+          <div style={{fontSize:11,color:C.textMid,marginBottom:5,fontWeight:500}}>車種</div>
+          <div style={{display:'flex',gap:4,overflowX:'auto',paddingBottom:4}}>
+            {SOUBA_MODELS.map(m => (
+              <button key={m} onClick={() => setModel(m)}
+                style={{padding:'5px 12px',borderRadius:20,fontSize:12,fontWeight:600,cursor:'pointer',border:'none',
+                  whiteSpace:'nowrap', flexShrink:0,
+                  background: model===m ? C.blue : '#F0F0F0',
+                  color: model===m ? '#fff' : C.textMid,
+                  boxShadow: model===m ? '0 1px 4px rgba(21,101,192,0.3)' : 'none',
+                  transition:'all 0.15s'}}>
+                {m}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* 地域タブ */}
+        <div>
+          <div style={{fontSize:11,color:C.textMid,marginBottom:5,fontWeight:500}}>地域</div>
+          <div style={{display:'flex',gap:2,background:'#F0F0F0',borderRadius:6,padding:3,width:'fit-content'}}>
+            {SOUBA_REGIONS.map(r => (
+              <button key={r} onClick={() => setRegion(r)}
+                style={{padding:'4px 14px',borderRadius:4,fontSize:12,fontWeight:600,cursor:'pointer',border:'none',
+                  background: region===r ? C.sidebarActive : 'transparent',
+                  color: region===r ? '#fff' : C.textMid,
+                  boxShadow: region===r ? '0 1px 3px rgba(0,0,0,0.15)' : 'none',
+                  transition:'all 0.2s', whiteSpace:'nowrap'}}>
+                {r}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* マトリクス */}
+      <div style={{overflowX:'auto'}}>
+        <table style={{borderCollapse:'collapse',width:'100%',minWidth:560}}>
+          <thead>
+            <tr style={{background:'#FAFAFA'}}>
+              <th style={{padding:'6px 12px',textAlign:'right',fontSize:11,color:C.textMid,fontWeight:600,whiteSpace:'nowrap',borderBottom:`1px solid ${C.border}`}}>本体価格</th>
+              <th style={{padding:'6px 8px',textAlign:'center',fontSize:11,color:C.textMid,fontWeight:600,borderBottom:`1px solid ${C.border}`,borderRight:`1px solid ${C.border}`}}>台数</th>
+              {SOUBA_YEARS.map(y => (
+                <th key={y} style={{padding:'6px 6px',textAlign:'center',fontSize:11,color:C.textMid,fontWeight:600,whiteSpace:'nowrap',borderBottom:`1px solid ${C.border}`}}>{y}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {SOUBA_PRICE_RANGES.map((price, ri) => (
+              <tr key={price}>
+                <td style={{padding:'6px 12px',textAlign:'right',fontSize:13,fontWeight:700,color:C.blue,whiteSpace:'nowrap',borderRight:`1px solid ${C.border}`}}>
+                  {price}
+                </td>
+                <td style={{padding:'6px 8px',textAlign:'center',fontSize:11,color:C.textMid,fontWeight:600,borderRight:`1px solid ${C.border}`,background:'#FAFAFA'}}>
+                  {rowTotals[ri] > 0 ? `${rowTotals[ri]}台` : ''}
+                </td>
+                {matrix[ri].map((val, ci) => {
+                  const cs = getCellStyle(val);
+                  return (
+                    <td key={ci} style={{
+                      padding:'6px 4px', textAlign:'center', fontSize:12,
+                      width:64, minWidth:48,
+                      background: cs.background, color: cs.color, fontWeight: cs.fontWeight,
+                      border:`1px solid ${C.borderLight}`,
+                      transition:'background 0.25s, outline 0.1s',
+                      cursor: val > 0 ? 'pointer' : 'default',
+                    }}
+                    onMouseEnter={e => { if(val>0) { e.currentTarget.style.outline=`2px solid #E65100`; e.currentTarget.style.zIndex='1'; }}}
+                    onMouseLeave={e => { e.currentTarget.style.outline='none'; e.currentTarget.style.zIndex=''; }}>
+                      {val > 0 ? val : ''}
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+            {/* 合計行 */}
+            <tr style={{borderTop:`2px solid ${C.border}`,background:'#FAFAFA'}}>
+              <td style={{padding:'6px 12px',textAlign:'right',fontSize:11,color:C.textMid,fontWeight:600,borderRight:`1px solid ${C.border}`}}>合計</td>
+              <td style={{padding:'6px 8px',textAlign:'center',fontSize:11,fontWeight:700,borderRight:`1px solid ${C.border}`}}>{totalCars > 0 ? `${totalCars}台` : ''}</td>
+              {SOUBA_YEARS.map((_, ci) => {
+                const colTotal = matrix.reduce((s,row) => s+row[ci], 0);
+                return (
+                  <td key={ci} style={{padding:'6px 4px',textAlign:'center',fontSize:11,color:C.textMid,fontWeight:600,border:`1px solid ${C.borderLight}`}}>
+                    {colTotal > 0 ? colTotal : ''}
+                  </td>
+                );
+              })}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </Card>
+  );
+}
+
 /* ─── ADMIN: 地域別価格分析 ─── */
 const ADMIN_REGIONAL_DATA = {
   '1ヶ月': {
@@ -1744,6 +1985,9 @@ function AdminRegional() {
           </tbody>
         </table>
       </Card>
+
+      {/* 相場分布マトリクス */}
+      <SoubaMatrix/>
     </div>
   );
 }
