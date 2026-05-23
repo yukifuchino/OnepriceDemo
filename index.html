@@ -38,13 +38,13 @@ const C = {
 
 /* ─── MOCK DATA ─── */
 const VEHICLES = [
-  {id:1,appraisalNo:'2605130036214',maker:'アウディ',name:'SQ7',grade:'ベースグレード',vin:'WAUZZZ4MXPD030170',registration:'2023年(令和5年)10月',mileage:22222,meterCheck:'未交換',store:'札幌北口店',assignee:'田中 健二',appraisalStatus:'査定済',contractStatus:'成約',price:8500000,buyNow:null,type:'auction',bids:7,endDate:'2026-05-24',img:'https://via.placeholder.com/80x60/1a3a5c/fff?text=Audi'},
-  {id:2,appraisalNo:'2605220036216',maker:'BMW',name:'X5',grade:'xDrive40i M Sport',vin:'WBAJH31090G123456',registration:'2021年(令和3年)6月',mileage:32000,meterCheck:'未交換',store:'渋谷本店',assignee:'鈴木 一郎',appraisalStatus:'査定済',contractStatus:null,price:7200000,buyNow:7800000,type:'buynow',bids:0,endDate:'2026-05-26',img:'https://via.placeholder.com/80x60/2a2a2a/fff?text=BMW'},
-  {id:3,appraisalNo:'2605220036215',maker:'レクサス',name:'LX 600',grade:'Version L',vin:'JTJHM7FX0N4012345',registration:'2022年(令和4年)3月',mileage:18500,meterCheck:'未交換',store:'渋谷本店',assignee:'佐藤 美咲',appraisalStatus:'査定待ち',contractStatus:null,price:14500000,buyNow:null,type:'auction',bids:12,endDate:'2026-05-23',img:'https://via.placeholder.com/80x60/2a2a2a/fff?text=LX'},
-  {id:4,appraisalNo:'2512250010471',maker:'ポルシェ',name:'カイエン',grade:'S E-Hybrid',vin:'WP1ZZZ92ZKL123456',registration:'2021年(令和3年)4月',mileage:41000,meterCheck:'未交換',store:'新宿南口店',assignee:'山本 拓也',appraisalStatus:'交渉中',contractStatus:null,price:9800000,buyNow:10500000,type:'both',bids:3,endDate:'2026-05-27',img:'https://via.placeholder.com/80x60/2a2a2a/fff?text=POR'},
-  {id:5,appraisalNo:'2410130034135',maker:'メルセデス・ベンツ',name:'GLE 400d',grade:'4MATIC AMG Line',vin:'W1N2579041A123456',registration:'2020年(令和2年)8月',mileage:55000,meterCheck:'未交換',store:'梅田グランド店',assignee:'中村 雄一',appraisalStatus:'査定済',contractStatus:'不成約',price:6900000,buyNow:null,type:'auction',bids:5,endDate:'2026-05-25',img:'https://via.placeholder.com/80x60/2a2a2a/fff?text=MB'},
-  {id:6,appraisalNo:'2605010012345',maker:'フォルクスワーゲン',name:'トゥアレグ',grade:'R-Line',vin:'WVGZZZ7PZMH123456',registration:'2021年(令和3年)9月',mileage:28000,meterCheck:'未交換',store:'川越インター店',assignee:'高橋 さくら',appraisalStatus:'交渉済',contractStatus:'成約',price:5400000,buyNow:5900000,type:'buynow',bids:0,endDate:'2026-05-28',img:'https://via.placeholder.com/80x60/2a2a2a/fff?text=VW'},
-  {id:7,appraisalNo:'2605050023456',maker:'トヨタ',name:'ランドクルーザー',grade:'GR Sport',vin:'JTMHX3FJ0N4098765',registration:'2022年(令和4年)1月',mileage:12000,meterCheck:'未交換',store:'横浜港北店',assignee:'伊藤 誠',appraisalStatus:'査定待ち',contractStatus:null,price:11200000,buyNow:null,type:'auction',bids:18,endDate:'2026-05-23',img:'https://via.placeholder.com/80x60/2a2a2a/fff?text=LC'},
+  {id:1,appraisalNo:'2605130036214',maker:'アウディ',name:'SQ7',grade:'ベースグレード',vin:'WAUZZZ4MXPD030170',registration:'2023-10',mileage:22222,meterCheck:'未交換',store:'札幌北口店',assignee:'田中 健二',appraisalStatus:'査定済',contractStatus:'成約',price:8500000,buyNow:null,type:'auction',bids:7,endDate:'2026-05-24',listed:true,wikiImg:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Audi%20SQ7%20(29838807950crop).jpg/640px-Audi%20SQ7%20(29838807950crop).jpg',img:'https://via.placeholder.com/80x60/1a3a5c/fff?text=Audi'},
+  {id:2,appraisalNo:'2605220036216',maker:'ランドローバー',name:'レンジローバースポーツ',grade:'P400 HSE Dynamic',vin:'SALWA2AU0MA123456',registration:'2021-06',mileage:32000,meterCheck:'未交換',store:'渋谷本店',assignee:'鈴木 一郎',appraisalStatus:'査定済',contractStatus:null,price:7200000,buyNow:7800000,type:'buynow',bids:0,endDate:'2026-05-26',listed:false,wikiImg:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/2022%20Range%20Rover%20Sport%20P400%2C%20front%208.6.22.jpg/640px-2022%20Range%20Rover%20Sport%20P400%2C%20front%208.6.22.jpg',img:'https://via.placeholder.com/80x60/1a3a1a/fff?text=RRS'},
+  {id:3,appraisalNo:'2605220036215',maker:'ベントレー',name:'ベンテイガ',grade:'V8',vin:'SCBBB53W6BC012345',registration:'2022-03',mileage:18500,meterCheck:'未交換',store:'渋谷本店',assignee:'佐藤 美咲',appraisalStatus:'査定待ち',contractStatus:null,price:14500000,buyNow:null,type:'auction',bids:12,endDate:'2026-05-23',listed:true,wikiImg:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/2018%20Bentley%20Bentayga%20W12%20Auto.jpg/640px-2018%20Bentley%20Bentayga%20W12%20Auto.jpg',img:'https://via.placeholder.com/80x60/2a2a2a/fff?text=BTY'},
+  {id:4,appraisalNo:'2512250010471',maker:'マセラティ',name:'レヴァンテ',grade:'GT ハイブリッド',vin:'ZAM57YSL0N1234567',registration:'2021-04',mileage:41000,meterCheck:'未交換',store:'新宿南口店',assignee:'山本 拓也',appraisalStatus:'交渉中',contractStatus:null,price:9800000,buyNow:10500000,type:'both',bids:3,endDate:'2026-05-27',listed:false,wikiImg:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Maserati%20Levante%20-%20Mondial%20de%20l%27Automobile%20de%20Paris%202016%20-%20001.jpg/640px-Maserati%20Levante%20-%20Mondial%20de%20l%27Automobile%20de%20Paris%202016%20-%20001.jpg',img:'https://via.placeholder.com/80x60/003366/fff?text=Mas'},
+  {id:5,appraisalNo:'2410130034135',maker:'メルセデス・ベンツ',name:'GLE 400d',grade:'4MATIC AMG Line',vin:'W1N2579041A123456',registration:'2020-08',mileage:55000,meterCheck:'未交換',store:'梅田グランド店',assignee:'中村 雄一',appraisalStatus:'査定済',contractStatus:'不成約',price:6900000,buyNow:null,type:'auction',bids:5,endDate:'2026-05-25',listed:true,wikiImg:'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Mercedes-Benz%20GLE%20450%204MATIC%20W167%20cropped.jpg/640px-Mercedes-Benz%20GLE%20450%204MATIC%20W167%20cropped.jpg',img:'https://via.placeholder.com/80x60/2a2a2a/fff?text=MB'},
+  {id:6,appraisalNo:'2605010012345',maker:'フォルクスワーゲン',name:'トゥアレグ',grade:'R-Line',vin:'WVGZZZ7PZMH123456',registration:'2021-09',mileage:28000,meterCheck:'未交換',store:'川越インター店',assignee:'高橋 さくら',appraisalStatus:'交渉済',contractStatus:'成約',price:5400000,buyNow:5900000,type:'buynow',bids:0,endDate:'2026-05-28',listed:false,wikiImg:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/VW%20Touareg%203%20IMG%200800.jpg/640px-VW%20Touareg%203%20IMG%200800.jpg',img:'https://via.placeholder.com/80x60/2a2a2a/fff?text=VW'},
+  {id:7,appraisalNo:'2605050023456',maker:'ランドローバー',name:'ディフェンダー',grade:'110 P400 X',vin:'SALLD2FX0NA123456',registration:'2022-01',mileage:12000,meterCheck:'未交換',store:'横浜港北店',assignee:'伊藤 誠',appraisalStatus:'査定待ち',contractStatus:null,price:11200000,buyNow:null,type:'auction',bids:18,endDate:'2026-05-23',listed:true,wikiImg:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/2020%20Land%20Rover%20Defender%20110%20P400%2C%20front%208.6.19.jpg/640px-2020%20Land%20Rover%20Defender%20110%20P400%2C%20front%208.6.19.jpg',img:'https://via.placeholder.com/80x60/3a3a1a/fff?text=DEF'},
 ];
 
 const APPRAISAL_STATUS_COLORS = {
@@ -62,33 +62,50 @@ const CONTRACT_STATUS_COLORS = {
 
 /* ─── 未入庫売買データ ─── */
 const UNLISTED_VEHICLES = [
-  {id:101,appraisalNo:'2605200099001',maker:'ポルシェ',name:'911',grade:'カレラ 4S',vin:'WP0AB2A91NS248901',registration:'2022年(令和4年)5月',mileage:8500,meterCheck:'未交換',store:'渋谷本店',assignee:'鈴木 一郎',appraisalStatus:'交渉済',contractStatus:'成約',
-    type:'auction',startPrice:12000000,currentBid:14200000,bidCount:8,endDate:'2026-05-25',buyNow:null,
-    img:'https://via.placeholder.com/80x60/1a1a3a/fff?text=911'},
-  {id:102,appraisalNo:'2605180099002',maker:'フェラーリ',name:'カリフォルニア T',grade:'ベースグレード',vin:'ZFF77XJA0F0213456',registration:'2015年(平成27年)8月',mileage:21000,meterCheck:'未交換',store:'新宿南口店',assignee:'山本 拓也',appraisalStatus:'交渉済',contractStatus:null,
-    type:'buynow',startPrice:null,currentBid:null,bidCount:0,endDate:null,buyNow:9200000,
-    img:'https://via.placeholder.com/80x60/8B0000/fff?text=Ferrari'},
-  {id:103,appraisalNo:'2605150099003',maker:'マセラティ',name:'グレカーレ',grade:'GT',vin:'ZAM57YSL0P1098765',registration:'2023年(令和5年)2月',mileage:5200,meterCheck:'未交換',store:'梅田グランド店',assignee:'中村 雄一',appraisalStatus:'交渉済',contractStatus:'成約',
+  {id:103,appraisalNo:'2605150099003',maker:'マセラティ',name:'グレカーレ',grade:'GT',vin:'ZAM57YSL0P1098765',registration:'2023-02',mileage:5200,meterCheck:'未交換',store:'梅田グランド店',assignee:'中村 雄一',appraisalStatus:'交渉済',contractStatus:'成約',
     type:'both',startPrice:9800000,currentBid:11000000,bidCount:4,endDate:'2026-05-27',buyNow:13500000,
-    img:'https://via.placeholder.com/80x60/003366/fff?text=Mas'},
-  {id:104,appraisalNo:'2605100099004',maker:'ランボルギーニ',name:'ウルス',grade:'ベースグレード',vin:'ZPBUA1ZL0LLA12345',registration:'2020年(令和2年)11月',mileage:35000,meterCheck:'未交換',store:'札幌北口店',assignee:'田中 健二',appraisalStatus:'交渉済',contractStatus:null,
+    wikiImg:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Maserati%20Grecale%202022%20(cropped).jpg/640px-Maserati%20Grecale%202022%20(cropped).jpg',img:'https://via.placeholder.com/80x60/003366/fff?text=Mas'},
+  {id:101,appraisalNo:'2605200099001',maker:'フェラーリ',name:'ローマ',grade:'クーペ',vin:'ZFF96NLA0N0248901',registration:'2022-05',mileage:8500,meterCheck:'未交換',store:'渋谷本店',assignee:'鈴木 一郎',appraisalStatus:'交渉済',contractStatus:'成約',
+    type:'auction',startPrice:12000000,currentBid:14200000,bidCount:8,endDate:'2026-05-25',buyNow:null,
+    wikiImg:'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Ferrari%20Roma%20IAA%20Frankfurt%202019.jpg/640px-Ferrari%20Roma%20IAA%20Frankfurt%202019.jpg',img:'https://via.placeholder.com/80x60/8B0000/fff?text=Roma'},
+  {id:102,appraisalNo:'2605180099002',maker:'フェラーリ',name:'カリフォルニア T',grade:'ベースグレード',vin:'ZFF77XJA0F0213456',registration:'2015-08',mileage:21000,meterCheck:'未交換',store:'新宿南口店',assignee:'山本 拓也',appraisalStatus:'交渉済',contractStatus:null,
+    type:'buynow',startPrice:null,currentBid:null,bidCount:0,endDate:null,buyNow:9200000,
+    wikiImg:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Ferrari%20California%20T%202014%20(cropped).jpg/640px-Ferrari%20California%20T%202014%20(cropped).jpg',img:'https://via.placeholder.com/80x60/8B0000/fff?text=Ferrari'},
+  {id:104,appraisalNo:'2605100099004',maker:'ランボルギーニ',name:'ウルス',grade:'ベースグレード',vin:'ZPBUA1ZL0LLA12345',registration:'2020-11',mileage:35000,meterCheck:'未交換',store:'札幌北口店',assignee:'田中 健二',appraisalStatus:'交渉済',contractStatus:null,
     type:'auction',startPrice:28000000,currentBid:29500000,bidCount:3,endDate:'2026-05-26',buyNow:null,
-    img:'https://via.placeholder.com/80x60/2d5016/fff?text=URUS'},
+    wikiImg:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Lamborghini%20Urus%20Performante%201X7A6803.jpg/640px-Lamborghini%20Urus%20Performante%201X7A6803.jpg',img:'https://via.placeholder.com/80x60/2d5016/fff?text=URUS'},
 ];
 
 const NOTIFICATIONS = [
-  {id:1,read:false,type:'入札・落札',title:'BMW X5 M50iへの入札が入りました',body:'現在の最高入札額: ¥8,700,000',time:'10分前'},
-  {id:2,read:false,type:'入札・落札',title:'Lexus LX 600 オークション終了まで1時間',body:'現在の入札額: ¥14,800,000',time:'1時間前'},
-  {id:3,read:true,type:'取引',title:'Mercedes-Benz GLE 400d 取引が開始されました',body:'書類提出期限: 2026年5月25日',time:'3時間前'},
-  {id:4,read:true,type:'システム',title:'システムメンテナンスのお知らせ',body:'2026年5月30日 2:00〜4:00 にメンテナンスを実施します',time:'1日前'},
-  {id:5,read:false,type:'入札・落札',title:'お気に入りのPorsche Cayenneに新しい入札',body:'現在の入札額: ¥10,200,000',time:'2日前'},
-  {id:6,read:true,type:'取引',title:'Toyota ランドクルーザー 落札完了',body:'取引手続きを開始してください',time:'3日前'},
+  {id:1,read:false,type:'入札・落札',title:'レンジローバースポーツ P400への入札が入りました',body:'現在の最高入札額: ¥8,700,000',time:'10分前'},
+  {id:2,read:false,type:'入札・落札',title:'ベントレー ベンテイガ オークション終了まで1時間',body:'現在の入札額: ¥14,800,000',time:'1時間前'},
+  {id:3,read:true,type:'取引',title:'Mercedes-Benz GLE 400d 取引が開始されました',body:'書類提出期限: 2026-05-25',time:'3時間前'},
+  {id:4,read:true,type:'システム',title:'システムメンテナンスのお知らせ',body:'2026-05-30 2:00〜4:00 にメンテナンスを実施します',time:'1日前'},
+  {id:5,read:false,type:'入札・落札',title:'お気に入りのマセラティ レヴァンテに新しい入札',body:'現在の入札額: ¥10,200,000',time:'2日前'},
+  {id:6,read:true,type:'取引',title:'ランドローバー ディフェンダー 落札完了',body:'取引手続きを開始してください',time:'3日前'},
   {id:7,read:true,type:'システム',title:'パスワード変更のお知らせ',body:'セキュリティのため90日以内のパスワード変更を推奨します',time:'5日前'},
   {id:8,read:true,type:'入札・落札',title:'Audi Q8 の入札が他のユーザーに上回られました',body:'再入札することができます',time:'6日前'},
 ];
 
 /* ─── UTILS ─── */
 const fmt = n => '¥'+n.toLocaleString();
+
+/* ─── WIKI IMAGE ─── */
+// Wikimedia Commonsの画像URLを直接使用するコンポーネント
+// wikiImg: 事前計算済みのWikimedia thumbURL
+// fallback: 画像読み込み失敗時のフォールバックURL
+function WikiImage({wikiImg, fallback, style}) {
+  return (
+    <img
+      src={wikiImg || fallback || ''}
+      alt=""
+      style={style}
+      onError={e => {
+        if (fallback && e.target.src !== fallback) e.target.src = fallback;
+      }}
+    />
+  );
+}
 
 /* ─── VEHICLE REGIONAL PRICE DATA ─── */
 const PERIOD_MULTS = {
@@ -318,97 +335,101 @@ const Card = ({children, style:s, p=16}) => (
 );
 
 /* ─── SIDEBAR ─── */
-function Sidebar({role, screen, setScreen, setRole}) {
-  const [expanded, setExpanded] = useState({buy:true,sell:true,report:false,system:false,master:false,vehicle:false,tx:false,user:false});
-  const toggle = g => setExpanded(prev => ({...prev,[g]:!prev[g]}));
-
-  const NavItem = ({label, target, indent=false}) => {
+function Sidebar({role, screen, setScreen, setRole, open, onClose}) {
+  const NavItem = ({label, target, icon='', indent=false}) => {
     const active = screen === target;
     return (
-      <div onClick={() => target && setScreen(target)}
-        style={{display:'flex',alignItems:'center',gap:8,padding:`8px 12px 8px ${indent?28:12}px`,cursor:target?'pointer':'default',
-          background:active?C.sidebarActive:'transparent',borderRadius:6,marginBottom:1,
-          color:active?C.sidebarTextActive:C.sidebarText,fontSize:13,fontWeight:active?600:400}}
+      <div onClick={() => { if(target) { setScreen(target); onClose(); } }}
+        style={{display:'flex',alignItems:'center',gap:10,padding:`11px 16px 11px ${indent?32:16}px`,cursor:target?'pointer':'default',
+          background:active?C.sidebarActive:'transparent',borderRadius:8,marginBottom:2,
+          color:active?C.sidebarTextActive:C.sidebarText,fontSize:14,fontWeight:active?700:400,transition:'background 0.15s'}}
         onMouseEnter={e => { if(!active) e.currentTarget.style.background=C.sidebarHover; }}
         onMouseLeave={e => { if(!active) e.currentTarget.style.background='transparent'; }}>
+        <span style={{fontSize:18,width:24,textAlign:'center',flexShrink:0}}>{icon}</span>
         <span style={{flex:1}}>{label}</span>
       </div>
     );
   };
 
-  const GroupItem = ({label, groupKey}) => (
-    <div onClick={() => toggle(groupKey)}
-      style={{display:'flex',alignItems:'center',gap:8,padding:'8px 12px',cursor:'pointer',
-        color:C.sidebarText,fontSize:13,borderRadius:6,marginBottom:1,fontWeight:500}}
-      onMouseEnter={e => e.currentTarget.style.background=C.sidebarHover}
-      onMouseLeave={e => e.currentTarget.style.background='transparent'}>
-      <span style={{flex:1}}>{label}</span>
-      <span style={{fontSize:9,opacity:0.5}}>{expanded[groupKey]?'▲':'▼'}</span>
-    </div>
-  );
-
   const userNav = (<>
-    <div style={{padding:'8px 12px 4px',fontSize:11,fontWeight:600,color:C.textLight,letterSpacing:0.5,marginTop:4}}>車両管理</div>
-    <NavItem label="車両一覧" target="buyer-list"/>
-    <div style={{padding:'8px 12px 4px',fontSize:11,fontWeight:600,color:C.textLight,letterSpacing:0.5,marginTop:8}}>未入庫売買</div>
-    <NavItem label="未入庫車両購入" target="unlisted-list" indent/>
-    <NavItem label="取引中" target="tx-list" indent/>
-    <NavItem label="出品管理" target="seller-list" indent/>
-    <NavItem label="新規出品" target="seller-new" indent/>
-    <div style={{padding:'8px 12px 4px',fontSize:11,fontWeight:600,color:C.textLight,letterSpacing:0.5,marginTop:8}}>その他</div>
-    <NavItem label="通知" target="notifications"/>
-    <NavItem label="マイページ" target="mypage"/>
+    <NavItem label="ホーム" target="home" icon="🏠"/>
+    <div style={{padding:'10px 16px 4px',fontSize:11,fontWeight:600,color:C.textLight,letterSpacing:0.5,marginTop:6}}>未入庫売買</div>
+    <NavItem label="購入" target="unlisted-list" indent icon="🛒"/>
+    <NavItem label="出品管理" target="seller-list" indent icon="📋"/>
+    <div style={{padding:'10px 16px 4px',fontSize:11,fontWeight:600,color:C.textLight,letterSpacing:0.5,marginTop:6}}>その他</div>
+    <NavItem label="通知" target="notifications" icon="🔔"/>
+    <NavItem label="マイページ" target="mypage" icon="👤"/>
   </>);
 
   const adminNav = (<>
-    <div style={{padding:'8px 12px 4px',fontSize:11,fontWeight:600,color:C.textLight,letterSpacing:0.5,marginTop:4}}>管理</div>
-    <NavItem label="ダッシュボード" target="admin-dashboard"/>
-    <NavItem label="地域価格分析" target="admin-regional"/>
-    <NavItem label="アラート" target="notifications"/>
+    <NavItem label="ダッシュボード" target="admin-dashboard" icon="📊"/>
+    <NavItem label="地域価格分析" target="admin-regional" icon="📍"/>
+    <NavItem label="アラート" target="notifications" icon="🔔"/>
   </>);
 
   const uInfo = role==='admin'
     ? {name:'管理者',sub:'ver. 1.0.0',initials:'管'}
     : {name:'山田 太郎',sub:'ユーザー',initials:'山田'};
 
+  if (!open) return null;
+
   return (
-    <div style={{width:200,minWidth:200,background:C.sidebar,borderRight:`1px solid ${C.sidebarBorder}`,display:'flex',flexDirection:'column',height:'100vh',position:'sticky',top:0,overflow:'hidden'}}>
-      {/* Logo */}
-      <div style={{height:56,display:'flex',alignItems:'center',padding:'0 16px',gap:10,borderBottom:`1px solid ${C.sidebarBorder}`,flexShrink:0}}>
-        <div style={{width:28,height:28,background:C.red,borderRadius:6,display:'flex',alignItems:'center',justifyContent:'center',color:'#fff',fontSize:14,fontWeight:700,flexShrink:0}}>O</div>
-        <span style={{color:C.text,fontWeight:700,fontSize:16,letterSpacing:0.3}}>OnePrice</span>
-      </div>
-      {/* Nav */}
-      <div style={{flex:1,overflowY:'auto',padding:'8px',scrollbarWidth:'thin',scrollbarColor:'#ccc transparent'}}>
-        {role==='user' && userNav}
-        {role==='admin' && adminNav}
-      </div>
-      {/* User info */}
-      <div style={{borderTop:`1px solid ${C.sidebarBorder}`,padding:'12px',flexShrink:0}}>
-        <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:8}}>
-          <div style={{width:32,height:32,borderRadius:'50%',background:role==='admin'?'#555':C.red,display:'flex',alignItems:'center',justifyContent:'center',color:'#fff',fontSize:11,fontWeight:700,flexShrink:0}}>{uInfo.initials}</div>
-          <div style={{minWidth:0}}>
-            <div style={{color:C.text,fontSize:12,fontWeight:600,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{uInfo.name}</div>
-            <div style={{color:C.textLight,fontSize:11}}>{uInfo.sub}</div>
+    <>
+      {/* オーバーレイ */}
+      <div onClick={onClose} style={{position:'fixed',inset:0,background:'rgba(0,0,0,0.35)',zIndex:40,backdropFilter:'blur(1px)'}}/>
+      {/* ドロワー */}
+      <div style={{position:'fixed',top:0,left:0,bottom:0,width:256,background:C.sidebar,zIndex:50,display:'flex',flexDirection:'column',boxShadow:'6px 0 24px rgba(0,0,0,0.12)'}}>
+        {/* ロゴ + 閉じる */}
+        <div style={{height:64,display:'flex',alignItems:'center',padding:'0 16px',gap:12,borderBottom:`1px solid ${C.sidebarBorder}`,flexShrink:0}}>
+          <div style={{width:32,height:32,background:C.red,borderRadius:8,display:'flex',alignItems:'center',justifyContent:'center',color:'#fff',fontSize:16,fontWeight:700,flexShrink:0}}>O</div>
+          <span style={{color:C.text,fontWeight:700,fontSize:17,letterSpacing:0.3,flex:1}}>OnePrice</span>
+          <button onClick={onClose} style={{width:32,height:32,background:'none',border:'none',cursor:'pointer',color:C.textMid,fontSize:22,lineHeight:1,display:'flex',alignItems:'center',justifyContent:'center',borderRadius:6}}
+            onMouseEnter={e=>e.currentTarget.style.background='#f0f0f0'}
+            onMouseLeave={e=>e.currentTarget.style.background='none'}>×</button>
+        </div>
+        {/* ナビ */}
+        <div style={{flex:1,overflowY:'auto',padding:'12px 8px'}}>
+          {role==='user' && userNav}
+          {role==='admin' && adminNav}
+        </div>
+        {/* ユーザー情報 + ロール切替 */}
+        <div style={{borderTop:`1px solid ${C.sidebarBorder}`,padding:'14px',flexShrink:0}}>
+          <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:10}}>
+            <div style={{width:36,height:36,borderRadius:'50%',background:role==='admin'?'#555':C.red,display:'flex',alignItems:'center',justifyContent:'center',color:'#fff',fontSize:12,fontWeight:700,flexShrink:0}}>{uInfo.initials}</div>
+            <div style={{minWidth:0}}>
+              <div style={{color:C.text,fontSize:13,fontWeight:600}}>{uInfo.name}</div>
+              <div style={{color:C.textLight,fontSize:11}}>{uInfo.sub}</div>
+            </div>
+          </div>
+          <div style={{display:'flex',gap:6}}>
+            {['user','admin'].map(r => (
+              <button key={r} onClick={() => { setRole(r); setScreen(r==='admin'?'admin-dashboard':'home'); onClose(); }}
+                style={{flex:1,height:28,borderRadius:6,fontSize:12,fontWeight:600,background:role===r?C.red:'transparent',color:role===r?'#fff':C.textMid,border:`1px solid ${role===r?C.red:C.border}`,cursor:'pointer',transition:'all 0.15s'}}>
+                {r==='user'?'ユーザー':'管理'}
+              </button>
+            ))}
           </div>
         </div>
-        <div style={{display:'flex',gap:4}}>
-          {['user','admin'].map(r => (
-            <button key={r} onClick={() => { setRole(r); setScreen(r==='admin'?'admin-dashboard':'buyer-list'); }}
-              style={{flex:1,height:24,borderRadius:4,fontSize:11,fontWeight:600,background:role===r?C.red:'transparent',color:role===r?'#fff':C.textMid,border:`1px solid ${role===r?C.red:C.border}`,cursor:'pointer'}}>
-              {r==='user'?'ユーザー':'管理'}
-            </button>
-          ))}
-        </div>
       </div>
-    </div>
+    </>
   );
 }
 
 /* ─── TOPBAR ─── */
-function TopBar({title, setScreen, role}) {
+function TopBar({title, setScreen, role, onMenuClick}) {
   return (
-    <div style={{height:56,background:'#fff',borderBottom:`1px solid ${C.border}`,display:'flex',alignItems:'center',padding:'0 24px',gap:16,flexShrink:0,position:'sticky',top:0,zIndex:10}}>
+    <div style={{height:56,background:'#fff',borderBottom:`1px solid ${C.border}`,display:'flex',alignItems:'center',padding:'0 16px',gap:12,flexShrink:0,position:'sticky',top:0,zIndex:10}}>
+      {/* ハンバーガー */}
+      <button onClick={onMenuClick}
+        style={{width:36,height:36,display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:4,background:'none',border:'none',cursor:'pointer',borderRadius:8,padding:0,flexShrink:0}}
+        onMouseEnter={e=>e.currentTarget.style.background='#f5f5f5'}
+        onMouseLeave={e=>e.currentTarget.style.background='none'}>
+        <span style={{display:'block',width:18,height:2,background:C.text,borderRadius:1}}/>
+        <span style={{display:'block',width:18,height:2,background:C.text,borderRadius:1}}/>
+        <span style={{display:'block',width:18,height:2,background:C.text,borderRadius:1}}/>
+      </button>
+      {/* ロゴ */}
+      <div onClick={() => setScreen('home')} style={{width:28,height:28,background:C.red,borderRadius:6,display:'flex',alignItems:'center',justifyContent:'center',color:'#fff',fontSize:14,fontWeight:700,flexShrink:0,cursor:'pointer'}}>O</div>
       <h1 style={{fontSize:16,fontWeight:700,color:C.text,flex:1}}>{title}</h1>
       <div style={{display:'flex',alignItems:'center',gap:10}}>
         <div onClick={() => setScreen('notifications')} style={{width:36,height:36,display:'flex',alignItems:'center',justifyContent:'center',borderRadius:8,cursor:'pointer',position:'relative',background:'#f5f5f5'}}>
@@ -532,7 +553,7 @@ function BuyerList({setScreen, setSelectedVehicle}) {
                   </div>
                 </td>
                 <td style={{padding:'12px 8px',width:92}}>
-                  <img src={v.img} alt="" style={{width:80,height:56,borderRadius:4,objectFit:'cover',display:'block'}}/>
+                  <WikiImage wikiImg={v.wikiImg} fallback={v.img} style={{width:80,height:56,borderRadius:4,objectFit:'cover',display:'block'}}/>
                 </td>
                 <td style={{padding:'12px 14px'}}>
                   <div style={{fontSize:11,color:C.textMid}}>{v.maker}</div>
@@ -647,12 +668,12 @@ function BuyerDetail({vehicle, setScreen}) {
           <Card>
             <SectionTitle>車両写真</SectionTitle>
             <div style={{width:'100%',height:220,background:'#2a2a2a',borderRadius:6,marginBottom:10,overflow:'hidden'}}>
-              <img src={v.img} alt="" style={{width:'100%',height:'100%',objectFit:'cover'}}/>
+              <WikiImage wikiImg={v.wikiImg} fallback={v.img} style={{width:'100%',height:'100%',objectFit:'cover'}}/>
             </div>
             <div style={{display:'flex',gap:8}}>
               {[1,2,3,4].map(i => (
                 <div key={i} style={{width:72,height:52,border:`2px solid ${i===1?C.red:C.border}`,borderRadius:4,overflow:'hidden',background:'#2a2a2a',cursor:'pointer'}}>
-                  <img src={v.img} alt="" style={{width:'100%',height:'100%',objectFit:'cover'}}/>
+                  <WikiImage wikiImg={v.wikiImg} fallback={v.img} style={{width:'100%',height:'100%',objectFit:'cover'}}/>
                 </div>
               ))}
             </div>
@@ -700,7 +721,7 @@ function BuyerDetail({vehicle, setScreen}) {
                 </button>
               </div>
             )}
-            <div style={{fontSize:12,color:C.textMid,paddingTop:12,borderTop:`1px solid ${C.borderLight}`,marginTop:12}}>終了日時: {v.endDate}</div>
+            <div style={{fontSize:12,color:C.textMid,paddingTop:12,borderTop:`1px solid ${C.borderLight}`,marginTop:12}}>終了日時: {v.endDate && v.endDate.slice(0,7)}</div>
           </Card>
           <VehicleRegionalPrice vehicle={v}/>
         </div>
@@ -796,12 +817,12 @@ function BuyerDetailBuyNow({vehicle, setScreen}) {
           <Card>
             <SectionTitle>車両写真</SectionTitle>
             <div style={{width:'100%',height:220,background:'#2a2a2a',borderRadius:6,marginBottom:10,overflow:'hidden'}}>
-              <img src={v.img} alt="" style={{width:'100%',height:'100%',objectFit:'cover'}}/>
+              <WikiImage wikiImg={v.wikiImg} fallback={v.img} style={{width:'100%',height:'100%',objectFit:'cover'}}/>
             </div>
             <div style={{display:'flex',gap:8}}>
               {[1,2,3,4].map(i=>(
                 <div key={i} style={{width:72,height:52,border:`2px solid ${i===1?C.red:C.border}`,borderRadius:4,overflow:'hidden',background:'#2a2a2a',cursor:'pointer'}}>
-                  <img src={v.img} alt="" style={{width:'100%',height:'100%',objectFit:'cover'}}/>
+                  <WikiImage wikiImg={v.wikiImg} fallback={v.img} style={{width:'100%',height:'100%',objectFit:'cover'}}/>
                 </div>
               ))}
             </div>
@@ -824,7 +845,7 @@ function BuyerDetailBuyNow({vehicle, setScreen}) {
               style={{width:'100%',height:42,background:C.red,color:'#fff',border:'none',borderRadius:6,fontSize:14,fontWeight:700,cursor:'pointer'}}>
               今すぐ購入する
             </button>
-            <div style={{fontSize:12,color:C.textMid,paddingTop:12,borderTop:`1px solid ${C.borderLight}`,marginTop:12}}>掲載終了: {v.endDate}</div>
+            <div style={{fontSize:12,color:C.textMid,paddingTop:12,borderTop:`1px solid ${C.borderLight}`,marginTop:12}}>掲載終了: {v.endDate && v.endDate.slice(0,7)}</div>
           </Card>
           <VehicleRegionalPrice vehicle={v}/>
         </div>
@@ -963,7 +984,7 @@ function TxDetail({setScreen}) {
         <div style={{display:'flex',flexDirection:'column',gap:16}}>
           <Card>
             <div style={{fontWeight:700,fontSize:14,marginBottom:12}}>取引情報</div>
-            {[['取引ID','TX-2026-00234'],['成約日','2026年5月18日'],['支払期限','2026年5月25日'],['納車予定日','2026年6月5日'],['担当者','鈴木 健二']].map(([k,val]) => (
+            {[['取引ID','TX-2026-00234'],['成約日','2026-05-18'],['支払期限','2026-05-25'],['納車予定日','2026-06-05'],['担当者','鈴木 健二']].map(([k,val]) => (
               <div key={k} style={{display:'flex',justifyContent:'space-between',padding:'8px 0',borderBottom:`1px solid ${C.borderLight}`}}>
                 <span style={{fontSize:12,color:C.textMid}}>{k}</span>
                 <span style={{fontSize:12,fontWeight:600}}>{val}</span>
@@ -1111,6 +1132,9 @@ function MyPage() {
 
 /* ─── SELLER: 出品管理 ─── */
 function SellerList({setScreen, setSelectedVehicle}) {
+  const [newModal, setNewModal] = useState(false);
+  const [modalVehicle, setModalVehicle] = useState(null);
+  const openNew = (v) => { setModalVehicle(v||null); setNewModal(true); };
   const kpis = [
     {label:'出品中',value:'8件',icon:'📦'},
     {label:'入札あり',value:'4件',icon:'🔥'},
@@ -1144,7 +1168,7 @@ function SellerList({setScreen, setSelectedVehicle}) {
           <div style={{display:'flex',gap:8,alignItems:'flex-end'}}>
             <Btn>絞り込み</Btn>
             <Btn variant="ghost">クリア</Btn>
-            <Btn variant="outline" onClick={() => setScreen('seller-new')}>+ 新規出品</Btn>
+            <Btn variant="outline" onClick={() => openNew(null)}>+ 新規出品</Btn>
           </div>
         </div>
       </Card>
@@ -1152,39 +1176,53 @@ function SellerList({setScreen, setSelectedVehicle}) {
         <table style={{width:'100%',borderCollapse:'collapse'}}>
           <thead>
             <tr style={{background:'#FAFAFA',borderBottom:`1px solid ${C.border}`}}>
-              {['','車両情報','出品形式・価格','査定価格','入庫予定日','アクション'].map(h => (
+              {['','車両情報','出品状況','査定価格','登録日','アクション'].map(h => (
                 <th key={h} style={{padding:'10px 14px',textAlign:'left',fontSize:12,fontWeight:600,color:C.textMid,whiteSpace:'nowrap'}}>{h}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {VEHICLES.map(v => (
-              <tr key={v.id} style={{borderBottom:`1px solid ${C.borderLight}`}}
-                onMouseEnter={e => e.currentTarget.style.background='#FAFAFA'}
-                onMouseLeave={e => e.currentTarget.style.background='#fff'}>
+              <tr key={v.id} style={{borderBottom:`1px solid ${C.borderLight}`,background:v.listed?'#fff':'#FAFAFA'}}
+                onMouseEnter={e => e.currentTarget.style.background='#F5F5F5'}
+                onMouseLeave={e => e.currentTarget.style.background=v.listed?'#fff':'#FAFAFA'}>
                 <td style={{padding:'12px 14px',width:100,position:'relative'}}>
                   <div style={{position:'relative',display:'inline-block'}}>
-                    <img src={v.img} alt="" style={{width:80,height:56,borderRadius:4,objectFit:'cover',display:'block',background:'#2a2a2a'}}/>
-                    <span style={{position:'absolute',bottom:4,left:4,background:C.green,color:'#fff',fontSize:9,fontWeight:700,padding:'1px 4px',borderRadius:2}}>査定済</span>
+                    <WikiImage wikiImg={v.wikiImg} fallback={v.img} style={{width:80,height:56,borderRadius:4,objectFit:'cover',display:'block',background:'#2a2a2a',opacity:v.listed?1:0.6}}/>
+                    <span style={{position:'absolute',bottom:4,left:4,background:v.listed?C.green:'#888',color:'#fff',fontSize:9,fontWeight:700,padding:'1px 4px',borderRadius:2}}>{v.listed?'出品中':'未出品'}</span>
                   </div>
                 </td>
                 <td style={{padding:'12px 14px'}}>
                   <div style={{fontWeight:700,fontSize:13}}>{v.maker} {v.name}</div>
                   <div style={{fontSize:11,color:C.textMid}}>{v.grade} / {v.registration}</div>
+                  <div style={{fontSize:11,color:C.textMid}}>{v.mileage.toLocaleString()}km</div>
                 </td>
                 <td style={{padding:'12px 14px'}}>
-                  <div style={{fontSize:14,fontWeight:700,color:C.red}}>{fmt(v.price)}</div>
-                  {v.type!=='buynow' && <div style={{fontSize:11,color:C.textMid}}>入札 {v.bids}件</div>}
+                  {v.listed ? (
+                    <>
+                      <div style={{fontSize:14,fontWeight:700,color:C.red}}>{fmt(v.price)}</div>
+                      {v.type!=='buynow' && v.bids>0 && <div style={{fontSize:11,color:C.textMid}}>入札 {v.bids}件</div>}
+                      <div style={{fontSize:11,color:C.textMid}}>{v.type==='buynow'?'即決':v.type==='both'?'オークション+即決':'オークション'}</div>
+                    </>
+                  ) : (
+                    <span style={{fontSize:11,color:C.textLight,background:'#eee',padding:'3px 8px',borderRadius:4}}>未出品</span>
+                  )}
                 </td>
                 <td style={{padding:'12px 14px',fontSize:13,fontWeight:600}}>{fmt(v.price+300000)}</td>
-                <td style={{padding:'12px 14px',fontSize:12,color:C.textMid}}>{v.endDate}</td>
+                <td style={{padding:'12px 14px',fontSize:12,color:C.textMid}}>{v.registration}</td>
                 <td style={{padding:'12px 14px'}}>
                   <div style={{display:'flex',gap:4,flexWrap:'wrap'}}>
-                    {v.bids>0
-                      ? <Btn style={{height:28,fontSize:11}} onClick={() => { setSelectedVehicle(v); setScreen('seller-detail'); }}>入札状況</Btn>
-                      : <Btn variant="outline" style={{height:28,fontSize:11}} onClick={() => { setSelectedVehicle(v); setScreen('seller-detail'); }}>取引を見る</Btn>
-                    }
-                    <Btn variant="ghost" style={{height:28,fontSize:11}}>編集</Btn>
+                    {v.listed ? (
+                      <>
+                        {v.bids>0
+                          ? <Btn style={{height:28,fontSize:11}} onClick={() => { setSelectedVehicle(v); setScreen('seller-detail'); }}>入札状況</Btn>
+                          : <Btn variant="outline" style={{height:28,fontSize:11}} onClick={() => { setSelectedVehicle(v); setScreen('seller-detail'); }}>詳細</Btn>
+                        }
+                        <Btn variant="ghost" style={{height:28,fontSize:11}}>編集</Btn>
+                      </>
+                    ) : (
+                      <Btn variant="outline" style={{height:28,fontSize:11,borderColor:C.red,color:C.red}} onClick={() => openNew(v)}>+ 新規出品</Btn>
+                    )}
                   </div>
                 </td>
               </tr>
@@ -1192,6 +1230,7 @@ function SellerList({setScreen, setSelectedVehicle}) {
           </tbody>
         </table>
       </Card>
+      {newModal && <SellerNewModal vehicle={modalVehicle} onClose={() => setNewModal(false)}/>}
     </div>
   );
 }
@@ -1211,12 +1250,12 @@ function SellerDetail({vehicle, setScreen}) {
         <button onClick={() => setScreen('seller-list')} style={{background:'none',border:'none',color:C.textMid,cursor:'pointer',fontSize:13,marginBottom:16,padding:0}}>← 出品管理に戻る</button>
         <Card style={{marginBottom:16}}>
           <div style={{width:'100%',height:260,background:'#2a2a2a',borderRadius:6,marginBottom:12,overflow:'hidden'}}>
-            <img src={v.img} alt="" style={{width:'100%',height:'100%',objectFit:'cover'}}/>
+            <WikiImage wikiImg={v.wikiImg} fallback={v.img} style={{width:'100%',height:'100%',objectFit:'cover'}}/>
           </div>
           <div style={{display:'flex',gap:8}}>
             {[1,2,3,4].map(i => (
               <div key={i} style={{width:72,height:52,border:`2px solid ${i===1?C.red:C.border}`,borderRadius:4,overflow:'hidden',background:'#2a2a2a',cursor:'pointer'}}>
-                <img src={v.img} alt="" style={{width:'100%',height:'100%',objectFit:'cover'}}/>
+                <WikiImage wikiImg={v.wikiImg} fallback={v.img} style={{width:'100%',height:'100%',objectFit:'cover'}}/>
               </div>
             ))}
           </div>
@@ -1224,7 +1263,7 @@ function SellerDetail({vehicle, setScreen}) {
         <Card style={{marginBottom:16}}>
           <div style={{fontWeight:700,fontSize:14,marginBottom:12}}>車両スペック</div>
           <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:0}}>
-            {[['年式','2021年'],['走行距離','32,000km'],['排気量','3,000cc'],['燃料','ガソリン'],['車検','2027年3月'],['ミッション','8AT']].map(([k,vl]) => (
+            {[['年式','2021年'],['走行距離','32,000km'],['排気量','3,000cc'],['燃料','ガソリン'],['車検','2027-03'],['ミッション','8AT']].map(([k,vl]) => (
               <div key={k} style={{display:'flex',justifyContent:'space-between',padding:'8px 0',borderBottom:`1px solid ${C.borderLight}`}}>
                 <span style={{fontSize:12,color:C.textMid}}>{k}</span>
                 <span style={{fontSize:12,fontWeight:600}}>{vl}</span>
@@ -1272,7 +1311,7 @@ function SellerDetail({vehicle, setScreen}) {
               </div>
             ))}
           </div>
-          <div style={{fontSize:12,color:C.textMid,marginBottom:14}}>終了日時: 2026年5月24日 18:00</div>
+          <div style={{fontSize:12,color:C.textMid,marginBottom:14}}>終了日時: 2026-05-24 18:00</div>
           <div style={{background:'#F8F8F8',borderRadius:8,padding:12,marginBottom:14}}>
             <div style={{fontSize:12,fontWeight:600,marginBottom:8}}>出品期間の変更</div>
             <div style={{display:'flex',gap:8}}>
@@ -1292,110 +1331,81 @@ function SellerDetail({vehicle, setScreen}) {
   );
 }
 
-/* ─── SELLER: 新規出品フォーム ─── */
-function SellerNewListing({setScreen}) {
+/* ─── SELLER: 新規出品モーダル ─── */
+function SellerNewModal({vehicle, onClose}) {
+  const v = vehicle;
   const [saleType, setSaleType] = useState('auction');
   const [period, setPeriod] = useState('7');
   const [startPrice, setStartPrice] = useState('');
   const [buyNowPrice, setBuyNowPrice] = useState('');
-  const steps = ['車両情報','査定・状態','出品設定','確認・公開'];
-  const currentStep = 2;
-  const checks = [
-    {text:'写真が4枚以上アップロードされている',done:true},
-    {text:'査定情報が入力されている',done:true},
-    {text:'説明文が記入されている',done:false},
-    {text:'出品価格が設定されている',done:false},
-  ];
   return (
-    <div style={{padding:24}}>
-      <Card style={{marginBottom:20}}>
-        <div style={{display:'flex',alignItems:'center',justifyContent:'center',position:'relative',padding:'4px 0'}}>
-          {steps.map((s,i) => (
-            <React.Fragment key={s}>
-              <div style={{display:'flex',flexDirection:'column',alignItems:'center',gap:6,zIndex:1,flex:'none'}}>
-                <div style={{width:34,height:34,borderRadius:'50%',
-                  background:i<=currentStep?C.red:'#fff',
-                  border:`2px solid ${i<=currentStep?C.red:C.border}`,
-                  display:'flex',alignItems:'center',justifyContent:'center',
-                  color:i<=currentStep?'#fff':C.textLight,fontSize:12,fontWeight:700}}>
-                  {i<currentStep?'✓':i+1}
-                </div>
-                <div style={{fontSize:11,color:i===currentStep?C.red:i<currentStep?C.textMid:C.textLight,fontWeight:i===currentStep?700:400,whiteSpace:'nowrap'}}>{s}</div>
-              </div>
-              {i<steps.length-1 && <div style={{flex:1,height:2,background:i<currentStep?C.red:C.borderLight,margin:'0 8px',marginBottom:20}}/>}
-            </React.Fragment>
-          ))}
+    <div style={{position:'fixed',inset:0,zIndex:200,display:'flex',alignItems:'center',justifyContent:'center'}}
+      onClick={e => { if(e.target===e.currentTarget) onClose(); }}>
+      {/* 背景オーバーレイ */}
+      <div style={{position:'absolute',inset:0,background:'rgba(0,0,0,0.45)',backdropFilter:'blur(2px)'}}/>
+      {/* モーダル本体 */}
+      <div style={{position:'relative',background:'#fff',borderRadius:16,width:'100%',maxWidth:560,maxHeight:'88vh',overflowY:'auto',
+        boxShadow:'0 24px 64px rgba(0,0,0,0.18)',display:'flex',flexDirection:'column'}}>
+        {/* ヘッダー */}
+        <div style={{padding:'20px 24px 16px',borderBottom:`1px solid ${C.border}`,display:'flex',alignItems:'center',gap:12,flexShrink:0}}>
+          {v && <WikiImage wikiImg={v.wikiImg} fallback={v.img} style={{width:56,height:40,borderRadius:4,objectFit:'cover',background:'#2a2a2a'}}/>}
+          <div style={{flex:1}}>
+            <div style={{fontSize:15,fontWeight:800}}>{v ? `${v.maker} ${v.name}` : '新規出品'}</div>
+            {v && <div style={{fontSize:12,color:C.textMid}}>{v.grade} / {v.registration} / {v.mileage.toLocaleString()}km</div>}
+          </div>
+          <button onClick={onClose}
+            style={{width:32,height:32,borderRadius:'50%',border:`1px solid ${C.border}`,background:'#fff',
+              cursor:'pointer',fontSize:16,color:C.textMid,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>✕</button>
         </div>
-      </Card>
-      <div style={{display:'grid',gridTemplateColumns:'1fr 320px',gap:20}}>
-        <div style={{display:'flex',flexDirection:'column',gap:16}}>
-          <Card>
-            <div style={{fontSize:14,fontWeight:700,marginBottom:14}}>出品形式</div>
-            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12}}>
-              {[['auction','オークション','入札形式で最高価格の買い手に販売','⏱'],['buynow','即決','固定価格で先着の買い手に販売','💲']].map(([v,l,d,icon]) => (
-                <div key={v} onClick={() => setSaleType(v)}
-                  style={{padding:16,borderRadius:8,border:`2px solid ${saleType===v?C.red:C.border}`,cursor:'pointer',background:saleType===v?'#FFF5F5':'#fff',transition:'all 0.15s'}}>
-                  <div style={{fontSize:24,marginBottom:8}}>{icon}</div>
-                  <div style={{fontWeight:700,fontSize:14,color:saleType===v?C.red:C.text,marginBottom:4}}>{l}</div>
-                  <div style={{fontSize:11,color:C.textMid,lineHeight:1.5}}>{d}</div>
+        {/* コンテンツ */}
+        <div style={{padding:'20px 24px',display:'flex',flexDirection:'column',gap:16,flex:1}}>
+          {/* 出品形式 */}
+          <div>
+            <div style={{fontSize:13,fontWeight:700,marginBottom:10}}>出品形式</div>
+            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}}>
+              {[['auction','オークション','入札形式で最高価格の買い手に販売','⏱'],['buynow','即決','固定価格で先着の買い手に販売','💲']].map(([val,label,desc,icon]) => (
+                <div key={val} onClick={() => setSaleType(val)}
+                  style={{padding:14,borderRadius:8,border:`2px solid ${saleType===val?C.red:C.border}`,
+                    cursor:'pointer',background:saleType===val?'#FFF5F5':'#fff',transition:'all 0.15s'}}>
+                  <div style={{fontSize:20,marginBottom:6}}>{icon}</div>
+                  <div style={{fontWeight:700,fontSize:13,color:saleType===val?C.red:C.text,marginBottom:3}}>{label}</div>
+                  <div style={{fontSize:11,color:C.textMid,lineHeight:1.5}}>{desc}</div>
                 </div>
               ))}
             </div>
-          </Card>
-          <Card>
-            <div style={{fontSize:14,fontWeight:700,marginBottom:14}}>価格設定</div>
-            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:14}}>
+          </div>
+          {/* 価格設定 */}
+          <div>
+            <div style={{fontSize:13,fontWeight:700,marginBottom:10}}>価格設定</div>
+            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12}}>
               <Input label="開始価格（円）" value={startPrice} onChange={e=>setStartPrice(e.target.value)} placeholder="例: 8500000"/>
               <Input label={saleType==='buynow'?'即決価格（円）':'即決価格（円・任意）'} value={buyNowPrice} onChange={e=>setBuyNowPrice(e.target.value)} placeholder={saleType==='buynow'?'例: 9000000':'空白=設定なし'}/>
             </div>
-          </Card>
+          </div>
+          {/* 出品期間（オークションのみ） */}
           {saleType==='auction' && (
-            <Card>
-              <div style={{fontSize:14,fontWeight:700,marginBottom:14}}>出品期間</div>
-              <div style={{display:'flex',gap:10}}>
-                {[['3','3日'],['5','5日'],['7','7日'],['14','14日']].map(([v,l]) => (
-                  <button key={v} onClick={() => setPeriod(v)}
-                    style={{padding:'8px 20px',borderRadius:6,border:`2px solid ${period===v?C.red:C.border}`,
-                      background:period===v?C.red:'#fff',color:period===v?'#fff':C.text,fontSize:13,fontWeight:600,cursor:'pointer',transition:'all 0.15s'}}>
-                    {l}
+            <div>
+              <div style={{fontSize:13,fontWeight:700,marginBottom:10}}>出品期間</div>
+              <div style={{display:'flex',gap:8}}>
+                {[['3','3日'],['5','5日'],['7','7日'],['14','14日']].map(([val,label]) => (
+                  <button key={val} onClick={() => setPeriod(val)}
+                    style={{padding:'8px 18px',borderRadius:6,border:`2px solid ${period===val?C.red:C.border}`,
+                      background:period===val?C.red:'#fff',color:period===val?'#fff':C.text,
+                      fontSize:13,fontWeight:600,cursor:'pointer',transition:'all 0.15s'}}>
+                    {label}
                   </button>
                 ))}
               </div>
-            </Card>
+            </div>
           )}
-          <div style={{display:'flex',gap:10,justifyContent:'space-between',paddingTop:4}}>
-            <Btn variant="ghost" onClick={() => setScreen('seller-list')}>← 前のステップに戻る</Btn>
-            <div style={{display:'flex',gap:10}}>
-              <Btn variant="outline">下書きとして保存</Btn>
-              <Btn>確認画面へ進む →</Btn>
-            </div>
-          </div>
         </div>
-        <div style={{display:'flex',flexDirection:'column',gap:16}}>
-          <Card>
-            <div style={{fontSize:13,fontWeight:700,marginBottom:10}}>査定情報カード</div>
-            <div style={{background:'#F8F8F8',borderRadius:8,padding:12,marginBottom:10,textAlign:'center'}}>
-              <div style={{fontSize:11,color:C.textMid,marginBottom:2}}>査定価格</div>
-              <div style={{fontSize:24,fontWeight:800,color:C.text}}>{fmt(8800000)}</div>
-            </div>
-            {[['メーカー','BMW'],['車種','X5 M50i'],['年式','2021年'],['走行距離','32,000km'],['査定日','2026年5月15日']].map(([k,val]) => (
-              <div key={k} style={{display:'flex',justifyContent:'space-between',padding:'5px 0',borderBottom:`1px solid ${C.borderLight}`}}>
-                <span style={{fontSize:11,color:C.textMid}}>{k}</span>
-                <span style={{fontSize:12,fontWeight:600}}>{val}</span>
-              </div>
-            ))}
-          </Card>
-          <Card>
-            <div style={{fontSize:13,fontWeight:700,marginBottom:10}}>出品前チェックリスト</div>
-            {checks.map((c,i) => (
-              <div key={i} style={{display:'flex',gap:8,padding:'7px 0',borderBottom:`1px solid ${C.borderLight}`,alignItems:'flex-start'}}>
-                <div style={{width:18,height:18,borderRadius:4,background:c.done?C.green:'#fff',border:`2px solid ${c.done?C.green:C.border}`,display:'flex',alignItems:'center',justifyContent:'center',color:'#fff',fontSize:10,flexShrink:0,marginTop:1}}>
-                  {c.done&&'✓'}
-                </div>
-                <span style={{fontSize:12,color:c.done?C.text:C.textMid,lineHeight:1.5}}>{c.text}</span>
-              </div>
-            ))}
-          </Card>
+        {/* フッター */}
+        <div style={{padding:'16px 24px',borderTop:`1px solid ${C.border}`,display:'flex',justifyContent:'space-between',alignItems:'center',flexShrink:0,background:'#FAFAFA',borderRadius:'0 0 16px 16px'}}>
+          <Btn variant="ghost" onClick={onClose}>キャンセル</Btn>
+          <div style={{display:'flex',gap:8}}>
+            <Btn variant="outline">下書き保存</Btn>
+            <Btn>出品する →</Btn>
+          </div>
         </div>
       </div>
     </div>
@@ -1480,7 +1490,7 @@ function AdminDashboard({setScreen}) {
                     <td style={{padding:'8px 10px',fontSize:12,fontWeight:600}}>{v.name}</td>
                     <td style={{padding:'8px 10px',fontSize:12,color:C.textMid}}>A商会</td>
                     <td style={{padding:'8px 10px',fontSize:12,fontWeight:700,color:C.red}}>{fmt(v.price)}</td>
-                    <td style={{padding:'8px 10px',fontSize:11,color:C.textLight}}>5月{20-i}日</td>
+                    <td style={{padding:'8px 10px',fontSize:11,color:C.textLight}}>2026-05-{String(20-i).padStart(2,'0')}</td>
                   </tr>
                 ))}
               </tbody>
@@ -2048,7 +2058,7 @@ function PurchaseModal({vehicle, modalType, onClose}) {
             <>
               {/* 車両サマリー */}
               <div style={{display:'flex',gap:12,alignItems:'center',padding:'12px 14px',background:'#F8F8F8',borderRadius:8,marginBottom:20}}>
-                <img src={vehicle.img} alt="" style={{width:72,height:50,borderRadius:4,objectFit:'cover',flexShrink:0}}/>
+                <WikiImage wikiImg={vehicle.wikiImg} fallback={vehicle.img} style={{width:72,height:50,borderRadius:4,objectFit:'cover',flexShrink:0}}/>
                 <div>
                   <div style={{fontSize:13,fontWeight:700}}>{vehicle.maker} {vehicle.name}</div>
                   <div style={{fontSize:11,color:C.textMid}}>{vehicle.registration} · {vehicle.mileage.toLocaleString()}km</div>
@@ -2067,7 +2077,7 @@ function PurchaseModal({vehicle, modalType, onClose}) {
                   <div style={{background:'#F8F8F8',borderRadius:8,padding:'10px 14px'}}>
                     <div style={{fontSize:11,color:C.textMid,marginBottom:3}}>最低入札額</div>
                     <div style={{fontSize:16,fontWeight:800,color:C.text}}>{fmt(minBid)}</div>
-                    <div style={{fontSize:10,color:C.textMid}}>終了: {vehicle.endDate}</div>
+                    <div style={{fontSize:10,color:C.textMid}}>終了: {vehicle.endDate && vehicle.endDate.slice(0,7)}</div>
                   </div>
                 </div>
               ) : (
@@ -2176,8 +2186,8 @@ function UnlistedList({setScreen}) {
         <table style={{width:'100%',borderCollapse:'collapse'}}>
           <thead>
             <tr style={{background:'#FAFAFA',borderBottom:`1px solid ${C.border}`}}>
-              {['','メーカー / 車種名 / グレード','車体番号','初度登録','走行距離','店舗 / 担当者','取引形式 / 価格',''].map((h,i) => (
-                <th key={i} style={{padding:'10px 14px',textAlign:'left',fontSize:11,fontWeight:600,color:C.textMid,whiteSpace:'nowrap'}}>{h}</th>
+              {['','メーカー / 車種名','初度登録','走行距離','取引形式 / 価格',''].map((h,i) => (
+                <th key={i} style={{padding:'12px 16px',textAlign:'left',fontSize:12,fontWeight:600,color:C.textMid,whiteSpace:'nowrap'}}>{h}</th>
               ))}
             </tr>
           </thead>
@@ -2188,25 +2198,19 @@ function UnlistedList({setScreen}) {
                 <tr key={v.id} style={{borderBottom:`1px solid ${C.borderLight}`}}
                   onMouseEnter={e => e.currentTarget.style.background='#FAFAFA'}
                   onMouseLeave={e => e.currentTarget.style.background='#fff'}>
-                  <td style={{padding:'12px 8px',width:92}}>
-                    <img src={v.img} alt="" style={{width:80,height:56,borderRadius:4,objectFit:'cover',display:'block'}}/>
+                  <td style={{padding:'14px 10px',width:100}}>
+                    <WikiImage wikiImg={v.wikiImg} fallback={v.img} style={{width:88,height:62,borderRadius:6,objectFit:'cover',display:'block'}}/>
                   </td>
-                  <td style={{padding:'12px 14px'}}>
+                  <td style={{padding:'14px 16px'}}>
                     <div style={{fontSize:12,color:C.textMid}}>{v.maker}</div>
-                    <div style={{fontSize:14,fontWeight:700,color:C.text}}>{v.name}</div>
-                    <div style={{fontSize:11,color:C.textMid}}>{v.grade}</div>
+                    <div style={{fontSize:16,fontWeight:700,color:C.text}}>{v.name}</div>
+                    <div style={{fontSize:12,color:C.textMid}}>{v.grade}</div>
                   </td>
-                  <td style={{padding:'12px 14px',fontSize:12,fontFamily:'monospace',color:C.text}}>{v.vin}</td>
-                  <td style={{padding:'12px 14px',fontSize:12,color:C.textMid,whiteSpace:'nowrap'}}>{v.registration}</td>
-                  <td style={{padding:'12px 14px'}}>
-                    <div style={{fontSize:12}}>{v.mileage.toLocaleString()}km</div>
-                    <div style={{fontSize:11,color:C.textMid}}>{v.meterCheck}</div>
+                  <td style={{padding:'14px 16px',fontSize:15,fontWeight:600,color:C.text,whiteSpace:'nowrap'}}>{v.registration}</td>
+                  <td style={{padding:'14px 16px'}}>
+                    <div style={{fontSize:15,fontWeight:600}}>{v.mileage.toLocaleString()}<span style={{fontSize:12,color:C.textMid,fontWeight:400}}>km</span></div>
                   </td>
-                  <td style={{padding:'12px 14px'}}>
-                    <div style={{fontSize:12}}>{v.store}</div>
-                    <div style={{fontSize:11,color:C.textMid}}>{v.assignee}</div>
-                  </td>
-                  <td style={{padding:'12px 14px',minWidth:180}}>
+                  <td style={{padding:'14px 16px',minWidth:180}}>
                     {/* 取引形式バッジ */}
                     <span style={{display:'inline-block',padding:'2px 7px',borderRadius:3,fontSize:10,fontWeight:700,background:tc.bg,color:tc.text,marginBottom:6}}>
                       {TYPE_LABEL[v.type]}
@@ -2216,7 +2220,7 @@ function UnlistedList({setScreen}) {
                       <div style={{marginBottom: v.type==='both' ? 6 : 0}}>
                         <div style={{fontSize:11,color:C.textMid}}>現在の入札</div>
                         <div style={{fontSize:14,fontWeight:700,color:C.blue}}>{fmt(v.currentBid)}</div>
-                        <div style={{fontSize:10,color:C.textMid}}>{v.bidCount}件の入札 · {v.endDate}終了</div>
+                        <div style={{fontSize:10,color:C.textMid}}>{v.bidCount}件の入札 · {v.endDate && v.endDate.slice(0,7)}終了</div>
                       </div>
                     )}
                     {/* 即決価格 */}
@@ -2247,9 +2251,89 @@ function UnlistedList({setScreen}) {
   );
 }
 
+/* ─── HOME SCREEN ─── */
+function HomeScreen({setScreen}) {
+  const tiles = [
+    {
+      id: 'satei',
+      icon: '🔍',
+      label: '査定',
+      desc: '車両を査定して\n市場価格を確認する',
+      color: '#1565C0',
+      lightColor: '#E3F2FD',
+      target: null, // 一時無効化
+      disabled: true,
+    },
+    {
+      id: 'listing',
+      icon: '📋',
+      label: '出品',
+      desc: '保有車両を\nオークション・即決で出品する',
+      color: C.red,
+      lightColor: '#FFEBEE',
+      target: 'seller-list',
+    },
+    {
+      id: 'purchase',
+      icon: '🛒',
+      label: '購入',
+      desc: 'オークション・即決で\n車両を購入する',
+      color: '#2E7D32',
+      lightColor: '#E8F5E9',
+      target: 'unlisted-list',
+    },
+  ];
+
+  return (
+    <div style={{minHeight:'calc(100vh - 56px)',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#F7F7F7'}}>
+      {/* タイトル */}
+      <div style={{textAlign:'center',marginBottom:52}}>
+        <div style={{width:64,height:64,background:C.red,borderRadius:16,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 18px',color:'#fff',fontSize:30,fontWeight:700,boxShadow:'0 4px 16px rgba(192,54,66,0.25)'}}>O</div>
+        <div style={{fontSize:28,fontWeight:800,color:C.text,letterSpacing:0.3}}>OnePrice</div>
+        <div style={{fontSize:15,color:C.textMid,marginTop:8}}>何をしますか？</div>
+      </div>
+
+      {/* 3タイル */}
+      <div style={{display:'flex',gap:24,flexWrap:'wrap',justifyContent:'center',width:'100%',maxWidth:900}}>
+        {tiles.map(t => (
+          <div key={t.id}
+            onClick={() => !t.disabled && t.target && setScreen(t.target)}
+            style={{flex:'1 1 240px',maxWidth:272,background:'#fff',borderRadius:20,padding:'40px 28px 36px',
+              cursor: t.disabled ? 'default' : 'pointer',
+              boxShadow:'0 2px 16px rgba(0,0,0,0.06)',border:'2px solid transparent',
+              display:'flex',flexDirection:'column',alignItems:'center',textAlign:'center',
+              transition:'transform 0.2s,box-shadow 0.2s,border-color 0.2s',userSelect:'none'}}
+            onMouseEnter={e => {
+              if(t.disabled) return;
+              e.currentTarget.style.transform='translateY(-6px)';
+              e.currentTarget.style.boxShadow='0 12px 36px rgba(0,0,0,0.12)';
+              e.currentTarget.style.borderColor=t.color;
+            }}
+            onMouseLeave={e => {
+              if(t.disabled) return;
+              e.currentTarget.style.transform='translateY(0)';
+              e.currentTarget.style.boxShadow='0 2px 16px rgba(0,0,0,0.06)';
+              e.currentTarget.style.borderColor='transparent';
+            }}>
+            {/* アイコン */}
+            <div style={{width:80,height:80,borderRadius:24,background:t.lightColor,display:'flex',alignItems:'center',justifyContent:'center',fontSize:38,marginBottom:22}}>
+              {t.icon}
+            </div>
+            <div style={{fontSize:24,fontWeight:800,color:C.text,marginBottom:12}}>{t.label}</div>
+            <div style={{fontSize:13,color:C.textMid,lineHeight:1.7,whiteSpace:'pre-line'}}>{t.desc}</div>
+            {/* 矢印ボタン */}
+            <div style={{marginTop:28,width:44,height:44,borderRadius:'50%',background:t.color,display:'flex',alignItems:'center',justifyContent:'center',color:'#fff',fontSize:20,boxShadow:`0 4px 12px ${t.color}55`}}>→</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ─── PAGE TITLES ─── */
 const PAGE_TITLES = {
-  'buyer-list':'車両一覧',
+  'home':'OnePrice',
+  'buyer-list':'査定 / 車両一覧',
   'buyer-detail':'車両詳細',
   'buyer-detail-buynow':'車両詳細（即決）',
   'tx-list':'取引中（購入）',
@@ -2258,8 +2342,7 @@ const PAGE_TITLES = {
   'mypage':'マイページ',
   'seller-list':'出品管理',
   'seller-detail':'車両詳細（出品）',
-  'seller-new':'新規出品',
-  'unlisted-list':'未入庫車両購入',
+  'unlisted-list':'購入',
   'price-negotiation':'価格交渉',
   'admin-dashboard':'ダッシュボード',
   'admin-regional':'地域別価格分析',
@@ -2269,13 +2352,14 @@ const PAGE_TITLES = {
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [role, setRole] = useState('user');
-  const [screen, setScreen] = useState('buyer-list');
+  const [screen, setScreen] = useState('home');
   const [selectedVehicle, setSelectedVehicle] = useState(null);
   const [selectedUnlisted, setSelectedUnlisted] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleLogin = r => {
     setRole(r);
-    setScreen(r==='admin'?'admin-dashboard':'buyer-list');
+    setScreen(r==='admin'?'admin-dashboard':'home');
     setLoggedIn(true);
   };
 
@@ -2283,6 +2367,7 @@ function App() {
 
   const renderScreen = () => {
     switch(screen) {
+      case 'home': return <HomeScreen setScreen={setScreen}/>;
       case 'buyer-list': return <BuyerList setScreen={setScreen} setSelectedVehicle={setSelectedVehicle}/>;
       case 'buyer-detail': return <BuyerDetail vehicle={selectedVehicle} setScreen={setScreen}/>;
       case 'buyer-detail-buynow': return <BuyerDetailBuyNow vehicle={selectedVehicle} setScreen={setScreen}/>;
@@ -2292,19 +2377,22 @@ function App() {
       case 'mypage': return <MyPage/>;
       case 'seller-list': return <SellerList setScreen={setScreen} setSelectedVehicle={setSelectedVehicle}/>;
       case 'seller-detail': return <SellerDetail vehicle={selectedVehicle} setScreen={setScreen}/>;
-      case 'seller-new': return <SellerNewListing setScreen={setScreen}/>;
       case 'unlisted-list': return <UnlistedList setScreen={setScreen} setSelectedUnlisted={setSelectedUnlisted}/>;
       case 'price-negotiation': return <PriceNegotiation vehicle={selectedUnlisted} setScreen={setScreen}/>;
       case 'admin-dashboard': return <AdminDashboard setScreen={setScreen}/>;
       case 'admin-regional': return <AdminRegional/>;
-      default: return <BuyerList setScreen={setScreen} setSelectedVehicle={setSelectedVehicle}/>;
+      default: return <HomeScreen setScreen={setScreen}/>;
     }
   };
 
+  const title = screen === 'home' ? '' : (PAGE_TITLES[screen] || 'OnePrice');
+
   return (
-    <div style={{display:'flex',minHeight:'100vh',background:C.bg}}>
-      <Sidebar role={role} screen={screen} setScreen={setScreen} setRole={setRole}/>
-      <div style={{flex:1,overflowY:'auto',overflowX:'hidden',minWidth:0}}>
+    <div style={{minHeight:'100vh',background:C.bg}}>
+      <Sidebar role={role} screen={screen} setScreen={setScreen} setRole={setRole}
+        open={sidebarOpen} onClose={() => setSidebarOpen(false)}/>
+      <TopBar title={title} setScreen={setScreen} role={role} onMenuClick={() => setSidebarOpen(true)}/>
+      <div style={{overflowY:'auto',overflowX:'hidden'}}>
         {renderScreen()}
       </div>
     </div>
