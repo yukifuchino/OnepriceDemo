@@ -682,7 +682,7 @@ function BuyerList({setScreen, setSelectedVehicle}) {
           <thead>
             <tr style={{background:'#FAFAFA',borderBottom:`1px solid ${C.border}`}}>
               {['査定番号 / ステータス','','メーカー / 車種名 / グレード','車体番号','初度登録','走行距離 / メーター','店舗 / 担当者','出品情報'].map((h,i) => (
-                <th key={i} style={{padding:'10px 14px',textAlign:'left',fontSize:11,fontWeight:600,color:C.textMid,whiteSpace:'nowrap'}}>{h}</th>
+                <th key={i} style={{padding:'12px 14px',textAlign:'left',fontSize:13,fontWeight:600,color:C.textMid,whiteSpace:'nowrap'}}>{h}</th>
               ))}
             </tr>
           </thead>
@@ -692,38 +692,38 @@ function BuyerList({setScreen, setSelectedVehicle}) {
                 onMouseEnter={e => e.currentTarget.style.background='#FAFAFA'}
                 onMouseLeave={e => e.currentTarget.style.background='#fff'}
                 onClick={() => { setSelectedVehicle(v); setScreen('buyer-detail'); }}>
-                <td style={{padding:'12px 14px',minWidth:130}}>
-                  <div style={{fontSize:12,fontWeight:600,color:C.text,marginBottom:5,fontFamily:'monospace'}}>{v.appraisalNo}</div>
+                <td style={{padding:'14px 14px',minWidth:140}}>
+                  <div style={{fontSize:13,fontWeight:600,color:C.text,marginBottom:6,fontFamily:'monospace'}}>{v.appraisalNo}</div>
                   <div style={{display:'flex',flexDirection:'column',gap:3}}>
                     <StatusBadge status={v.appraisalStatus} type="appraisal"/>
                     {v.contractStatus && <div style={{marginTop:2}}><StatusBadge status={v.contractStatus} type="contract"/></div>}
                   </div>
                 </td>
-                <td style={{padding:'12px 8px',width:92}}>
-                  <WikiImage wikiImg={v.wikiImg} fallback={v.img} style={{width:80,height:56,borderRadius:4,objectFit:'cover',display:'block'}}/>
+                <td style={{padding:'14px 8px',width:108}}>
+                  <WikiImage wikiImg={v.wikiImg} fallback={v.img} style={{width:96,height:66,borderRadius:4,objectFit:'cover',display:'block'}}/>
                 </td>
-                <td style={{padding:'12px 14px'}}>
-                  <div style={{fontSize:11,color:C.textMid}}>{v.maker}</div>
-                  <div style={{fontSize:14,fontWeight:700,color:C.text}}>{v.name}</div>
-                  <div style={{fontSize:11,color:C.textMid}}>{v.grade}</div>
+                <td style={{padding:'14px 14px'}}>
+                  <div style={{fontSize:13,color:C.textMid}}>{v.maker}</div>
+                  <div style={{fontSize:16,fontWeight:700,color:C.text}}>{v.name}</div>
+                  <div style={{fontSize:13,color:C.textMid}}>{v.grade}</div>
                 </td>
-                <td style={{padding:'12px 14px',fontSize:12,color:C.text,fontFamily:'monospace',whiteSpace:'nowrap'}}>{v.vin}</td>
-                <td style={{padding:'12px 14px',fontSize:12,color:C.textMid,whiteSpace:'nowrap'}}>{v.registration}</td>
-                <td style={{padding:'12px 14px'}}>
-                  <div style={{fontSize:12,color:C.text}}>{v.mileage.toLocaleString()}km</div>
-                  <div style={{fontSize:11,color:C.textMid}}>{v.meterCheck}</div>
+                <td style={{padding:'14px 14px',fontSize:13,color:C.text,fontFamily:'monospace',whiteSpace:'nowrap'}}>{v.vin}</td>
+                <td style={{padding:'14px 14px',fontSize:14,color:C.textMid,whiteSpace:'nowrap'}}>{v.registration}</td>
+                <td style={{padding:'14px 14px'}}>
+                  <div style={{fontSize:14,color:C.text}}>{v.mileage.toLocaleString()}km</div>
+                  <div style={{fontSize:13,color:C.textMid}}>{v.meterCheck}</div>
                 </td>
-                <td style={{padding:'12px 14px'}}>
-                  <div style={{fontSize:12,color:C.text}}>{v.store}</div>
-                  <div style={{fontSize:11,color:C.textMid}}>{v.assignee}</div>
+                <td style={{padding:'14px 14px'}}>
+                  <div style={{fontSize:14,color:C.text}}>{v.store}</div>
+                  <div style={{fontSize:13,color:C.textMid}}>{v.assignee}</div>
                 </td>
-                <td style={{padding:'12px 14px'}}>
+                <td style={{padding:'14px 14px'}}>
                   <div style={{display:'flex',flexDirection:'column',gap:4}}>
                     <div style={{display:'flex',gap:4,flexWrap:'wrap'}}>
                       <Badge color={C.orange}>オークション</Badge>
                     </div>
-                    <div style={{fontSize:13,fontWeight:700,color:C.red}}>{fmt(v.price)}</div>
-                    <div style={{fontSize:11,color:C.textMid}}>入札 {v.bids}件</div>
+                    <div style={{fontSize:15,fontWeight:700,color:C.red}}>{fmt(v.price)}</div>
+                    <div style={{fontSize:13,color:C.textMid}}>入札 {v.bids}件</div>
                   </div>
                 </td>
               </tr>
@@ -1209,17 +1209,17 @@ function SellerList({setScreen, setSelectedVehicle}) {
       <div style={{display:'grid',gridTemplateColumns:'repeat(5,1fr)',gap:12}}>
         {kpis.map(k => (
           <Card key={k.label} style={{textAlign:'center'}}>
-            <div style={{fontSize:22,marginBottom:6}}>{k.icon}</div>
-            <div style={{fontSize:k.highlight?20:18,fontWeight:800,color:k.highlight?C.red:C.text}}>{k.value}</div>
-            <div style={{fontSize:12,color:C.textMid,marginTop:2}}>{k.label}</div>
+            <div style={{fontSize:26,marginBottom:6}}>{k.icon}</div>
+            <div style={{fontSize:k.highlight?24:22,fontWeight:800,color:k.highlight?C.red:C.text}}>{k.value}</div>
+            <div style={{fontSize:14,color:C.textMid,marginTop:4}}>{k.label}</div>
           </Card>
         ))}
       </div>
       <div style={{background:'#FFF7ED',border:`1px solid ${C.orange}`,borderLeft:`4px solid ${C.orange}`,borderRadius:8,padding:'12px 16px',display:'flex',gap:12,alignItems:'center'}}>
         <span style={{fontSize:18}}>⚠</span>
         <div style={{flex:1}}>
-          <div style={{fontWeight:700,fontSize:13,color:C.orange}}>BMW X5 M50i オークション残り時間警告</div>
-          <div style={{fontSize:12,color:C.textMid}}>現在の入札価格 ¥8,700,000 / 残り2日14時間</div>
+          <div style={{fontWeight:700,fontSize:15,color:C.orange}}>BMW X5 M50i オークション残り時間警告</div>
+          <div style={{fontSize:14,color:C.textMid}}>現在の入札価格 ¥8,700,000 / 残り2日14時間</div>
         </div>
         <Btn variant="ghost" style={{height:30,fontSize:12,borderColor:C.orange,color:C.orange}}>確認する</Btn>
       </div>
@@ -1238,7 +1238,7 @@ function SellerList({setScreen, setSelectedVehicle}) {
           <thead>
             <tr style={{background:'#FAFAFA',borderBottom:`1px solid ${C.border}`}}>
               {['','車両情報','出品状況','査定価格','登録日','アクション'].map(h => (
-                <th key={h} style={{padding:'10px 14px',textAlign:'left',fontSize:12,fontWeight:600,color:C.textMid,whiteSpace:'nowrap'}}>{h}</th>
+                <th key={h} style={{padding:'12px 14px',textAlign:'left',fontSize:14,fontWeight:600,color:C.textMid,whiteSpace:'nowrap'}}>{h}</th>
               ))}
             </tr>
           </thead>
@@ -1249,41 +1249,41 @@ function SellerList({setScreen, setSelectedVehicle}) {
               <tr key={v.id} style={{borderBottom:`1px solid ${C.borderLight}`,background:isListed?'#fff':'#FAFAFA'}}
                 onMouseEnter={e => e.currentTarget.style.background='#F5F5F5'}
                 onMouseLeave={e => e.currentTarget.style.background=isListed?'#fff':'#FAFAFA'}>
-                <td style={{padding:'16px 14px',width:130,position:'relative'}}>
+                <td style={{padding:'16px 14px',width:150,position:'relative'}}>
                   <div style={{position:'relative',display:'inline-block'}}>
-                    <WikiImage wikiImg={v.wikiImg} fallback={v.img} style={{width:110,height:76,borderRadius:6,objectFit:'cover',display:'block',background:'#2a2a2a',opacity:isListed?1:0.65}}/>
-                    <span style={{position:'absolute',bottom:4,left:4,background:isListed?C.green:'#888',color:'#fff',fontSize:9,fontWeight:700,padding:'2px 6px',borderRadius:3}}>{isListed?'出品中':'未出品'}</span>
+                    <WikiImage wikiImg={v.wikiImg} fallback={v.img} style={{width:126,height:88,borderRadius:6,objectFit:'cover',display:'block',background:'#2a2a2a',opacity:isListed?1:0.65}}/>
+                    <span style={{position:'absolute',bottom:4,left:4,background:isListed?C.green:'#888',color:'#fff',fontSize:11,fontWeight:700,padding:'2px 8px',borderRadius:3}}>{isListed?'出品中':'未出品'}</span>
                   </div>
                 </td>
                 <td style={{padding:'16px 14px'}}>
                   <div
-                    style={{fontWeight:700,fontSize:15,color:C.blue,cursor:'pointer',display:'inline',transition:'opacity 0.15s'}}
+                    style={{fontWeight:700,fontSize:17,color:C.blue,cursor:'pointer',display:'inline',transition:'opacity 0.15s'}}
                     onClick={() => { setSelectedVehicle(v); setScreen('seller-detail'); }}
                     onMouseEnter={e=>e.currentTarget.style.opacity='0.7'}
                     onMouseLeave={e=>e.currentTarget.style.opacity='1'}>
                     {v.maker} {v.name}
                   </div>
-                  <div style={{fontSize:12,color:C.textMid,marginTop:3}}>{v.grade} / {v.registration}</div>
-                  <div style={{fontSize:12,color:C.textMid}}>{v.mileage.toLocaleString()}km</div>
+                  <div style={{fontSize:14,color:C.textMid,marginTop:4}}>{v.grade} / {v.registration}</div>
+                  <div style={{fontSize:14,color:C.textMid}}>{v.mileage.toLocaleString()}km</div>
                 </td>
                 <td style={{padding:'16px 14px'}}>
                   {isListed ? (
                     <>
-                      <div style={{fontSize:15,fontWeight:700,color:C.red}}>{fmt(v.price)}</div>
-                      {v.bids>0 && <div style={{fontSize:12,color:C.textMid,marginTop:2}}>入札 {v.bids}件</div>}
+                      <div style={{fontSize:17,fontWeight:700,color:C.red}}>{fmt(v.price)}</div>
+                      {v.bids>0 && <div style={{fontSize:14,color:C.textMid,marginTop:2}}>入札 {v.bids}件</div>}
                     </>
                   ) : (
-                    <span style={{fontSize:12,color:C.textLight,background:'#eee',padding:'4px 10px',borderRadius:4}}>未出品</span>
+                    <span style={{fontSize:14,color:C.textLight,background:'#eee',padding:'4px 10px',borderRadius:4}}>未出品</span>
                   )}
                 </td>
-                <td style={{padding:'16px 14px',fontSize:14,fontWeight:600}}>{fmt(v.price+300000)}</td>
-                <td style={{padding:'16px 14px',fontSize:13,color:C.textMid}}>{v.registration}</td>
+                <td style={{padding:'16px 14px',fontSize:16,fontWeight:600}}>{fmt(v.price+300000)}</td>
+                <td style={{padding:'16px 14px',fontSize:15,color:C.textMid}}>{v.registration}</td>
                 <td style={{padding:'16px 14px'}}>
                   <div style={{display:'flex',gap:4,flexWrap:'wrap'}}>
                     {isListed ? (
-                      <Btn variant="ghost" style={{height:34,fontSize:12,color:'#777',borderColor:'#ccc'}}>取り下げ</Btn>
+                      <Btn variant="ghost" style={{height:38,fontSize:14,color:'#777',borderColor:'#ccc'}}>取り下げ</Btn>
                     ) : (
-                      <Btn style={{height:34,fontSize:12}} onClick={() => openNew(v)}>新規出品</Btn>
+                      <Btn style={{height:38,fontSize:14}} onClick={() => openNew(v)}>新規出品</Btn>
                     )}
                   </div>
                 </td>
