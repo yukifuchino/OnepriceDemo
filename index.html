@@ -9,7 +9,7 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#F5F5F5;color:#1A1A1A;font-size:14px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#F5F5F5;color:#1A1A1A;font-size:14px;zoom:1.5}
 ::-webkit-scrollbar{width:6px;height:6px}
 ::-webkit-scrollbar-track{background:#f0f0f0}
 ::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}
@@ -40,7 +40,7 @@ const C = {
 
 /* ─── MOCK DATA ─── */
 const VEHICLES = [
-  {id:8,appraisalNo:'2603050036218',maker:'フォルクスワーゲン',name:'ゴルフ',grade:'TSI Comfortline',vin:'WVWZZZAUZNW100108',registration:'2025-03',mileage:10000,meterCheck:'未交換',store:'渋谷本店',assignee:'鈴木 一郎',appraisalStatus:'査定済',contractStatus:null,price:2500000,type:'auction',bids:0,endDate:'2026-06-01',listed:false,photosDir:'pictures/golf_imgs',wikiImg:'pictures/golf_imgs/golf_2829.jpg',img:'pictures/golf_imgs/golf_2829.jpg',photos:['pictures/golf_imgs/golf_2829.jpg','pictures/golf_imgs/golf_2830.jpg','pictures/golf_imgs/golf_2831.jpg','pictures/golf_imgs/golf_2832.jpg','pictures/golf_imgs/golf_2833.jpg']},
+  {id:8,appraisalNo:'2603050036218',maker:'フォルクスワーゲン',name:'ゴルフ',grade:'TSI Comfortline',vin:'WVWZZZAUZNW100108',registration:'2025-03',mileage:10000,meterCheck:'未交換',store:'渋谷本店',assignee:'鈴木 一郎',appraisalStatus:'査定済',contractStatus:null,price:2500000,marketPrice:2000000,marketSpread:0.50,type:'auction',bids:0,endDate:'2026-06-01',listed:false,photosDir:'pictures/golf_imgs',wikiImg:'pictures/golf_imgs/golf_2829.jpg',img:'pictures/golf_imgs/golf_2829.jpg',photos:['pictures/golf_imgs/golf_2829.jpg','pictures/golf_imgs/golf_2830.jpg','pictures/golf_imgs/golf_2831.jpg','pictures/golf_imgs/golf_2832.jpg','pictures/golf_imgs/golf_2833.jpg']},
   {id:1,appraisalNo:'2605130036214',maker:'アウディ',name:'SQ7',grade:'ベースグレード',vin:'WAUZZZ4MXPD030170',registration:'2023-10',mileage:22222,meterCheck:'未交換',store:'札幌北口店',assignee:'田中 健二',appraisalStatus:'査定済',contractStatus:'成約',price:8500000,type:'auction',bids:7,endDate:'2026-05-24',listed:true,photosDir:'pictures/sq7_imgs',wikiImg:'pictures/sq7_imgs/39537.jpeg',img:'pictures/sq7_imgs/39537.jpeg',photos:['pictures/sq7_imgs/39537.jpeg','pictures/sq7_imgs/39538.jpeg','pictures/sq7_imgs/39539.jpeg','pictures/sq7_imgs/39541.jpeg','pictures/sq7_imgs/39542.jpeg']},
   {id:2,appraisalNo:'2605220036216',maker:'ランドローバー',name:'レンジローバースポーツ',grade:'P400 HSE Dynamic',vin:'SALWA2AU0MA123456',registration:'2021-06',mileage:32000,meterCheck:'未交換',store:'渋谷本店',assignee:'鈴木 一郎',appraisalStatus:'査定済',contractStatus:null,price:7200000,type:'auction',bids:4,endDate:'2026-05-26',listed:false,photosDir:'pictures/rrs_imgs',wikiImg:'pictures/rrs_imgs/46038.jpeg',img:'pictures/rrs_imgs/46038.jpeg',photos:['pictures/rrs_imgs/46038.jpeg','pictures/rrs_imgs/46039.jpeg','pictures/rrs_imgs/46041.jpeg','pictures/rrs_imgs/46042.jpeg','pictures/rrs_imgs/46044.jpeg']},
   {id:3,appraisalNo:'2605220036215',maker:'ベントレー',name:'ベンテイガ',grade:'V8',vin:'SCBBB53W6BC012345',registration:'2022-03',mileage:18500,meterCheck:'未交換',store:'渋谷本店',assignee:'佐藤 美咲',appraisalStatus:'査定待ち',contractStatus:null,price:14500000,type:'auction',bids:12,endDate:'2026-05-23',listed:true,photosDir:'pictures/bentayga_imgs',wikiImg:'pictures/bentayga_imgs/26186.jpeg',img:'pictures/bentayga_imgs/26186.jpeg',photos:['pictures/bentayga_imgs/26186.jpeg','pictures/bentayga_imgs/26190.jpeg','pictures/bentayga_imgs/26191.jpeg','pictures/bentayga_imgs/26192.jpeg','pictures/bentayga_imgs/26194.jpeg']},
@@ -221,6 +221,7 @@ function VehicleRegionalPrice({vehicle}) {
   const [selectedRegion, setSelectedRegion] = useState(null);
 
   const mults = priceMode === 'auction' ? AUCTION_MULTS[period] : PERIOD_MULTS[period];
+  const basePrice = v.marketPrice || v.price;
   const dealCounts = PERIOD_DEALS[period];
 
   // 列定義（地域 or 県別モード）
@@ -228,7 +229,7 @@ function VehicleRegionalPrice({vehicle}) {
   if (selectedRegion) {
     const ri = REGION_NAMES.indexOf(selectedRegion);
     const prefs = REGION_PREFECTURES[selectedRegion];
-    const regionBasePrice = Math.round(v.price * mults[ri]);
+    const regionBasePrice = Math.round(basePrice * mults[ri]);
     const regionBaseDeals = dealCounts[ri];
     const sumMults = prefs.reduce((s, p) => s + p.mult, 0);
     colNames  = prefs.map(p => p.name);
@@ -236,26 +237,22 @@ function VehicleRegionalPrice({vehicle}) {
     colDeals  = prefs.map(p => Math.max(0, Math.round(regionBaseDeals * p.mult / sumMults)));
   } else {
     colNames  = REGION_NAMES;
-    colPrices = REGION_NAMES.map((_, i) => Math.round(v.price * mults[i]));
+    colPrices = REGION_NAMES.map((_, i) => Math.round(basePrice * mults[i]));
     colDeals  = dealCounts;
   }
 
-  // バケット幅を価格帯に応じて自動調整（≒10〜12行になるよう）
-  const minP = Math.min(...colPrices);
-  const maxP = Math.max(...colPrices);
-  const rawRange = maxP * 1.13 - minP * 0.87;
-  const BUCKET = rawRange > 4000000 ? 500000
-               : rawRange > 1500000 ? 200000
-               : rawRange > 600000  ? 100000
-               :                       50000;
-
-  const bStart = Math.floor(minP * 0.87 / BUCKET) * BUCKET;
-  const bEnd   = Math.ceil(maxP  * 1.13 / BUCKET) * BUCKET;
+  // 50万刻み・10行固定
+  const BUCKET = 500000;
+  const ROWS   = 7;
+  const avgP   = colPrices.reduce((s, p) => s + p, 0) / colPrices.length;
+  const midP   = Math.round(avgP / BUCKET) * BUCKET;
+  const bEnd   = midP + Math.ceil(ROWS / 2) * BUCKET;
+  const bStart = bEnd - ROWS * BUCKET;
   const buckets = [];
   for (let p = bEnd - BUCKET; p >= bStart; p -= BUCKET) buckets.push(p);
 
   const getCount = (bucketP, colP, total) => {
-    const sigma = colP * 0.065;
+    const sigma = colP * (v.marketSpread || 0.065);
     const mid = bucketP + BUCKET / 2;
     const g = Math.exp(-0.5 * Math.pow((mid - colP) / sigma, 2));
     return Math.max(0, Math.round(total * g * 0.55));
@@ -310,7 +307,7 @@ function VehicleRegionalPrice({vehicle}) {
 
       {/* 相場モード */}
       <div style={{display:'flex',gap:6,marginBottom:10}}>
-        {[['market','📊 カーセンサー相場'],['auction','🔨 オークション相場']].map(([mode,label]) => (
+        {[['market','📊 小売相場'],['auction','🔨 オークション相場']].map(([mode,label]) => (
           <button key={mode} onClick={() => setPriceMode(mode)}
             style={{padding:'4px 12px',borderRadius:20,fontSize:11,fontWeight:600,cursor:'pointer',
               border:`1.5px solid ${priceMode===mode?C.blue:C.border}`,
@@ -443,20 +440,21 @@ const StatusBadge = ({status, type='appraisal'}) => {
   return <span style={{display:'inline-flex',alignItems:'center',padding:'2px 8px',borderRadius:4,fontSize:11,fontWeight:600,color:c.text,background:c.bg,whiteSpace:'nowrap'}}>{status}</span>;
 };
 
-const SectionTitle = ({children}) => (
-  <div style={{fontSize:13,fontWeight:700,color:C.text,marginBottom:12,paddingBottom:8,borderBottom:`2px solid ${C.red}`}}>{children}</div>
+const SectionTitle = ({children, color}) => (
+  <div style={{fontSize:14,fontWeight:700,color:C.text,marginBottom:12,paddingBottom:8,borderBottom:`2px solid ${color||C.red}`}}>{children}</div>
 );
 
-const Btn = ({children, variant='primary', onClick, style:s, disabled}) => {
+const Btn = ({children, variant='primary', onClick, style:s, disabled, color}) => {
+  const ac = color || C.red;
   const styles = {
-    primary:{background:C.red,color:'#fff',border:'none'},
-    outline:{background:'#fff',color:C.red,border:`1px solid ${C.red}`},
+    primary:{background:ac,color:'#fff',border:'none'},
+    outline:{background:'#fff',color:ac,border:`1px solid ${ac}`},
     ghost:{background:'transparent',color:C.textMid,border:`1px solid ${C.border}`},
     danger:{background:'#fff',color:'#e53e3e',border:'1px solid #e53e3e'},
   };
   return (
     <button disabled={disabled} onClick={onClick}
-      style={{padding:'0 16px',height:36,borderRadius:6,fontSize:13,fontWeight:600,cursor:disabled?'not-allowed':'pointer',opacity:disabled?0.5:1,...styles[variant],...s}}>
+      style={{padding:'0 16px',height:36,borderRadius:6,fontSize:14,fontWeight:600,cursor:disabled?'not-allowed':'pointer',opacity:disabled?0.5:1,...styles[variant],...s}}>
       {children}
     </button>
   );
@@ -605,7 +603,7 @@ function LoginScreen({onLogin}) {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   return (
-    <div style={{minHeight:'100vh',background:'#F0F0F0',display:'flex',alignItems:'center',justifyContent:'center'}}>
+    <div style={{position:'fixed',inset:0,background:'#F0F0F0',display:'flex',alignItems:'center',justifyContent:'center'}}>
       <div style={{width:420,background:'#fff',borderRadius:16,padding:48,boxShadow:'0 8px 40px rgba(0,0,0,0.1)'}}>
         <div style={{textAlign:'center',marginBottom:40}}>
           <div style={{fontSize:26,fontWeight:800,color:C.text,letterSpacing:0.3}}>OnePrice</div>
@@ -666,7 +664,7 @@ function BuyerList({setScreen, setSelectedVehicle}) {
             <SelectField label="契約結果ステータス" value={searchContractStatus} onChange={e=>setSearchContractStatus(e.target.value)}
               options={[{value:'',label:'すべて'},...Object.keys(CONTRACT_STATUS_COLORS).map(k=>({value:k,label:k}))]} style={{width:160}}/>
             <div style={{display:'flex',gap:8,alignItems:'flex-end'}}>
-              <Btn onClick={doSearch}>検索</Btn>
+              <Btn color={C.green} onClick={doSearch}>検索</Btn>
               <Btn variant="ghost" onClick={doClear}>クリア</Btn>
             </div>
           </div>
@@ -722,7 +720,7 @@ function BuyerList({setScreen, setSelectedVehicle}) {
                     <div style={{display:'flex',gap:4,flexWrap:'wrap'}}>
                       <Badge color={C.orange}>オークション</Badge>
                     </div>
-                    <div style={{fontSize:15,fontWeight:700,color:C.red}}>{fmt(v.price)}</div>
+                    <div style={{fontSize:15,fontWeight:700,color:C.green}}>{fmt(v.price)}</div>
                     <div style={{fontSize:13,color:C.textMid}}>入札 {v.bids}件</div>
                   </div>
                 </td>
@@ -733,8 +731,8 @@ function BuyerList({setScreen, setSelectedVehicle}) {
         <div style={{padding:'10px 16px',borderTop:`1px solid ${C.borderLight}`}}>
           <div style={{display:'flex',alignItems:'center',gap:6}}>
             {[1,2,3,'…',8].map((p,i) => (
-              <button key={i} style={{width:30,height:30,borderRadius:4,border:`1px solid ${p===1?C.red:C.border}`,
-                background:p===1?C.red:'#fff',color:p===1?'#fff':C.textMid,fontSize:12,cursor:'pointer'}}>{p}</button>
+              <button key={i} style={{width:30,height:30,borderRadius:4,border:`1px solid ${p===1?C.green:C.border}`,
+                background:p===1?C.green:'#fff',color:p===1?'#fff':C.textMid,fontSize:12,cursor:'pointer'}}>{p}</button>
             ))}
           </div>
         </div>
@@ -759,7 +757,7 @@ function BuyerDetail({vehicle, setScreen}) {
   return (
     <div style={{padding:24}}>
       <button onClick={() => setScreen('buyer-list')}
-        style={{background:'none',border:'none',color:C.red,cursor:'pointer',fontSize:13,marginBottom:16,padding:0,fontWeight:600}}>
+        style={{background:'none',border:'none',color:C.green,cursor:'pointer',fontSize:13,marginBottom:16,padding:0,fontWeight:600}}>
         ‹ 一覧に戻る
       </button>
 
@@ -793,7 +791,7 @@ function BuyerDetail({vehicle, setScreen}) {
         {/* Left: 査定入力 + 写真 */}
         <div style={{display:'flex',flexDirection:'column',gap:16}}>
           <Card>
-            <SectionTitle>査定入力</SectionTitle>
+            <SectionTitle color={C.green}>査定入力</SectionTitle>
             <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
               <div style={{display:'flex',flexDirection:'column',gap:12}}>
                 <Input label="査定金額（円）" value={appraisalPrice} onChange={e=>setAppraisalPrice(e.target.value)} placeholder="例: 8500000"/>
@@ -809,8 +807,8 @@ function BuyerDetail({vehicle, setScreen}) {
               </div>
             </div>
             <div style={{display:'flex',gap:8,marginTop:14}}>
-              <Btn>査定を保存</Btn>
-              <Btn variant="outline">下書き保存</Btn>
+              <Btn color={C.green}>査定を保存</Btn>
+              <Btn variant="outline" color={C.green}>下書き保存</Btn>
             </div>
           </Card>
           {/* ライトボックス */}
@@ -862,7 +860,7 @@ function BuyerDetail({vehicle, setScreen}) {
                   <div key={i} onClick={() => setHeroIdx(i)}
                     style={{flex:1,aspectRatio:'4/3',overflow:'hidden',background:'#2a2a2a',
                       cursor:'pointer',transition:'opacity 0.15s',
-                      outline: i===heroIdx ? `2px solid ${C.red}` : 'none', outlineOffset:-2}}
+                      outline: i===heroIdx ? `2px solid ${C.green}` : 'none', outlineOffset:-2}}
                     onMouseEnter={e=>{ if(i!==heroIdx) e.currentTarget.style.opacity='0.72'; }}
                     onMouseLeave={e=>e.currentTarget.style.opacity='1'}>
                     <WikiImage wikiImg={p} fallback={v.img} style={{width:'100%',height:'100%',objectFit:'cover'}}/>
@@ -876,7 +874,7 @@ function BuyerDetail({vehicle, setScreen}) {
         {/* Right: OnePrice auction */}
         <div style={{display:'flex',flexDirection:'column',gap:16}}>
           <Card>
-            <SectionTitle>OnePrice 出品情報</SectionTitle>
+            <SectionTitle color={C.red}>OnePrice 出品情報</SectionTitle>
             <div style={{display:'flex',gap:6,flexWrap:'wrap',marginBottom:14}}>
               <Badge color={C.orange}>オークション</Badge>
             </div>
@@ -912,7 +910,7 @@ function BuyerDetail({vehicle, setScreen}) {
 
       {/* 査定履歴 */}
       <Card>
-        <SectionTitle>査定履歴</SectionTitle>
+        <SectionTitle color={C.green}>査定履歴</SectionTitle>
         <table style={{width:'100%',borderCollapse:'collapse'}}>
           <thead>
             <tr style={{background:'#FAFAFA',borderBottom:`1px solid ${C.border}`}}>
@@ -926,7 +924,7 @@ function BuyerDetail({vehicle, setScreen}) {
               <tr key={i} style={{borderBottom:`1px solid ${C.borderLight}`}}>
                 <td style={{padding:'10px 14px',fontSize:12,color:C.textMid}}>{h.date}</td>
                 <td style={{padding:'10px 14px',fontSize:12}}>{h.user}</td>
-                <td style={{padding:'10px 14px',fontSize:14,fontWeight:700,color:C.red}}>{fmt(h.price)}</td>
+                <td style={{padding:'10px 14px',fontSize:14,fontWeight:700,color:C.green}}>{fmt(h.price)}</td>
                 <td style={{padding:'10px 14px',fontSize:12,color:C.textMid}}>{h.reason}</td>
               </tr>
             ))}
@@ -1228,7 +1226,7 @@ function SellerList({setScreen, setSelectedVehicle}) {
           <Input label="ブランド" value="" onChange={()=>{}} placeholder="例: BMW" style={{width:160}}/>
           <SelectField label="入庫予定日" value="" onChange={()=>{}} options={['すべて','今週','今月']} style={{width:140}}/>
           <div style={{display:'flex',gap:8,alignItems:'flex-end'}}>
-            <Btn>絞り込み</Btn>
+            <Btn color={C.red}>絞り込み</Btn>
             <Btn variant="ghost">クリア</Btn>
           </div>
         </div>
@@ -1257,7 +1255,7 @@ function SellerList({setScreen, setSelectedVehicle}) {
                 </td>
                 <td style={{padding:'16px 14px'}}>
                   <div
-                    style={{fontWeight:700,fontSize:17,color:C.blue,cursor:'pointer',display:'inline',transition:'opacity 0.15s'}}
+                    style={{fontWeight:700,fontSize:17,color:C.red,cursor:'pointer',display:'inline',transition:'opacity 0.15s'}}
                     onClick={() => { setSelectedVehicle(v); setScreen('seller-detail'); }}
                     onMouseEnter={e=>e.currentTarget.style.opacity='0.7'}
                     onMouseLeave={e=>e.currentTarget.style.opacity='1'}>
@@ -1283,7 +1281,7 @@ function SellerList({setScreen, setSelectedVehicle}) {
                     {isListed ? (
                       <Btn variant="ghost" style={{height:38,fontSize:14,color:'#777',borderColor:'#ccc'}}>取り下げ</Btn>
                     ) : (
-                      <Btn style={{height:38,fontSize:14}} onClick={() => openNew(v)}>新規出品</Btn>
+                      <Btn color={C.red} style={{height:38,fontSize:14}} onClick={() => openNew(v)}>新規出品</Btn>
                     )}
                   </div>
                 </td>
@@ -1413,7 +1411,7 @@ function SellerDetail({vehicle, setScreen}) {
             </div>
           </div>
           <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:8,marginBottom:14}}>
-            <div style={{background:'#FFF5F5',borderRadius:8,padding:'10px 8px',textAlign:'center'}}>
+            <div style={{background:'#FFEBEE',borderRadius:8,padding:'10px 8px',textAlign:'center'}}>
               <div style={{fontSize:10,color:C.textMid,marginBottom:2}}>最高入札</div>
               <div style={{fontSize:13,fontWeight:700,color:C.red}}>{fmt(bids[0].amount)}</div>
             </div>
@@ -1446,7 +1444,7 @@ function SellerDetail({vehicle, setScreen}) {
             </div>
           </div>
           <div style={{display:'flex',gap:8}}>
-            <Btn variant="outline" style={{flex:1}}>出品情報を編集</Btn>
+            <Btn variant="outline" color={C.red} style={{flex:1}}>出品情報を編集</Btn>
             <Btn variant="danger" style={{flex:1}}>出品を取り消す</Btn>
           </div>
         </Card>
@@ -1455,7 +1453,7 @@ function SellerDetail({vehicle, setScreen}) {
           style={{width:'100%',padding:'14px 20px',borderRadius:10,border:`2px solid ${C.border}`,background:'#fff',cursor:'pointer',
             display:'flex',alignItems:'center',justifyContent:'space-between',
             fontSize:14,fontWeight:600,color:C.text,transition:'all 0.15s'}}
-          onMouseEnter={e=>{e.currentTarget.style.borderColor=C.red;e.currentTarget.style.background='#FFF5F5';}}
+          onMouseEnter={e=>{e.currentTarget.style.borderColor=C.red;e.currentTarget.style.background='#FFEBEE';}}
           onMouseLeave={e=>{e.currentTarget.style.borderColor=C.border;e.currentTarget.style.background='#fff';}}>
           <div style={{display:'flex',alignItems:'center',gap:10}}>
             <span style={{fontSize:20}}>📍</span>
@@ -1490,7 +1488,7 @@ function SellerNewModal({vehicle, onClose, onList}) {
     if (!appraisalPrice) return;
     setAiLoading(true);
     setTimeout(() => {
-      const suggested = Math.round(appraisalPrice * 0.9 / 10000) * 10000;
+      const suggested = Math.round(appraisalPrice * 1.12 / 10000) * 10000;
       setStartPrice(String(suggested));
       setAiLoading(false);
     }, 900);
@@ -1519,12 +1517,10 @@ function SellerNewModal({vehicle, onClose, onList}) {
           {/* 出品形式 */}
           <div>
             <div style={{fontSize:13,fontWeight:700,marginBottom:10}}>出品形式</div>
-            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}}>
-              <div style={{padding:14,borderRadius:8,border:`2px solid ${C.red}`,background:'#FFF5F5'}}>
-                  <div style={{fontSize:20,marginBottom:6}}>⏱</div>
-                  <div style={{fontWeight:700,fontSize:13,color:C.red,marginBottom:3}}>オークション</div>
-                  <div style={{fontSize:11,color:C.textMid,lineHeight:1.5}}>入札形式で最高価格の買い手に販売</div>
-                </div>
+            <div style={{padding:14,borderRadius:8,border:`2px solid ${C.red}`,background:'#FFEBEE'}}>
+              <div style={{fontSize:20,marginBottom:6}}>⏱</div>
+              <div style={{fontWeight:700,fontSize:13,color:C.red,marginBottom:3}}>オークション</div>
+              <div style={{fontSize:11,color:C.textMid,lineHeight:1.5}}>入札形式で最高価格の買い手に販売</div>
             </div>
           </div>
           {/* 査定金額 + AI価格設定 */}
@@ -1532,7 +1528,7 @@ function SellerNewModal({vehicle, onClose, onList}) {
             <div style={{background:'#F0F7FF',borderRadius:10,padding:'12px 16px',display:'flex',alignItems:'center',justifyContent:'space-between',gap:12}}>
               <div>
                 <div style={{fontSize:11,color:C.textMid,marginBottom:2}}>査定金額</div>
-                <div style={{fontSize:20,fontWeight:800,color:C.blue}}>{fmt(appraisalPrice)}</div>
+                <div style={{fontSize:20,fontWeight:800,color:C.red}}>{fmt(appraisalPrice)}</div>
               </div>
               <button onClick={handleAiPrice} disabled={aiLoading}
                 style={{padding:'8px 16px',borderRadius:8,background: aiLoading ? '#ccc' : 'linear-gradient(135deg,#667eea,#764ba2)',
@@ -1543,13 +1539,10 @@ function SellerNewModal({vehicle, onClose, onList}) {
               </button>
             </div>
           )}
-          {/* 価格設定 */}
+          {/* 開始価格 */}
           <div>
-            <div style={{fontSize:13,fontWeight:700,marginBottom:10}}>価格設定</div>
-            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12}}>
-              <Input label="開始価格（円）" value={startPrice ? Number(startPrice).toLocaleString() : ''} onChange={e=>setStartPrice(e.target.value.replace(/,/g,''))} placeholder="例: 8500000"/>
-
-            </div>
+            <div style={{fontSize:13,fontWeight:700,marginBottom:10}}>開始価格</div>
+            <Input value={startPrice ? Number(startPrice).toLocaleString() : ''} onChange={e=>setStartPrice(e.target.value.replace(/,/g,''))} placeholder="例: 8500000"/>
           </div>
           {/* 出品期間（オークションのみ） */}
           {saleType==='auction' && (
@@ -1579,8 +1572,8 @@ function SellerNewModal({vehicle, onClose, onList}) {
           <div style={{padding:'16px 24px',borderTop:`1px solid ${C.border}`,display:'flex',justifyContent:'space-between',alignItems:'center',flexShrink:0,background:'#FAFAFA',borderRadius:'0 0 16px 16px'}}>
             <Btn variant="ghost" onClick={onClose}>キャンセル</Btn>
             <div style={{display:'flex',gap:8}}>
-              <Btn variant="outline">下書き保存</Btn>
-              <Btn onClick={handleSubmit} disabled={!canSubmit}>出品する →</Btn>
+              <Btn variant="outline" color={C.red}>下書き保存</Btn>
+              <Btn color={C.red} onClick={handleSubmit} disabled={!canSubmit}>出品する →</Btn>
             </div>
           </div>
         )}
@@ -2266,12 +2259,19 @@ function PurchaseModal({vehicle, modalType, onClose}) {
                 <div style={{background:'#F8F8F8',borderRadius:8,padding:'10px 14px',marginBottom:12}}>
                   <div style={{fontSize:11,fontWeight:700,color:C.textMid,marginBottom:8}}>入札履歴</div>
                   <div style={{display:'flex',flexDirection:'column',gap:5}}>
-                    {Array.from({length:Math.min(vehicle.bidCount,3)}).map((_,i) => (
+                    {Array.from({length:Math.min(vehicle.bidCount,3)}).map((_,i) => {
+                      const bidAmts = [
+                        vehicle.currentBid,
+                        Math.round(vehicle.currentBid * 0.97),
+                        Math.round(vehicle.currentBid * 0.94),
+                      ];
+                      return (
                       <div key={i} style={{display:'flex',justifyContent:'space-between',alignItems:'center',fontSize:11}}>
                         <span style={{color:C.textMid}}>入札{vehicle.bidCount-i}</span>
-                        <span style={{color:C.text,fontWeight:600}}>—</span>
+                        <span style={{color:i===0?C.blue:C.text,fontWeight:600}}>{fmt(bidAmts[i])}</span>
                       </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
               )}
@@ -2698,8 +2698,8 @@ function HomeScreen({setScreen}) {
       id: 'satei',
       icon: '🔍',
       label: '査定',
-      color: '#1565C0',
-      lightColor: '#E3F2FD',
+      color: '#2E7D32',
+      lightColor: '#E8F5E9',
       target: null,
       disabled: false,
     },
@@ -2715,14 +2715,14 @@ function HomeScreen({setScreen}) {
       id: 'purchase',
       icon: '🛒',
       label: '購入',
-      color: '#2E7D32',
-      lightColor: '#E8F5E9',
+      color: '#1565C0',
+      lightColor: '#EFF6FF',
       target: 'unlisted-list',
     },
   ];
 
   return (
-    <div style={{minHeight:'calc(100vh - 56px)',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#F7F7F7'}}>
+    <div style={{position:'fixed',inset:0,display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',padding:'40px 24px',background:'#F7F7F7'}}>
       {/* 3タイル */}
       <div style={{display:'flex',gap:28,flexWrap:'wrap',justifyContent:'center',width:'100%',maxWidth:1000}}>
         {tiles.map(t => (
