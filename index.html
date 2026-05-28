@@ -44,7 +44,7 @@ const VEHICLES = [
   {id:1,appraisalNo:'2605130036214',maker:'アウディ',name:'SQ7',grade:'ベースグレード',vin:'WAUZZZ4MXPD030170',registration:'2023-10',mileage:22222,meterCheck:'未交換',store:'札幌北口店',assignee:'田中 健二',appraisalStatus:'査定済',contractStatus:'成約',price:8500000,type:'auction',bids:7,endDate:'2026-05-24',listed:true,photosDir:'pictures/sq7_imgs',wikiImg:'pictures/sq7_imgs/39537.jpeg',img:'pictures/sq7_imgs/39537.jpeg',photos:['pictures/sq7_imgs/39537.jpeg','pictures/sq7_imgs/39538.jpeg','pictures/sq7_imgs/39539.jpeg','pictures/sq7_imgs/39541.jpeg','pictures/sq7_imgs/39542.jpeg']},
   {id:2,appraisalNo:'2605220036216',maker:'ランドローバー',name:'レンジローバースポーツ',grade:'P400 HSE Dynamic',vin:'SALWA2AU0MA123456',registration:'2021-06',mileage:32000,meterCheck:'未交換',store:'渋谷本店',assignee:'鈴木 一郎',appraisalStatus:'査定済',contractStatus:null,price:7200000,type:'auction',bids:4,endDate:'2026-05-26',listed:false,photosDir:'pictures/rrs_imgs',wikiImg:'pictures/rrs_imgs/46038.jpeg',img:'pictures/rrs_imgs/46038.jpeg',photos:['pictures/rrs_imgs/46038.jpeg','pictures/rrs_imgs/46039.jpeg','pictures/rrs_imgs/46041.jpeg','pictures/rrs_imgs/46042.jpeg','pictures/rrs_imgs/46044.jpeg']},
   {id:3,appraisalNo:'2605220036215',maker:'ベントレー',name:'ベンテイガ',grade:'V8',vin:'SCBBB53W6BC012345',registration:'2022-03',mileage:18500,meterCheck:'未交換',store:'渋谷本店',assignee:'佐藤 美咲',appraisalStatus:'査定待ち',contractStatus:null,price:14500000,type:'auction',bids:12,endDate:'2026-05-23',listed:true,photosDir:'pictures/bentayga_imgs',wikiImg:'pictures/bentayga_imgs/26186.jpeg',img:'pictures/bentayga_imgs/26186.jpeg',photos:['pictures/bentayga_imgs/26186.jpeg','pictures/bentayga_imgs/26190.jpeg','pictures/bentayga_imgs/26191.jpeg','pictures/bentayga_imgs/26192.jpeg','pictures/bentayga_imgs/26194.jpeg']},
-  {id:4,appraisalNo:'2512250010471',maker:'マセラティ',name:'レヴァンテ',grade:'GT ハイブリッド',vin:'ZAM57YSL0N1234567',registration:'2021-04',mileage:41000,meterCheck:'未交換',store:'新宿南口店',assignee:'山本 拓也',appraisalStatus:'交渉中',contractStatus:null,price:9800000,type:'auction',bids:3,endDate:'2026-05-27',listed:false,photosDir:'pictures/levante_imgs',wikiImg:'pictures/levante_imgs/15590.jpeg',img:'pictures/levante_imgs/15590.jpeg',photos:['pictures/levante_imgs/15590.jpeg','pictures/levante_imgs/15591.jpeg','pictures/levante_imgs/15595.jpeg']},
+  {id:4,appraisalNo:'2512250010471',maker:'マセラティ',name:'レヴァンテ',grade:'GT ハイブリッド',vin:'ZAM57YSL0N1234567',registration:'2021-04',mileage:41000,meterCheck:'未交換',store:'新宿南口店',assignee:'山本 拓也',appraisalStatus:'商談中',contractStatus:null,price:9800000,type:'auction',bids:3,endDate:'2026-05-27',listed:false,photosDir:'pictures/levante_imgs',wikiImg:'pictures/levante_imgs/15590.jpeg',img:'pictures/levante_imgs/15590.jpeg',photos:['pictures/levante_imgs/15590.jpeg','pictures/levante_imgs/15591.jpeg','pictures/levante_imgs/15595.jpeg']},
   {id:5,appraisalNo:'2410130034135',maker:'フォルクスワーゲン',name:'ゴルフR',grade:'2.0 TSI 4MOTION',vin:'WVWZZZAUZNW200135',registration:'2022-11',mileage:18000,meterCheck:'未交換',store:'梅田グランド店',assignee:'中村 雄一',appraisalStatus:'査定済',contractStatus:'不成約',price:4800000,type:'auction',bids:5,endDate:'2026-05-25',listed:true,photosDir:'pictures/golf_r_imgs',wikiImg:'pictures/golf_r_imgs/33485.jpeg',img:'pictures/golf_r_imgs/33485.jpeg',photos:['pictures/golf_r_imgs/33485.jpeg','pictures/golf_r_imgs/33488.jpeg','pictures/golf_r_imgs/33491.jpeg','pictures/golf_r_imgs/33492.jpeg','pictures/golf_r_imgs/33493.jpeg']},
   {id:6,appraisalNo:'2605010012345',maker:'アウディ',name:'RS6 アバント',grade:'パフォーマンス',vin:'WUAZZZF22SN900398',registration:'2024-10',mileage:8259,meterCheck:'未交換',store:'川越インター店',assignee:'高橋 さくら',appraisalStatus:'交渉済',contractStatus:'成約',price:14800000,type:'auction',bids:6,endDate:'2026-05-28',listed:false,photosDir:'pictures/rs6_imgs',wikiImg:'pictures/rs6_imgs/46216.jpeg',img:'pictures/rs6_imgs/46216.jpeg',photos:['pictures/rs6_imgs/46216.jpeg','pictures/rs6_imgs/46217.jpeg','pictures/rs6_imgs/46220.jpeg','pictures/rs6_imgs/46221.jpeg','pictures/rs6_imgs/46222.jpeg']},
   {id:7,appraisalNo:'2605050023456',maker:'ランドローバー',name:'ディフェンダー',grade:'110 P400 X',vin:'SALLD2FX0NA123456',registration:'2022-01',mileage:12000,meterCheck:'未交換',store:'横浜港北店',assignee:'伊藤 誠',appraisalStatus:'査定待ち',contractStatus:null,price:11200000,type:'auction',bids:18,endDate:'2026-05-23',listed:true,photosDir:'pictures/defender_imgs',wikiImg:'pictures/defender_imgs/23627.jpeg',img:'pictures/defender_imgs/23627.jpeg',photos:['pictures/defender_imgs/23627.jpeg','pictures/defender_imgs/23628.jpeg','pictures/defender_imgs/23629.jpeg','pictures/defender_imgs/23630.jpeg','pictures/defender_imgs/23631.jpeg']},
@@ -53,7 +53,7 @@ const VEHICLES = [
 const APPRAISAL_STATUS_COLORS = {
   '査定待ち':{bg:'#1565C0',text:'#fff'},
   '査定済': {bg:'#2E7D32',text:'#fff'},
-  '交渉中': {bg:'#D97706',text:'#fff'},
+  '商談中': {bg:'#D97706',text:'#fff'},
   '交渉済': {bg:'#6D6D6D',text:'#fff'},
   '下書き': {bg:'#9A9A9A',text:'#fff'},
 };
@@ -468,6 +468,76 @@ const Input = ({label, value, onChange, placeholder, type='text', style:s}) => (
   </div>
 );
 
+/* ─── 期間ピッカー群 ─── */
+const _SS = {height:32,border:`1px solid ${C.border}`,borderRadius:6,padding:'0 8px',
+  background:'#fff',fontSize:12,color:C.text,cursor:'pointer',outline:'none'};
+const _curY = new Date().getFullYear();
+const _years = [_curY-2,_curY-1,_curY,_curY+1].map(String);
+const _months = Array.from({length:12},(_,i)=>String(i+1).padStart(2,'0'));
+
+/* 日別: YYYY-MM-DD */
+const DayPicker = ({value,onChange}) => (
+  <input type="date" value={value} onChange={e=>onChange(e.target.value)}
+    style={{..._SS,padding:'0 8px',width:130,color:value?C.text:C.textLight}}/>
+);
+
+/* 週別: YYYY-MM-W → "2026-05-3" = 5月第3週 */
+const WeekPicker = ({value,onChange}) => {
+  const [y,m,w] = value ? value.split('-') : ['','',''];
+  const upd = (ny,nm,nw) => { if(ny&&nm&&nw) onChange(`${ny}-${nm}-${nw}`); else onChange(''); };
+  return (
+    <div style={{display:'flex',gap:4}}>
+      <select value={y||''} onChange={e=>upd(e.target.value,m,w)} style={{..._SS,width:80}}>
+        <option value="">年</option>
+        {_years.map(yr=><option key={yr} value={yr}>{yr}年</option>)}
+      </select>
+      <select value={m||''} onChange={e=>upd(y,e.target.value,w)} style={{..._SS,width:62}} disabled={!y}>
+        <option value="">月</option>
+        {_months.map(mo=><option key={mo} value={mo}>{Number(mo)}月</option>)}
+      </select>
+      <select value={w||''} onChange={e=>upd(y,m,e.target.value)} style={{..._SS,width:72}} disabled={!m}>
+        <option value="">週</option>
+        {[1,2,3,4,5].map(wk=><option key={wk} value={wk}>第{wk}週</option>)}
+      </select>
+    </div>
+  );
+};
+
+/* 月別: YYYY-MM */
+const MonthPicker = ({value,onChange}) => {
+  const [y,m] = value ? value.split('-') : ['',''];
+  const upd = (ny,nm) => { if(ny&&nm) onChange(`${ny}-${nm}`); else onChange(''); };
+  return (
+    <div style={{display:'flex',gap:4}}>
+      <select value={y||''} onChange={e=>upd(e.target.value,m)} style={{..._SS,width:82}}>
+        <option value="">年</option>
+        {_years.map(yr=><option key={yr} value={yr}>{yr}年</option>)}
+      </select>
+      <select value={m||''} onChange={e=>upd(y,e.target.value)} style={{..._SS,width:62}} disabled={!y}>
+        <option value="">月</option>
+        {_months.map(mo=><option key={mo} value={mo}>{Number(mo)}月</option>)}
+      </select>
+    </div>
+  );
+};
+
+/* 年別: YYYY */
+const YearPicker = ({value,onChange}) => (
+  <select value={value||''} onChange={e=>onChange(e.target.value)} style={{..._SS,width:82}}>
+    <option value="">年</option>
+    {_years.map(yr=><option key={yr} value={yr}>{yr}年</option>)}
+  </select>
+);
+
+/* タブに応じて適切なピッカーを返す */
+const PeriodDatePicker = ({tab,value,onChange}) => {
+  if (tab==='日別') return <DayPicker  value={value} onChange={onChange}/>;
+  if (tab==='週別') return <WeekPicker value={value} onChange={onChange}/>;
+  if (tab==='月別') return <MonthPicker value={value} onChange={onChange}/>;
+  if (tab==='年別') return <YearPicker  value={value} onChange={onChange}/>;
+  return null;
+};
+
 const SelectField = ({label, value, onChange, options, style:s}) => (
   <div style={{display:'flex',flexDirection:'column',gap:4,...s}}>
     {label && <label style={{fontSize:12,color:C.textMid,fontWeight:500}}>{label}</label>}
@@ -501,6 +571,9 @@ function Sidebar({role, screen, setScreen, setRole, open, onClose}) {
 
   const userNav = (<>
     <NavItem label="ホーム" target="home" icon="🏠"/>
+    <div style={{padding:'10px 16px 4px',fontSize:11,fontWeight:600,color:C.textLight,letterSpacing:0.5,marginTop:6}}>査定</div>
+    <NavItem label="査定管理" target="appraisal-dashboard" indent icon="🔍"/>
+    <NavItem label="車両一覧" target="buyer-list" indent icon="📄"/>
     <div style={{padding:'10px 16px 4px',fontSize:11,fontWeight:600,color:C.textLight,letterSpacing:0.5,marginTop:6}}>未入庫売買</div>
     <NavItem label="購入" target="unlisted-list" indent icon="🛒"/>
     <NavItem label="出品管理" target="seller-list" indent icon="📋"/>
@@ -2691,6 +2764,359 @@ function PriceNegotiation({vehicle, setScreen}) {
   );
 }
 
+/* ─── 査定管理ダッシュボード ─── */
+const DASH_VEHICLES = [
+  {id:101,maker:'BMW',        name:'X5',              grade:'M50i xDrive',      registration:'2022-08',appraisalStatus:'査定待ち',store:'新宿南口店',    assignee:'山本 拓也'},
+  {id:102,maker:'メルセデス', name:'GLE 400d',        grade:'4マチック クーペ', registration:'2023-03',appraisalStatus:'査定済',  store:'渋谷本店',      assignee:'鈴木 一郎'},
+  {id:103,maker:'ポルシェ',   name:'カイエン',        grade:'GTS',              registration:'2021-11',appraisalStatus:'商談中',  store:'梅田グランド店',assignee:'中村 雄一'},
+  {id:104,maker:'ボルボ',     name:'XC90',            grade:'T8 AWD',           registration:'2023-06',appraisalStatus:'査定済',  store:'横浜港北店',    assignee:'伊藤 誠'},
+  {id:105,maker:'ジャガー',   name:'F-PACE',          grade:'P400e HSE',        registration:'2022-04',appraisalStatus:'査定待ち',store:'川越インター店',assignee:'高橋 さくら'},
+  {id:106,maker:'レクサス',   name:'LX 600',          grade:'ベースグレード',   registration:'2023-01',appraisalStatus:'交渉済',  store:'札幌北口店',    assignee:'田中 健二'},
+  {id:107,maker:'トヨタ',     name:'ランドクルーザー',grade:'ZX',               registration:'2022-10',appraisalStatus:'査定待ち',store:'渋谷本店',      assignee:'佐藤 美咲'},
+  {id:108,maker:'アウディ',   name:'Q8',              grade:'55 TFSI',          registration:'2023-05',appraisalStatus:'商談中',  store:'新宿南口店',    assignee:'山本 拓也'},
+  {id:109,maker:'BMW',        name:'M3 コンペ',       grade:'xDrive',           registration:'2024-02',appraisalStatus:'査定済',  store:'渋谷本店',      assignee:'鈴木 一郎'},
+  {id:110,maker:'マセラティ', name:'グレカーレ',      grade:'Modena',           registration:'2023-09',appraisalStatus:'査定待ち',store:'梅田グランド店',assignee:'中村 雄一'},
+  {id:111,maker:'フォルクスワーゲン',name:'トゥアレグ',grade:'R eHybrid',      registration:'2022-07',appraisalStatus:'交渉済',  store:'横浜港北店',    assignee:'伊藤 誠'},
+  {id:112,maker:'ベンツ',     name:'Eクラス',         grade:'E220d アバント',   registration:'2023-11',appraisalStatus:'査定済',  store:'川越インター店',assignee:'高橋 さくら'},
+];
+
+const ALL_DASH = [
+  ...VEHICLES.map(v => ({id:v.id,maker:v.maker,name:v.name,grade:v.grade,registration:v.registration,appraisalStatus:v.appraisalStatus,store:v.store,assignee:v.assignee})),
+  ...DASH_VEHICLES,
+];
+
+/* daysAgo: 期間タブ絞り込み用（日別<=1, 週別<=7, 月別<=30, 年別=全件） */
+const ELAPSED = {
+  1:  {hours:2,   daysAgo:2.1,  label:'2時間経過',   level:0},
+  2:  {hours:51,  daysAgo:2.1,  label:'2日放置',     level:2},
+  3:  {hours:5,   daysAgo:3.2,  label:'5時間経過',   level:0},
+  4:  {hours:74,  daysAgo:3.1,  label:'3日放置',     level:2},
+  5:  {hours:38,  daysAgo:1.6,  label:'1日半経過',   level:1},
+  6:  {hours:6,   daysAgo:0.25, label:'6時間経過',   level:0},
+  7:  {hours:97,  daysAgo:4.0,  label:'4日放置',     level:2},
+  8:  {hours:13,  daysAgo:0.54, label:'13時間経過',  level:0},
+  101:{hours:26,  daysAgo:1.0,  label:'1日放置',     level:1},
+  102:{hours:3,   daysAgo:0.13, label:'3時間経過',   level:0},
+  103:{hours:121, daysAgo:5.0,  label:'5日放置',     level:2},
+  104:{hours:8,   daysAgo:6.0,  label:'8時間経過',   level:0},
+  105:{hours:72,  daysAgo:35.0, label:'3日放置',     level:2},
+  106:{hours:2,   daysAgo:0.08, label:'2時間経過',   level:0},
+  107:{hours:6,   daysAgo:40.0, label:'6時間経過',   level:0},
+  108:{hours:36,  daysAgo:1.5,  label:'1日半経過',   level:1},
+  109:{hours:4,   daysAgo:0.17, label:'4時間経過',   level:0},
+  110:{hours:51,  daysAgo:15.0, label:'2日放置',     level:2},
+  111:{hours:1,   daysAgo:7.0,  label:'1時間経過',   level:0},
+  112:{hours:10,  daysAgo:20.0, label:'10時間経過',  level:0},
+};
+
+const PERIOD_MAX_DAYS = {'日別':1,'週別':7,'月別':30,'年別':9999};
+
+function AppraisalDashboard({setScreen}) {
+  const [activeKpi, setActiveKpi] = useState('all');
+  const [periodTab, setPeriodTab] = useState('月別');
+  const [storeFilter, setStoreFilter] = useState('');
+  const [staffFilter, setStaffFilter] = useState('');
+  const [alertModal, setAlertModal] = useState(false);
+  const [dateFrom, setDateFrom] = useState('');
+  const [dateTo,   setDateTo]   = useState('');
+
+  const toDisplayStatus = s => ({'査定待ち':'査定待ち','査定済':'査定済','商談中':'商談中','交渉済':'商談済','下書き':'商談済'}[s]||s);
+
+  const KPI_DEF = [
+    {key:'査定待ち', color:'#1565C0', bg:'#EFF6FF', icon:'📋'},
+    {key:'査定済',   color:'#2E7D32', bg:'#F0FFF4', icon:'✅'},
+    {key:'商談中',   color:'#D97706', bg:'#FFFBEB', icon:'💬'},
+    {key:'商談済',   color:'#6D6D6D', bg:'#F8F8F8', icon:'🏁'},
+  ];
+
+  const maxDays = PERIOD_MAX_DAYS[periodTab] || 9999;
+
+  /* 期間・店舗・担当者すべてを考慮したベース車両リスト */
+  const baseDash = ALL_DASH.filter(v => {
+    const el = ELAPSED[v.id];
+    if (!el) return false;
+    if (dateFrom || dateTo) {
+      /* カスタム期間範囲モード（タブ別キー比較） */
+      const d = new Date(Date.now() - el.daysAgo * 86400 * 1000);
+      let vKey;
+      if (periodTab==='日別') {
+        vKey = d.toISOString().slice(0,10);
+      } else if (periodTab==='週別') {
+        const ym = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+        vKey = `${ym}-${Math.ceil(d.getDate()/7)}`;
+      } else if (periodTab==='月別') {
+        vKey = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+      } else {
+        vKey = String(d.getFullYear());
+      }
+      if (dateFrom && vKey < dateFrom) return false;
+      if (dateTo   && vKey > dateTo)   return false;
+    } else {
+      /* タブモード */
+      if (el.daysAgo > maxDays) return false;
+    }
+    if (storeFilter && v.store !== storeFilter) return false;
+    if (staffFilter && v.assignee !== staffFilter) return false;
+    return true;
+  });
+
+  const kpiCount = key => baseDash.filter(v => toDisplayStatus(v.appraisalStatus) === key).length;
+
+  const alertVehicles = ALL_DASH
+    .filter(v => (ELAPSED[v.id]||{}).level >= 2)
+    .sort((a,b) => (ELAPSED[b.id]?.hours||0) - (ELAPSED[a.id]?.hours||0));
+
+  const alertCount = alertVehicles.length;
+
+  const stores = [...new Set(ALL_DASH.map(v => v.store))];
+  const staffs = [...new Set(ALL_DASH.map(v => v.assignee))];
+
+  const filtered = baseDash.filter(v =>
+    activeKpi === 'all' || toDisplayStatus(v.appraisalStatus) === activeKpi
+  );
+
+  const elColor = lvl => lvl >= 2 ? C.red : lvl === 1 ? C.orange : C.textMid;
+
+  return (
+    <div style={{padding:24,display:'flex',flexDirection:'column',gap:16}}>
+
+      {/* タイトル行 */}
+      <div style={{display:'flex',alignItems:'center',gap:14}}>
+        <button onClick={() => setScreen('home')}
+          style={{background:'none',border:'none',color:C.textMid,cursor:'pointer',fontSize:13,padding:0,fontWeight:500}}>
+          ← ホーム
+        </button>
+        <div style={{fontSize:20,fontWeight:800,color:C.text}}>査定管理ダッシュボード</div>
+        <span style={{fontSize:12,color:C.textMid,marginLeft:'auto'}}>最終更新: 5分前</span>
+      </div>
+
+      {/* 🚨 レッドアラート */}
+      {alertCount > 0 && (
+        <div style={{background:'#FEF2F2',border:`1.5px solid ${C.red}`,borderLeft:`5px solid ${C.red}`,
+          borderRadius:10,padding:'14px 18px',display:'flex',alignItems:'center',gap:14}}>
+          <span style={{fontSize:24,flexShrink:0}}>🚨</span>
+          <div style={{flex:1}}>
+            <span style={{fontWeight:700,color:C.red,fontSize:14}}>放置アラート　</span>
+            <span style={{fontSize:14,color:C.text}}>現在、<strong>2日以上</strong>放置されている査定が </span>
+            <span style={{fontSize:20,fontWeight:800,color:C.red}}>{alertCount}</span>
+            <span style={{fontSize:14,color:C.text}}> 件あります。早急に対応してください。</span>
+          </div>
+          <button onClick={() => setAlertModal(true)}
+            style={{padding:'6px 14px',borderRadius:6,border:`1.5px solid ${C.red}`,background:'#fff',
+              color:C.red,fontSize:12,fontWeight:700,cursor:'pointer',flexShrink:0,whiteSpace:'nowrap'}}>
+            該当案件を見る →
+          </button>
+        </div>
+      )}
+
+      {/* フィルター */}
+      <Card>
+        <div style={{display:'flex',flexDirection:'column',gap:12}}>
+          {/* 行1: プリセットタブ ＋ カスタム期間 */}
+          <div style={{display:'flex',gap:12,flexWrap:'wrap',alignItems:'center'}}>
+            <span style={{fontSize:12,color:C.textMid,fontWeight:600,whiteSpace:'nowrap'}}>期間</span>
+            <div style={{display:'flex',background:'#F0F0F0',borderRadius:6,padding:3,gap:2}}>
+              {['日別','週別','月別','年別'].map(t => (
+                <button key={t} onClick={() => { setPeriodTab(t); setDateFrom(''); setDateTo(''); setActiveKpi('all'); }}
+                  style={{padding:'5px 14px',borderRadius:4,fontSize:12,fontWeight:600,cursor:'pointer',border:'none',
+                    background:periodTab===t?'#fff':'transparent',
+                    color:periodTab===t?C.text:C.textMid,
+                    boxShadow:periodTab===t?'0 1px 3px rgba(0,0,0,0.12)':'none',
+                    transition:'all 0.15s'}}>
+                  {t}
+                </button>
+              ))}
+            </div>
+            <div style={{display:'flex',alignItems:'center',gap:6}}>
+              <PeriodDatePicker tab={periodTab} value={dateFrom} onChange={v=>{setDateFrom(v);setActiveKpi('all');}}/>
+              <span style={{fontSize:12,color:C.textMid,fontWeight:600}}>〜</span>
+              <PeriodDatePicker tab={periodTab} value={dateTo}   onChange={v=>{setDateTo(v);setActiveKpi('all');}}/>
+              {(dateFrom||dateTo) && (
+                <button onClick={()=>{setDateFrom('');setDateTo('');setActiveKpi('all');}}
+                  style={{fontSize:11,color:C.textMid,background:'#F0F0F0',border:'none',borderRadius:4,
+                    padding:'4px 8px',cursor:'pointer',whiteSpace:'nowrap'}}>× クリア</button>
+              )}
+            </div>
+          </div>
+          {/* 行2: 店舗・担当者 */}
+          <div style={{display:'flex',gap:12,flexWrap:'wrap',alignItems:'center'}}>
+            <SelectField label="店舗" value={storeFilter} onChange={e=>{setStoreFilter(e.target.value);setActiveKpi('all');}}
+              options={[{value:'',label:'全店舗'},...stores.map(s=>({value:s,label:s}))]} style={{width:160}}/>
+            <SelectField label="担当者" value={staffFilter} onChange={e=>{setStaffFilter(e.target.value);setActiveKpi('all');}}
+              options={[{value:'',label:'全担当者'},...staffs.map(s=>({value:s,label:s}))]} style={{width:160}}/>
+            {(storeFilter||staffFilter) && (
+              <Btn variant="ghost" onClick={()=>{setStoreFilter('');setStaffFilter('');setActiveKpi('all');}}>クリア</Btn>
+            )}
+          </div>
+        </div>
+      </Card>
+
+      {/* KPI カード */}
+      <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:16}}>
+        {KPI_DEF.map(kpi => {
+          const count = kpiCount(kpi.key);
+          const active = activeKpi === kpi.key;
+          return (
+            <div key={kpi.key} onClick={() => setActiveKpi(active?'all':kpi.key)}
+              style={{borderRadius:14,padding:'22px 24px',cursor:'pointer',userSelect:'none',
+                border:`2px solid ${active?kpi.color:C.border}`,
+                background:active?kpi.bg:'#fff',
+                boxShadow:active?`0 6px 24px ${kpi.color}28`:'0 2px 8px rgba(0,0,0,0.06)',
+                transition:'all 0.2s'}}>
+              <div style={{fontSize:13,fontWeight:600,color:kpi.color,marginBottom:10,display:'flex',alignItems:'center',gap:6}}>
+                <span style={{fontSize:16}}>{kpi.icon}</span>{kpi.key}
+              </div>
+              <div style={{fontSize:52,fontWeight:800,color:active?kpi.color:C.text,lineHeight:1,marginBottom:4}}>
+                {count}
+              </div>
+              <div style={{fontSize:12,color:C.textMid,display:'flex',justifyContent:'space-between',alignItems:'center',marginTop:4}}>
+                <span>件</span>
+                {active
+                  ? <span style={{fontSize:11,color:kpi.color,fontWeight:700}}>▶ 絞込中</span>
+                  : <span style={{fontSize:11,color:C.textLight}}>クリックで絞込</span>
+                }
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* 詳細テーブル */}
+      <Card p={0}>
+        <div style={{padding:'12px 18px',borderBottom:`1px solid ${C.border}`,
+          display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+          <div style={{fontSize:14,fontWeight:700}}>
+            {activeKpi==='all'?'全案件一覧':`「${activeKpi}」案件一覧`}
+            <span style={{fontSize:13,fontWeight:400,color:C.textMid,marginLeft:8}}>{filtered.length}件</span>
+          </div>
+          {activeKpi!=='all' && (
+            <button onClick={()=>setActiveKpi('all')}
+              style={{background:'none',border:'none',color:C.textMid,cursor:'pointer',fontSize:12,padding:0}}>
+              ✕ 絞込解除
+            </button>
+          )}
+        </div>
+        <table style={{width:'100%',borderCollapse:'collapse'}}>
+          <thead>
+            <tr style={{background:'#FAFAFA',borderBottom:`1px solid ${C.border}`}}>
+              {['車種 / 年式','店舗 / 担当者','ステータス','滞留時間'].map(h => (
+                <th key={h} style={{padding:'10px 18px',textAlign:'left',fontSize:12,fontWeight:600,color:C.textMid,whiteSpace:'nowrap'}}>{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {filtered.map(v => {
+              const el = ELAPSED[v.id]||{hours:1,label:'1時間経過',level:0};
+              const rowAlert = el.level >= 2;
+              return (
+                <tr key={v.id}
+                  style={{borderBottom:`1px solid ${C.borderLight}`,background:rowAlert?'#FFF5F5':'#fff',transition:'background 0.15s'}}
+                  onMouseEnter={e=>e.currentTarget.style.background=rowAlert?'#FEE2E2':'#FAFAFA'}
+                  onMouseLeave={e=>e.currentTarget.style.background=rowAlert?'#FFF5F5':'#fff'}>
+                  <td style={{padding:'13px 18px'}}>
+                    <div style={{fontWeight:700,fontSize:14}}>{v.maker} {v.name}</div>
+                    <div style={{fontSize:12,color:C.textMid,marginTop:2}}>{v.grade} · {v.registration}</div>
+                  </td>
+                  <td style={{padding:'13px 18px'}}>
+                    <div style={{fontSize:13,color:C.text}}>{v.store}</div>
+                    <div style={{fontSize:12,color:C.textMid,marginTop:2}}>{v.assignee}</div>
+                  </td>
+                  <td style={{padding:'13px 18px'}}>
+                    <StatusBadge status={v.appraisalStatus} type="appraisal"/>
+                  </td>
+                  <td style={{padding:'13px 18px'}}>
+                    <div style={{display:'flex',alignItems:'center',gap:6,
+                      color:elColor(el.level),fontWeight:el.level>0?700:400,fontSize:13}}>
+                      {el.level>=2 && <span style={{fontSize:15}}>🚨</span>}
+                      {el.level===1 && <span style={{fontSize:14}}>⚠️</span>}
+                      {el.label}
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </Card>
+
+      {/* 放置アラート ポップアップ */}
+      {alertModal && (
+        <div style={{position:'fixed',inset:0,background:'rgba(0,0,0,0.5)',zIndex:500,
+          display:'flex',alignItems:'center',justifyContent:'center',padding:32,animation:'fadeInOverlay 0.15s ease both'}}
+          onClick={e=>{if(e.target===e.currentTarget)setAlertModal(false);}}>
+          <div style={{background:'#fff',borderRadius:16,width:'100%',maxWidth:720,maxHeight:'82vh',
+            display:'flex',flexDirection:'column',boxShadow:'0 24px 64px rgba(0,0,0,0.22)',animation:'fadeInDown 0.2s ease both'}}>
+            {/* モーダルヘッダー */}
+            <div style={{padding:'18px 24px',borderBottom:`1px solid ${C.border}`,display:'flex',alignItems:'center',gap:12,flexShrink:0}}>
+              <span style={{fontSize:22}}>🚨</span>
+              <div style={{flex:1}}>
+                <div style={{fontSize:16,fontWeight:800,color:C.red}}>放置案件一覧</div>
+                <div style={{fontSize:12,color:C.textMid,marginTop:2}}>2日以上放置されている案件 · 滞留時間の長い順</div>
+              </div>
+              <div style={{background:'#FEF2F2',color:C.red,fontWeight:800,fontSize:20,
+                padding:'4px 14px',borderRadius:8,marginRight:8}}>
+                {alertCount}件
+              </div>
+              <button onClick={()=>setAlertModal(false)}
+                style={{width:32,height:32,borderRadius:'50%',border:`1px solid ${C.border}`,
+                  background:'#fff',cursor:'pointer',fontSize:18,color:C.textMid,
+                  display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>✕</button>
+            </div>
+            {/* モーダルテーブル */}
+            <div style={{overflowY:'auto',flex:1}}>
+              <table style={{width:'100%',borderCollapse:'collapse'}}>
+                <thead style={{position:'sticky',top:0,zIndex:1}}>
+                  <tr style={{background:'#FAFAFA',borderBottom:`2px solid ${C.border}`}}>
+                    {['順位','車種 / 年式','店舗 / 担当者','ステータス','滞留時間'].map(h => (
+                      <th key={h} style={{padding:'10px 16px',textAlign:'left',fontSize:12,fontWeight:600,color:C.textMid,whiteSpace:'nowrap'}}>{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {alertVehicles.map((v,i) => {
+                    const el = ELAPSED[v.id];
+                    return (
+                      <tr key={v.id} style={{borderBottom:`1px solid ${C.borderLight}`,background:i===0?'#FEF2F2':'#FFF5F5'}}
+                        onMouseEnter={e=>e.currentTarget.style.background='#FEE2E2'}
+                        onMouseLeave={e=>e.currentTarget.style.background=i===0?'#FEF2F2':'#FFF5F5'}>
+                        <td style={{padding:'12px 16px',textAlign:'center'}}>
+                          <div style={{width:28,height:28,borderRadius:'50%',
+                            background:i===0?C.red:i<=2?'#FF7043':'#FF8A65',
+                            color:'#fff',fontWeight:800,fontSize:13,
+                            display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto'}}>
+                            {i+1}
+                          </div>
+                        </td>
+                        <td style={{padding:'12px 16px'}}>
+                          <div style={{fontWeight:700,fontSize:14,color:C.text}}>{v.maker} {v.name}</div>
+                          <div style={{fontSize:12,color:C.textMid,marginTop:1}}>{v.grade} · {v.registration}</div>
+                        </td>
+                        <td style={{padding:'12px 16px'}}>
+                          <div style={{fontSize:13,color:C.text}}>{v.store}</div>
+                          <div style={{fontSize:12,color:C.textMid,marginTop:1}}>{v.assignee}</div>
+                        </td>
+                        <td style={{padding:'12px 16px'}}>
+                          <StatusBadge status={v.appraisalStatus} type="appraisal"/>
+                        </td>
+                        <td style={{padding:'12px 16px'}}>
+                          <div style={{display:'flex',alignItems:'center',gap:6,color:C.red,fontWeight:700,fontSize:14}}>
+                            <span style={{fontSize:16}}>🚨</span>{el.label}
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+
 /* ─── HOME SCREEN ─── */
 function HomeScreen({setScreen}) {
   const tiles = [
@@ -2700,7 +3126,7 @@ function HomeScreen({setScreen}) {
       label: '査定',
       color: '#2E7D32',
       lightColor: '#E8F5E9',
-      target: null,
+      target: 'appraisal-dashboard',
       disabled: false,
     },
     {
@@ -2773,6 +3199,7 @@ const PAGE_TITLES = {
   'price-negotiation':'価格交渉',
   'admin-dashboard':'ダッシュボード',
   'admin-regional':'地域別価格分析',
+  'appraisal-dashboard':'査定管理ダッシュボード',
 };
 
 /* ─── APP ROOT ─── */
@@ -2795,6 +3222,7 @@ function App() {
   const renderScreen = () => {
     switch(screen) {
       case 'home': return <HomeScreen setScreen={setScreen}/>;
+      case 'appraisal-dashboard': return <AppraisalDashboard setScreen={setScreen}/>;
       case 'buyer-list': return <BuyerList setScreen={setScreen} setSelectedVehicle={setSelectedVehicle}/>;
       case 'buyer-detail': return <BuyerDetail vehicle={selectedVehicle} setScreen={setScreen}/>;
       case 'tx-list': return <TxList setScreen={setScreen}/>;
