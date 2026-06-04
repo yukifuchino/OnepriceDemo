@@ -702,9 +702,6 @@ function Sidebar({role, screen, setScreen, setRole, open, onClose}) {
       <div style={{position:'fixed',top:0,left:0,bottom:0,width:256,background:C.sidebar,zIndex:50,display:'flex',flexDirection:'column',boxShadow:'6px 0 24px rgba(0,0,0,0.12)',animation:'slideInLeft 0.22s cubic-bezier(0.4,0,0.2,1) both'}}>
         {/* ロゴ + 閉じる */}
         <div style={{height:64,display:'flex',alignItems:'center',padding:'0 16px',gap:12,borderBottom:`1px solid ${C.sidebarBorder}`,flexShrink:0}}>
-          <div style={{width:32,height:32,background:C.red,borderRadius:8,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
-            <span style={{color:'#fff',fontSize:13,fontWeight:800,letterSpacing:-0.5}}>1P</span>
-          </div>
           <span style={{color:C.text,fontWeight:700,fontSize:17,letterSpacing:0.3,flex:1}}>OnePrice</span>
           <button onClick={onClose} style={{width:32,height:32,background:'none',border:'none',cursor:'pointer',color:C.textMid,fontSize:22,lineHeight:1,display:'flex',alignItems:'center',justifyContent:'center',borderRadius:4}}
             onMouseEnter={e=>e.currentTarget.style.background='#f0f0f0'}
@@ -728,7 +725,7 @@ function Sidebar({role, screen, setScreen, setRole, open, onClose}) {
             {['user','admin'].map(r => (
               <button key={r} onClick={() => { setRole(r); setScreen(r==='admin'?'admin-dashboard':'home'); onClose(); }}
                 style={{flex:1,height:28,borderRadius:4,fontSize:12,fontWeight:600,background:role===r?C.red:'transparent',color:role===r?'#fff':C.textMid,border:`1px solid ${role===r?C.red:C.border}`,cursor:'pointer',transition:'all 0.15s'}}>
-                {r==='user'?'ユーザー':'管理'}
+                {r==='user'?'ユーザー':'管理（廃止予定）'}
               </button>
             ))}
           </div>
@@ -785,14 +782,8 @@ function LoginScreen({onLogin}) {
         boxShadow:'0 1px 2px rgba(15,23,42,0.04),0 4px 24px rgba(15,23,42,0.06)',
         border:`1px solid ${C.border}`}}>
         {/* ロゴ */}
-        <div style={{display:'flex',alignItems:'center',justifyContent:'center',gap:10,marginBottom:8}}>
-          <div style={{width:32,height:32,background:C.primary,borderRadius:6,display:'flex',alignItems:'center',justifyContent:'center'}}>
-            <span style={{color:'#fff',fontSize:12,fontWeight:800,letterSpacing:-0.5}}>1P</span>
-          </div>
+        <div style={{textAlign:'center',marginBottom:32}}>
           <div style={{fontSize:22,fontWeight:700,color:C.text,letterSpacing:'-0.01em'}}>OnePrice</div>
-        </div>
-        <div style={{fontSize:12,color:C.textMid,textAlign:'center',marginBottom:32}}>
-          在庫リスクから解放される、車両売買プラットフォーム
         </div>
         <div style={{display:'flex',flexDirection:'column',gap:14}}>
           <Input label="メールアドレス" value={email} onChange={e=>setEmail(e.target.value)} placeholder="example@company.com" type="email"/>
