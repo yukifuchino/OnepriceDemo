@@ -259,51 +259,72 @@ const NOTIFICATIONS = [
   {id:8,read:true,type:'入札・落札',title:'Audi Q8 の入札が他のユーザーに上回られました',body:'再入札することができます',time:'6日前'},
 ];
 
-/* ─── 直接購入 車両データ ─── */
+/* ─── 即時購入 車両データ ─── */
 const DIRECT_VEHICLES = [
   {id:201,maker:'ポルシェ',name:'カイエン',grade:'GTS',registration:'2023-06',mileage:14200,
    color:'クレヨン（ホワイト）',colorFamily:'ホワイト',inspectionExpiry:'2027-06',inspectionType:'継続',
    exteriorScore:'A',interiorScore:'A',totalScore:'5',repairHistory:'なし',warrantyBook:true,spareKey:2,
    equipment:['純正ナビ','全周囲カメラ','ETC2.0','パワーシート','パノラマルーフ','地デジ','シートヒーター'],
-   damageNote:'なし',store:'渋谷本店',assignee:'鈴木 一郎',
-   buyNowPrice:16800000,available:true,img:'',wikiImg:'',photos:[]},
+   damageNote:'なし',store:'渋谷本店',assignee:'鈴木 一郎',vin:'WP1ZZZ9YZSL000201',
+   buyNowPrice:16800000,available:true,bids:0,img:'',wikiImg:'',photos:[],
+   aiPrediction:{mean:17200000,low:15800000,high:18600000}},
   {id:202,maker:'BMW',name:'M5',grade:'Competition',registration:'2022-11',mileage:22000,
    color:'ソードフィッシュ',colorFamily:'グレー',inspectionExpiry:'2026-11',inspectionType:'継続',
    exteriorScore:'B',interiorScore:'A',totalScore:'4.5',repairHistory:'なし',warrantyBook:true,spareKey:2,
    equipment:['純正ナビ','全周囲カメラ','ETC2.0','パワーシート','ハーマンカードン','シートヒーター'],
-   damageNote:'左フロントドア軽微傷',store:'新宿南口店',assignee:'山本 拓也',
-   buyNowPrice:14500000,available:true,img:'',wikiImg:'',photos:[]},
+   damageNote:'左フロントドア軽微傷',store:'新宿南口店',assignee:'山本 拓也',vin:'WBS83CH0XNC000202',
+   buyNowPrice:14500000,available:true,bids:0,img:'',wikiImg:'',photos:[],
+   aiPrediction:{mean:14800000,low:13500000,high:16100000}},
   {id:203,maker:'ランボルギーニ',name:'ウルス',grade:'ベースグレード',registration:'2021-03',mileage:18700,
    color:'アランチョ ブロメオ',colorFamily:'オレンジ',inspectionExpiry:'2025-03',inspectionType:'抹消',
    exteriorScore:'B',interiorScore:'A',totalScore:'4',repairHistory:'なし',warrantyBook:true,spareKey:2,
    equipment:['純正ナビ','全周囲カメラ','ETC2.0','パワーシート','Bang&Olufsen','炭素繊維内装'],
-   damageNote:'なし',store:'梅田グランド店',assignee:'中村 雄一',
-   buyNowPrice:28000000,available:true,img:'',wikiImg:'',photos:[]},
+   damageNote:'なし',store:'梅田グランド店',assignee:'中村 雄一',vin:'ZPBUA1ZL6MLA000203',
+   buyNowPrice:28000000,available:true,bids:0,img:'',wikiImg:'',photos:[],
+   aiPrediction:{mean:29500000,low:26000000,high:33000000}},
   {id:204,maker:'フェラーリ',name:'SF90 ストラダーレ',grade:'ベースグレード',registration:'2022-08',mileage:3200,
    color:'ロッソフォルムラ',colorFamily:'レッド',inspectionExpiry:'2025-08',inspectionType:'抹消',
    exteriorScore:'A',interiorScore:'A',totalScore:'6',repairHistory:'なし',warrantyBook:true,spareKey:2,
    equipment:['フロントリフト','カーボンファイバーパッケージ','Burmester'],
-   damageNote:'なし',store:'渋谷本店',assignee:'佐藤 美咲',
-   buyNowPrice:68000000,available:false,img:'',wikiImg:'',photos:[]},
+   damageNote:'なし',store:'渋谷本店',assignee:'佐藤 美咲',vin:'ZFF95NLA6N0000204',
+   buyNowPrice:68000000,available:false,bids:0,img:'',wikiImg:'',photos:[],
+   aiPrediction:{mean:72000000,low:64000000,high:80000000}},
 ];
 
-/* ─── マイ入札履歴 ─── */
-const MY_BIDS_DATA = [
-  {id:'BID-001',vehicleId:103,bidAmount:11800000,rank:1,status:'入札中',bidTime:'2026-06-15 14:30'},
-  {id:'BID-002',vehicleId:101,bidAmount:13500000,rank:2,status:'競り負け',bidTime:'2026-06-14 11:00'},
-  {id:'BID-003',vehicleId:104,bidAmount:10200000,rank:1,status:'落札確認待ち',bidTime:'2026-06-12 09:30'},
-  {id:'BID-004',vehicleId:102,bidAmount:40000000,rank:3,status:'落札済',bidTime:'2026-06-01 16:00'},
-];
-
-/* ─── マイ注文（直接購入） ─── */
-const MY_ORDERS_DATA = [
+/* ─── マイ即時購入申請履歴 ─── */
+const MY_DIRECT_ORDERS = [
   {id:'ORD-001',vehicleId:201,maker:'ポルシェ',name:'カイエン',grade:'GTS',price:16800000,status:'審査中',requestTime:'2026-06-16 10:00',store:'渋谷本店'},
   {id:'ORD-002',vehicleId:203,maker:'ランボルギーニ',name:'ウルス',grade:'ベースグレード',price:28000000,status:'成約',requestTime:'2026-06-10 14:00',store:'梅田グランド店'},
-  {id:'ORD-003',vehicleId:202,maker:'BMW',name:'M5',grade:'Competition',price:14500000,status:'キャンセル',requestTime:'2026-06-05 09:00',store:'新宿南口店'},
 ];
+const DIRECT_ORDER_STATUS_COLOR = {'審査中':'#D97706','成約':'#047857','キャンセル':'#6B7280','入金待ち':'#2563EB'};
 
-const BID_STATUS_COLOR = {'入札中':'#2563EB','競り負け':'#6B7280','落札確認待ち':'#D97706','落札済':'#047857'};
-const ORDER_STATUS_COLOR = {'審査中':'#D97706','成約':'#047857','キャンセル':'#6B7280','入金待ち':'#2563EB'};
+/* ─── 出品タイプ別 即時購入リスト（セラー側） ─── */
+const SELLER_DIRECT_VEHICLES = DIRECT_VEHICLES.map((v,i) => ({
+  ...v, listed:i<2, views: [34,21,0,0][i]||0,
+}));
+
+/* ─── 管理者ダッシュボード用データ ─── */
+const BREAKEVEN_TARGET = 36; // 週間目標（月145台 ÷ 4週）
+const POC_TOTAL = 50;
+const WEEKLY_BTOB = [
+  {week:'5/26',volume:18,contracts:13,revenue:1600000},
+  {week:'6/2',volume:22,contracts:16,revenue:2100000},
+  {week:'6/9',volume:21,contracts:15,revenue:1950000},
+  {week:'6/16',volume:25,contracts:19,revenue:2400000},
+  {week:'6/23',volume:19,contracts:14,revenue:1800000},
+  {week:'6/30',volume:22,contracts:16,revenue:2050000,current:true},
+];
+const POC_VEHICLES_DATA = [
+  {id:'POC-001',maker:'Audi',name:'A4 アバント 2022',seller:'MID（マイダス）',buyer:'イデアル',askPrice:3200000,status:'成約',days:12},
+  {id:'POC-002',maker:'Audi',name:'A6 セダン 2021',seller:'MID（マイダス）',buyer:'イデアル',askPrice:4500000,status:'成約',days:8},
+  {id:'POC-003',maker:'VW',name:'トゥアレグ 2022',seller:'MID（マイダス）',buyer:'イデアル',askPrice:5800000,status:'商談中',days:3},
+  {id:'POC-004',maker:'Audi',name:'Q5 2020',seller:'MID（マイダス）',buyer:'イデアル',askPrice:3800000,status:'成約',days:15},
+  {id:'POC-005',maker:'Audi',name:'A3 スポーツバック 2023',seller:'MID（マイダス）',buyer:'イデアル',askPrice:2900000,status:'確認待ち',days:5},
+  {id:'POC-006',maker:'VW',name:'ティグアン 2021',seller:'MID（マイダス）',buyer:'イデアル',askPrice:3500000,status:'価格交渉中',days:2},
+  {id:'POC-007',maker:'Audi',name:'Q7 2019',seller:'MID（マイダス）',buyer:'イデアル',askPrice:7200000,status:'成約',days:20},
+  {id:'POC-008',maker:'Audi',name:'A5 クーペ 2022',seller:'MID（マイダス）',buyer:'イデアル',askPrice:5100000,status:'審査中',days:1},
+];
+const POC_STATUS_COLOR = {'成約':'#047857','商談中':'#2563EB','確認待ち':'#D97706','価格交渉中':'#7C3AED','審査中':'#0891B2','不成立':'#6B7280'};
 
 /* ─── UTILS ─── */
 const fmt = n => '¥'+n.toLocaleString();
@@ -916,24 +937,23 @@ function Sidebar({role, screen, setScreen, setRole, open, onClose}) {
   );
   const userNav = (<>
     <NavItem label="ホーム" target="home" icon="home"/>
-    {navSec('オークション')}
-    <NavItem label="オークション一覧" target="auction-list" indent icon="trending"/>
+    {navSec('未入庫売買')}
+    <NavItem label="購入" target="unlisted-list" indent icon="cart"/>
     <NavItem label="出品管理" target="seller-list" indent icon="upload"/>
-    {navSec('直接購入')}
-    <NavItem label="購入一覧" target="direct-list" indent icon="cart"/>
-    <NavItem label="マイ注文" target="my-orders" indent icon="file"/>
     {navSec('査定')}
     <NavItem label="査定管理" target="appraisal-dashboard" indent icon="search"/>
-    <NavItem label="車両一覧" target="buyer-list" indent icon="list"/>
+    <NavItem label="車両一覧" target="buyer-list" indent icon="file"/>
     {navSec('その他')}
     <NavItem label="通知" target="notifications" icon="bell"/>
     <NavItem label="マイページ" target="mypage" icon="user"/>
   </>);
 
   const adminNav = (<>
-    <NavItem label="ダッシュボード" target="admin-dashboard" icon="trending"/>
+    {navSec('モニタリング')}
+    <NavItem label="KPIダッシュボード" target="admin-dashboard" icon="trending"/>
     <NavItem label="地域価格分析" target="admin-regional" icon="pin"/>
-    <NavItem label="アラート" target="notifications" icon="bell"/>
+    {navSec('その他')}
+    <NavItem label="通知" target="notifications" icon="bell"/>
   </>);
 
   const uInfo = role==='admin'
@@ -973,7 +993,7 @@ function Sidebar({role, screen, setScreen, setRole, open, onClose}) {
             {['user','admin'].map(r => (
               <button key={r} onClick={() => { setRole(r); setScreen(r==='admin'?'admin-dashboard':'home'); onClose(); }}
                 style={{flex:1,height:28,borderRadius:4,fontSize:12,fontWeight:600,background:role===r?C.red:'transparent',color:role===r?'#fff':C.textMid,border:`1px solid ${role===r?C.red:C.border}`,cursor:'pointer',transition:'all 0.15s'}}>
-                {r==='user'?'ユーザー':'管理（廃止予定）'}
+                {r==='user'?'ユーザー':'SG管理者'}
               </button>
             ))}
           </div>
@@ -1649,6 +1669,7 @@ function MyPage() {
 
 /* ─── SELLER: 出品管理 ─── */
 function SellerList({setScreen, setSelectedVehicle}) {
+  const [sellerTab, setSellerTab] = useState('auction');
   const [newModal, setNewModal] = useState(false);
   const [modalVehicle, setModalVehicle] = useState(null);
   const [listedIds, setListedIds] = useState(VEHICLES.filter(v=>v.listed).map(v=>v.id));
@@ -1656,6 +1677,7 @@ function SellerList({setScreen, setSelectedVehicle}) {
   const [brandFilter, setBrandFilter] = useState('');
   const [daysFilter, setDaysFilter] = useState('');
   const [bidFilter, setBidFilter] = useState('');
+  const [directListedIds, setDirectListedIds] = useState(SELLER_DIRECT_VEHICLES.filter(v=>v.listed).map(v=>v.id));
   const openNew = (v) => { setModalVehicle(v||null); setNewModal(true); };
   const handleList = (vehicleId) => { setListedIds(prev => [...prev, vehicleId]); setNewModal(false); };
 
@@ -1687,20 +1709,63 @@ function SellerList({setScreen, setSelectedVehicle}) {
     {label:'今月の成約',value:'9件',icon:'checkCircle',color:C.success},
     {label:'今月の売上',value:'6,840万円',icon:'jpy',color:C.primary,highlight:true},
   ];
+  const tabSt = active => ({
+    padding:'10px 20px',fontSize:14,fontWeight:active?700:500,
+    border:'none',background:'none',cursor:'pointer',
+    borderBottom:active?`2px solid ${C.primary}`:'2px solid transparent',
+    color:active?C.primary:C.textMid,transition:'all 0.15s',
+  });
+
+  const directListedCount = directListedIds.length;
+  const directAvailCount = SELLER_DIRECT_VEHICLES.filter(v=>v.available&&directListedIds.includes(v.id)).length;
+
   return (
     <div style={{padding:24,display:'flex',flexDirection:'column',gap:16}}>
-      <div style={{display:'grid',gridTemplateColumns:'repeat(5,1fr)',gap:12}}>
-        {kpis.map(k => (
-          <Card key={k.label} style={{display:'flex',flexDirection:'column',gap:8}} p={16}>
-            <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-              <div style={{fontSize:12,color:C.textMid,fontWeight:500}}>{k.label}</div>
-              <Icon name={k.icon} size={16} color={k.color}/>
-            </div>
-            <div style={{fontSize:k.highlight?24:22,fontWeight:700,color:k.highlight?C.primary:C.text,letterSpacing:'-0.02em'}}>{k.value}</div>
-          </Card>
-        ))}
+      {/* ─── タブヘッダー ─── */}
+      <div style={{background:'#fff',borderRadius:10,border:`1px solid ${C.border}`,boxShadow:'0 1px 4px rgba(0,0,0,0.06)',overflow:'hidden'}}>
+        <div style={{borderBottom:`1px solid ${C.border}`,display:'flex',padding:'0 6px'}}>
+          <button style={tabSt(sellerTab==='auction')} onClick={()=>setSellerTab('auction')}>
+            🔨 オークション出品
+          </button>
+          <button style={tabSt(sellerTab==='direct')} onClick={()=>setSellerTab('direct')}>
+            ⚡ 即時購入出品
+          </button>
+        </div>
+        {sellerTab==='auction' && (
+          <div style={{display:'grid',gridTemplateColumns:'repeat(5,1fr)',gap:0}}>
+            {kpis.map((k,i,arr) => (
+              <div key={k.label} style={{padding:'14px 16px',borderRight:i<arr.length-1?`1px solid ${C.border}`:'none',display:'flex',flexDirection:'column',gap:6}}>
+                <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+                  <div style={{fontSize:11,color:C.textMid,fontWeight:500}}>{k.label}</div>
+                  <Icon name={k.icon} size={14} color={k.color}/>
+                </div>
+                <div style={{fontSize:k.highlight?22:20,fontWeight:700,color:k.highlight?C.primary:C.text,letterSpacing:'-0.02em'}}>{k.value}</div>
+              </div>
+            ))}
+          </div>
+        )}
+        {sellerTab==='direct' && (
+          <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:0}}>
+            {[
+              {label:'掲載中',value:`${directListedCount}件`,icon:'package',color:C.textMid},
+              {label:'購入可能',value:`${directAvailCount}件`,icon:'checkCircle',color:C.success},
+              {label:'申請受付中',value:'1件',icon:'clock',color:C.warning},
+              {label:'今月の成約',value:'2件',icon:'jpy',color:C.primary,highlight:true},
+            ].map((k,i,arr)=>(
+              <div key={k.label} style={{padding:'14px 16px',borderRight:i<arr.length-1?`1px solid ${C.border}`:'none',display:'flex',flexDirection:'column',gap:6}}>
+                <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+                  <div style={{fontSize:11,color:C.textMid,fontWeight:500}}>{k.label}</div>
+                  <Icon name={k.icon} size={14} color={k.color}/>
+                </div>
+                <div style={{fontSize:k.highlight?22:20,fontWeight:700,color:k.highlight?C.primary:C.text,letterSpacing:'-0.02em'}}>{k.value}</div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
-      {warningVs.length > 0 && (
+
+      {/* ─── オークション出品 コンテンツ ─── */}
+      {sellerTab==='auction' && warningVs.length > 0 && (
         <div style={{background:C.warningLight,border:`1px solid ${C.warning}55`,borderLeft:`4px solid ${C.warning}`,borderRadius:6,overflow:'hidden'}}>
           <div style={{padding:'12px 16px',display:'flex',gap:12,alignItems:'center',cursor:'pointer'}}
             onClick={()=>setShowWarn(s=>!s)}>
@@ -1741,6 +1806,8 @@ function SellerList({setScreen, setSelectedVehicle}) {
           )}
         </div>
       )}
+      {/* ─── オークション出品 コンテンツ ─── */}
+      {sellerTab==='auction' && (<>
       <Card>
         <div style={{display:'flex',gap:12,flexWrap:'wrap',alignItems:'flex-end'}}>
           <Input label="ブランド / 車種" value={brandFilter} onChange={e=>setBrandFilter(e.target.value)} placeholder="例: BMW" style={{width:160}}/>
@@ -1813,6 +1880,72 @@ function SellerList({setScreen, setSelectedVehicle}) {
           </tbody>
         </table>
       </Card>
+      </>)}
+
+      {/* ─── 即時購入出品 コンテンツ ─── */}
+      {sellerTab==='direct' && (
+        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(300px,1fr))',gap:14}}>
+          {SELLER_DIRECT_VEHICLES.map(v=>{
+            const isListed = directListedIds.includes(v.id);
+            return (
+              <div key={v.id} style={{background:'#fff',borderRadius:10,border:`1px solid ${C.border}`,
+                boxShadow:'0 1px 4px rgba(0,0,0,0.07)',overflow:'hidden'}}>
+                <div style={{height:150,background:'#f1f5f9',position:'relative',overflow:'hidden',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                  <WikiImage wikiImg={v.wikiImg} fallback={v.img} style={{width:'100%',height:'100%',objectFit:'cover'}}/>
+                  <div style={{position:'absolute',top:8,left:8}}>
+                    <TotalScoreBadge score={v.totalScore}/>
+                  </div>
+                  <span style={{position:'absolute',bottom:8,left:8,background:isListed?(v.available?C.success:'#888'):'#aaa',
+                    color:'#fff',fontSize:10,fontWeight:700,padding:'2px 8px',borderRadius:4}}>
+                    {isListed?(v.available?'掲載中':'売約済み'):'未掲載'}
+                  </span>
+                  {isListed && v.views>0 && (
+                    <span style={{position:'absolute',bottom:8,right:8,background:'rgba(0,0,0,0.6)',color:'#fff',fontSize:10,padding:'2px 8px',borderRadius:4}}>
+                      👁 {v.views}件
+                    </span>
+                  )}
+                </div>
+                <div style={{padding:'14px'}}>
+                  <div style={{fontSize:14,fontWeight:700,marginBottom:2}}>{v.maker} {v.name}</div>
+                  <div style={{fontSize:11,color:C.textMid,marginBottom:10}}>{v.grade} · {v.registration} · {v.mileage.toLocaleString()}km</div>
+                  <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:12}}>
+                    <div>
+                      <div style={{fontSize:10,color:C.textMid,marginBottom:2}}>即時購入価格</div>
+                      <div style={{fontSize:18,fontWeight:800,color:C.success}}>{fmt(v.buyNowPrice)}</div>
+                    </div>
+                    <div style={{textAlign:'right'}}>
+                      <div style={{fontSize:10,color:C.textMid,marginBottom:2}}>査定価格</div>
+                      <div style={{fontSize:13,fontWeight:600,color:C.textMid}}>{fmt(v.buyNowPrice+800000)}</div>
+                    </div>
+                  </div>
+                  <div style={{display:'flex',gap:6}}>
+                    {isListed ? (
+                      <>
+                        <button
+                          onClick={()=>setDirectListedIds(prev=>prev.filter(id=>id!==v.id))}
+                          style={{flex:1,height:34,background:'#fff',border:`1px solid ${C.danger}`,color:C.danger,borderRadius:6,fontSize:12,fontWeight:600,cursor:'pointer'}}>
+                          取り下げ
+                        </button>
+                        <button
+                          style={{flex:1,height:34,background:'#fff',border:`1px solid ${C.border}`,color:C.textMid,borderRadius:6,fontSize:12,cursor:'pointer'}}>
+                          価格変更
+                        </button>
+                      </>
+                    ) : (
+                      <button
+                        onClick={()=>setDirectListedIds(prev=>[...prev,v.id])}
+                        style={{flex:1,height:34,background:C.success,border:'none',color:'#fff',borderRadius:6,fontSize:12,fontWeight:700,cursor:'pointer'}}>
+                        即時購入で出品する
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
       {newModal && <SellerNewModal vehicle={modalVehicle} onClose={() => setNewModal(false)} onList={handleList}/>}
     </div>
   );
@@ -2110,119 +2243,219 @@ function SellerNewModal({vehicle, onClose, onList}) {
 
 /* ─── ADMIN: ダッシュボード ─── */
 function AdminDashboard({setScreen}) {
-  const kpis = [
-    {label:'本日の入庫',value:'7台',icon:'car',color:C.info},
-    {label:'出品中車両',value:'128台',icon:'package',color:C.success},
-    {label:'マッチング率',value:'78.3%',icon:'target',color:C.warning},
-    {label:'今月売上',value:'¥3.2億',icon:'jpy',color:C.primary},
+  const currentWeek = WEEKLY_BTOB.find(m => m.current) || WEEKLY_BTOB[WEEKLY_BTOB.length-1];
+  const maxVol = Math.max(...WEEKLY_BTOB.map(m => m.volume));
+  const pocContracts = POC_VEHICLES_DATA.filter(v => v.status === '成約').length;
+  const pocActive = POC_VEHICLES_DATA.filter(v => v.status !== '成約').length;
+  const progress = Math.round(currentWeek.volume / BREAKEVEN_TARGET * 100);
+  const remaining = BREAKEVEN_TARGET - currentWeek.volume;
+  const priceBands = [
+    {label:'高価格帯（300万円〜）',count:9,revenue:1200000,fee:'3%',color:C.primary},
+    {label:'中価格帯（150〜300万円）',count:8,revenue:550000,fee:'2.5%',color:C.info},
+    {label:'低価格帯（〜150万円）',count:5,revenue:300000,fee:'1.5%',color:'#93C5FD'},
   ];
-  const schedule = [
-    {date:'5/22',maker:'BMW',name:'X5 M50i',status:'入庫確認済'},
-    {date:'5/23',maker:'Lexus',name:'LX 600',status:'書類待ち'},
-    {date:'5/24',maker:'Porsche',name:'Cayenne S',status:'未確認'},
-    {date:'5/25',maker:'Mercedes',name:'GLE 400d',status:'入庫確認済'},
-  ];
-  const unmatched = [{name:'BMW 5Series 2020',days:3},{name:'Audi Q7 2019',days:7},{name:'VW Touareg 2021',days:5}];
-  const alerts = [
-    {level:'high',msg:'BMW X5 M50i 入札なし 残り1日',time:'10分前'},
-    {level:'mid',msg:'3件の車両で書類不備',time:'1時間前'},
-    {level:'low',msg:'Porsche Cayenne 車検切れ間近',time:'3時間前'},
-  ];
-  const alertColor = {high:C.danger,mid:C.warning,low:C.info};
-  const matchings = [{week:'4/28',cnt:18},{week:'5/5',cnt:22},{week:'5/12',cnt:19},{week:'5/19',cnt:26}];
-  const maxCnt = Math.max(...matchings.map(m => m.cnt));
   return (
     <div style={{padding:24,display:'flex',flexDirection:'column',gap:16}}>
+      {/* KPIカード */}
       <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:14}}>
-        {kpis.map(k => (
-          <Card key={k.label}>
-            <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:10}}>
-              <div style={{fontSize:12,color:C.textMid,fontWeight:500}}>{k.label}</div>
-              <Icon name={k.icon} size={16} color={k.color}/>
-            </div>
-            <div style={{fontSize:26,fontWeight:700,color:k.color,letterSpacing:'-0.02em'}}>{k.value}</div>
-          </Card>
-        ))}
+        <Card>
+          <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:8}}>
+            <div style={{fontSize:11,color:C.textMid,fontWeight:500}}>今週の流通台数</div>
+            <Icon name="car" size={14} color={C.primary}/>
+          </div>
+          <div style={{fontSize:28,fontWeight:700,color:C.primary,letterSpacing:'-0.02em'}}>
+            {currentWeek.volume}<span style={{fontSize:14,fontWeight:500,color:C.textMid}}>台</span>
+          </div>
+          <div style={{marginTop:8,height:4,background:C.border,borderRadius:2,overflow:'hidden'}}>
+            <div style={{height:'100%',background:progress>=100?C.success:progress>=70?C.warning:C.primary,width:`${Math.min(progress,100)}%`,borderRadius:2}}/>
+          </div>
+          <div style={{marginTop:4,fontSize:11,color:C.textLight}}>週目標{BREAKEVEN_TARGET}台の {progress}%</div>
+        </Card>
+        <Card>
+          <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:8}}>
+            <div style={{fontSize:11,color:C.textMid,fontWeight:500}}>今週の成約率</div>
+            <Icon name="target" size={14} color={C.success}/>
+          </div>
+          <div style={{fontSize:28,fontWeight:700,color:C.success,letterSpacing:'-0.02em'}}>
+            {Math.round(currentWeek.contracts/currentWeek.volume*100)}<span style={{fontSize:14,fontWeight:500,color:C.textMid}}>%</span>
+          </div>
+          <div style={{marginTop:8,fontSize:11,color:C.textLight}}>{currentWeek.contracts}件成約 / {currentWeek.volume}件出品</div>
+        </Card>
+        <Card>
+          <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:8}}>
+            <div style={{fontSize:11,color:C.textMid,fontWeight:500}}>今週の手数料収益</div>
+            <Icon name="jpy" size={14} color={C.warning}/>
+          </div>
+          <div style={{fontSize:24,fontWeight:700,color:C.warning,letterSpacing:'-0.02em'}}>
+            {(currentWeek.revenue/10000).toLocaleString()}<span style={{fontSize:13,fontWeight:500,color:C.textMid}}>万円</span>
+          </div>
+          <div style={{marginTop:8,fontSize:11,color:C.textLight}}>1件あたり {Math.round(currentWeek.revenue/currentWeek.contracts/10000)}万円</div>
+        </Card>
+        <Card>
+          <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:8}}>
+            <div style={{fontSize:11,color:C.textMid,fontWeight:500}}>POC進捗（MID↔イデアル）</div>
+            <Icon name="flag" size={14} color={C.info}/>
+          </div>
+          <div style={{fontSize:28,fontWeight:700,color:C.info,letterSpacing:'-0.02em'}}>
+            {pocContracts}<span style={{fontSize:14,fontWeight:500,color:C.textMid}}>/{POC_TOTAL}台</span>
+          </div>
+          <div style={{marginTop:8,fontSize:11,color:C.textLight}}>成約{pocContracts}台 / 進行中{pocActive}台</div>
+        </Card>
       </div>
-      <div style={{display:'grid',gridTemplateColumns:'1fr 360px',gap:16}}>
+
+      {/* 損益分岐点トラッカー */}
+      <div style={{background:'linear-gradient(135deg,#1E3A8A 0%,#1e50b0 100%)',borderRadius:12,padding:'16px 20px',boxShadow:'0 2px 10px rgba(30,58,138,0.3)'}}>
+        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:12}}>
+          <div>
+            <div style={{fontSize:11,color:'rgba(255,255,255,0.6)',fontWeight:500,letterSpacing:0.6}}>損益分岐点トラッカー（週間）</div>
+            <div style={{fontSize:15,fontWeight:700,color:'#fff',marginTop:3}}>
+              週間流通目標{BREAKEVEN_TARGET}台まで、あと <span style={{fontSize:26,color:'#FCD34D',letterSpacing:'-0.03em'}}>{remaining}</span> 台
+            </div>
+          </div>
+          <div style={{textAlign:'right',background:'rgba(255,255,255,0.1)',borderRadius:8,padding:'8px 14px'}}>
+            <div style={{fontSize:10,color:'rgba(255,255,255,0.6)'}}>今週末まで</div>
+            <div style={{fontSize:18,fontWeight:700,color:'#FCD34D'}}>3日</div>
+          </div>
+        </div>
+        <div style={{height:14,background:'rgba(255,255,255,0.15)',borderRadius:7,overflow:'hidden'}}>
+          <div style={{height:'100%',background:'linear-gradient(90deg,#60A5FA,#FCD34D)',width:`${Math.min(progress,100)}%`,borderRadius:7}}/>
+        </div>
+        <div style={{display:'flex',justifyContent:'space-between',marginTop:5}}>
+          <span style={{fontSize:10,color:'rgba(255,255,255,0.5)'}}>0台</span>
+          <span style={{fontSize:10,color:'rgba(255,255,255,0.7)',fontWeight:700}}>{currentWeek.volume}台 ({progress}%)</span>
+          <span style={{fontSize:10,color:'rgba(255,255,255,0.5)'}}>週目標: {BREAKEVEN_TARGET}台</span>
+        </div>
+      </div>
+
+      {/* メインコンテンツ */}
+      <div style={{display:'grid',gridTemplateColumns:'1fr 340px',gap:16}}>
         <div style={{display:'flex',flexDirection:'column',gap:16}}>
+          {/* 月次流通推移 */}
           <Card>
-            <div style={{fontWeight:700,fontSize:14,marginBottom:12}}>入庫スケジュール</div>
-            <table style={{width:'100%',borderCollapse:'collapse'}}>
-              <thead>
-                <tr style={{borderBottom:`1px solid ${C.border}`}}>
-                  {['入庫日','メーカー','車種名','状態'].map(h => (
-                    <th key={h} style={{padding:'6px 10px',textAlign:'left',fontSize:11,fontWeight:600,color:C.textMid}}>{h}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {schedule.map((r,i) => (
-                  <tr key={i} style={{borderBottom:`1px solid ${C.borderLight}`}}>
-                    <td style={{padding:'8px 10px',fontSize:12,fontWeight:700}}>{r.date}</td>
-                    <td style={{padding:'8px 10px',fontSize:12}}>{r.maker}</td>
-                    <td style={{padding:'8px 10px',fontSize:12}}>{r.name}</td>
-                    <td style={{padding:'8px 10px'}}>
-                      <Badge color={r.status==='入庫確認済'?C.green:r.status==='書類待ち'?C.orange:C.textLight}>{r.status}</Badge>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div style={{fontWeight:700,fontSize:14,marginBottom:14}}>週次流通推移（直近6週）</div>
+            <div style={{display:'flex',gap:8,alignItems:'flex-end',height:140,position:'relative',paddingBottom:22}}>
+              <div style={{
+                position:'absolute',left:0,right:0,
+                bottom:`${22 + (BREAKEVEN_TARGET/(maxVol*1.15))*100}px`,
+                borderTop:'1.5px dashed #EF4444',
+                pointerEvents:'none',
+                zIndex:2,
+              }}>
+                <span style={{position:'absolute',right:0,top:-14,fontSize:10,color:C.danger,fontWeight:600,background:C.white,paddingLeft:4}}>
+                  週目標 {BREAKEVEN_TARGET}台
+                </span>
+              </div>
+              {WEEKLY_BTOB.map(m => (
+                <div key={m.week} style={{flex:1,display:'flex',flexDirection:'column',alignItems:'center',gap:2,position:'relative',zIndex:1}}>
+                  <div style={{fontSize:10,fontWeight:700,color:m.current?C.primary:C.textMid}}>{m.volume}</div>
+                  <div style={{
+                    width:'100%',
+                    background: m.volume>=BREAKEVEN_TARGET ? C.success : (m.current ? C.primary : C.info),
+                    borderRadius:'4px 4px 0 0',
+                    height:`${(m.volume/(maxVol*1.15))*100}px`,
+                    opacity: m.current ? 1 : 0.55,
+                    outline: m.current ? `2px solid ${C.primary}` : 'none',
+                  }}/>
+                  <div style={{fontSize:10,color:m.current?C.primary:C.textLight,fontWeight:m.current?700:400,position:'absolute',bottom:0}}>{m.week}</div>
+                </div>
+              ))}
+            </div>
           </Card>
+
+          {/* BtoB取引状況 */}
           <Card>
-            <div style={{fontWeight:700,fontSize:14,marginBottom:12}}>最近のマッチング</div>
+            <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:12}}>
+              <div style={{fontWeight:700,fontSize:14}}>BtoB取引状況（POC: MID → イデアル）</div>
+              <Badge color={C.info}>進行中 {pocActive}件</Badge>
+            </div>
             <table style={{width:'100%',borderCollapse:'collapse'}}>
               <thead>
                 <tr style={{borderBottom:`1px solid ${C.border}`}}>
-                  {['車両','買い手','成約価格','日時'].map(h => (
-                    <th key={h} style={{padding:'6px 10px',textAlign:'left',fontSize:11,fontWeight:600,color:C.textMid}}>{h}</th>
+                  {['車両','希望価格','ステータス','経過日'].map(h => (
+                    <th key={h} style={{padding:'6px 8px',textAlign:'left',fontSize:11,fontWeight:600,color:C.textMid}}>{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
-                {VEHICLES.slice(0,4).map((v,i) => (
+                {POC_VEHICLES_DATA.map(v => (
                   <tr key={v.id} style={{borderBottom:`1px solid ${C.borderLight}`}}>
-                    <td style={{padding:'8px 10px',fontSize:12,fontWeight:600}}>{v.name}</td>
-                    <td style={{padding:'8px 10px',fontSize:12,color:C.textMid}}>A商会</td>
-                    <td style={{padding:'8px 10px',fontSize:12,fontWeight:700,color:C.red}}>{fmt(v.price)}</td>
-                    <td style={{padding:'8px 10px',fontSize:11,color:C.textLight}}>2026-05-{String(20-i).padStart(2,'0')}</td>
+                    <td style={{padding:'8px 8px'}}>
+                      <div style={{fontSize:12,fontWeight:600}}>{v.maker} {v.name}</div>
+                      <div style={{fontSize:10,color:C.textLight}}>{v.seller}</div>
+                    </td>
+                    <td style={{padding:'8px 8px',fontSize:12,fontWeight:700,color:C.red}}>{fmt(v.askPrice)}</td>
+                    <td style={{padding:'8px 8px'}}>
+                      <Badge color={POC_STATUS_COLOR[v.status]||C.textMid}>{v.status}</Badge>
+                    </td>
+                    <td style={{padding:'8px 8px',fontSize:11,color:v.days>10?C.warning:C.textLight,fontWeight:v.days>10?700:400}}>{v.days}日</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </Card>
         </div>
+
+        {/* 右カラム */}
         <div style={{display:'flex',flexDirection:'column',gap:16}}>
+          {/* 価格帯別手数料収益 */}
           <Card>
-            <div style={{fontWeight:700,fontSize:14,marginBottom:12}}>未マッチ車両 ({unmatched.length}台)</div>
-            {unmatched.map((u,i) => (
-              <div key={i} style={{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'8px 0',borderBottom:`1px solid ${C.borderLight}`}}>
-                <span style={{fontSize:13}}>{u.name}</span>
-                <Badge color={u.days>5?C.red:C.orange}>{u.days}日経過</Badge>
+            <div style={{fontWeight:700,fontSize:14,marginBottom:14}}>価格帯別 手数料収益（今月）</div>
+            {priceBands.map((band,i) => (
+              <div key={i} style={{marginBottom:14}}>
+                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:4}}>
+                  <span style={{fontSize:11,color:C.textMid}}>{band.label}</span>
+                  <span style={{fontSize:10,fontWeight:700,color:band.color,background:band.color+'18',padding:'1px 6px',borderRadius:3}}>{band.fee}</span>
+                </div>
+                <div style={{display:'flex',alignItems:'center',gap:8}}>
+                  <div style={{flex:1,height:7,background:C.border,borderRadius:4,overflow:'hidden'}}>
+                    <div style={{height:'100%',background:band.color,width:`${band.count/currentWeek.volume*100}%`,borderRadius:4}}/>
+                  </div>
+                  <span style={{fontSize:11,fontWeight:600,color:C.text,minWidth:28}}>{band.count}台</span>
+                </div>
+                <div style={{fontSize:11,color:C.textLight,marginTop:2}}>{(band.revenue/10000).toLocaleString()}万円</div>
               </div>
             ))}
-          </Card>
-          <Card>
-            <div style={{fontWeight:700,fontSize:14,marginBottom:12}}>週別マッチング数</div>
-            <div style={{display:'flex',gap:10,alignItems:'flex-end',height:110,paddingBottom:4}}>
-              {matchings.map(m => (
-                <div key={m.week} style={{flex:1,display:'flex',flexDirection:'column',alignItems:'center',gap:4}}>
-                  <div style={{fontSize:11,fontWeight:700,color:C.textMid}}>{m.cnt}</div>
-                  <div style={{width:'100%',background:C.red,borderRadius:'4px 4px 0 0',height:`${m.cnt/maxCnt*80}px`,transition:'height 0.3s'}}/>
-                  <div style={{fontSize:10,color:C.textLight}}>{m.week}</div>
-                </div>
-              ))}
+            <div style={{borderTop:`1px solid ${C.border}`,paddingTop:10,marginTop:2,display:'flex',justifyContent:'space-between'}}>
+              <span style={{fontSize:12,fontWeight:600}}>今週合計</span>
+              <span style={{fontSize:13,fontWeight:700,color:C.warning}}>{(priceBands.reduce((s,b)=>s+b.revenue,0)/10000).toLocaleString()}万円</span>
             </div>
           </Card>
+
+          {/* POCサマリー */}
           <Card>
-            <div style={{fontWeight:700,fontSize:14,marginBottom:12}}>アラート</div>
-            {alerts.map((a,i) => (
-              <div key={i} style={{padding:'8px 0',borderBottom:`1px solid ${C.borderLight}`,display:'flex',gap:10,alignItems:'flex-start'}}>
-                <div style={{width:8,height:8,borderRadius:'50%',background:alertColor[a.level],marginTop:4,flexShrink:0}}/>
+            <div style={{fontWeight:700,fontSize:14,marginBottom:10}}>POCサマリー</div>
+            {[
+              {label:'目標台数',value:`${POC_TOTAL}台`,color:C.text},
+              {label:'リストアップ',value:`${POC_VEHICLES_DATA.length}台`,color:C.info},
+              {label:'成約',value:`${pocContracts}台`,color:C.success},
+              {label:'進行中',value:`${pocActive}台`,color:C.warning},
+              {label:'成約率',value:`${Math.round(pocContracts/POC_VEHICLES_DATA.length*100)}%`,color:C.primary},
+            ].map((row,i) => (
+              <div key={i} style={{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'7px 0',borderBottom:`1px solid ${C.borderLight}`}}>
+                <span style={{fontSize:12,color:C.textMid}}>{row.label}</span>
+                <span style={{fontSize:14,fontWeight:700,color:row.color}}>{row.value}</span>
+              </div>
+            ))}
+            <div style={{marginTop:12,padding:'9px 12px',background:C.infoLight,borderRadius:6,fontSize:11,color:'#1D4ED8',lineHeight:1.7}}>
+              📋 MID（マイダス）→ イデアル<br/>
+              AUDIを中心とした輸入車 50台のPoC<br/>
+              7月4日 本格開始予定
+            </div>
+          </Card>
+
+          {/* アラート */}
+          <Card>
+            <div style={{fontWeight:700,fontSize:14,marginBottom:10}}>アラート</div>
+            {[
+              {level:'high',msg:`損益分岐まで残り${remaining}台`,sub:'今月末期限'},
+              {level:'mid',msg:'POC審査待ち 1件（A5クーペ）',sub:'1日前'},
+              {level:'low',msg:'商談停滞 3日超 2件',sub:'本日'},
+            ].map((a,i) => (
+              <div key={i} style={{padding:'8px 0',borderBottom:i<2?`1px solid ${C.borderLight}`:'none',display:'flex',gap:10,alignItems:'flex-start'}}>
+                <div style={{width:7,height:7,borderRadius:'50%',background:a.level==='high'?C.danger:a.level==='mid'?C.warning:C.info,marginTop:5,flexShrink:0}}/>
                 <div>
                   <div style={{fontSize:12,fontWeight:600}}>{a.msg}</div>
-                  <div style={{fontSize:11,color:C.textLight}}>{a.time}</div>
+                  <div style={{fontSize:11,color:C.textLight}}>{a.sub}</div>
                 </div>
               </div>
             ))}
@@ -2880,108 +3113,464 @@ function PurchaseModal({vehicle, modalType, onClose}) {
   );
 }
 
-function UnlistedList({setScreen, setSelectedUnlisted}) {
-  const [modal, setModal] = useState(null);
-  const filtered = UNLISTED_VEHICLES;
+/* ─── カウントダウンタイマー ─── */
+function CountdownTimer({endDate, style:s}) {
+  const calc = () => {
+    const diff = new Date(endDate) - new Date();
+    if (diff <= 0) return {d:0,h:0,m:0,s:0,expired:true};
+    return {
+      d: Math.floor(diff/86400000),
+      h: Math.floor((diff%86400000)/3600000),
+      m: Math.floor((diff%3600000)/60000),
+      s: Math.floor((diff%60000)/1000),
+      expired: false,
+    };
+  };
+  const [t, setT] = useState(calc());
+  useEffect(() => {
+    const id = setInterval(() => setT(calc()), 1000);
+    return () => clearInterval(id);
+  }, [endDate]);
+  if (t.expired) return <span style={{color:C.textLight,fontSize:12,...s}}>終了</span>;
+  const urgent = t.d===0 && t.h<3;
+  const col = urgent ? C.danger : t.d===0 ? C.warning : '#e2e8f0';
+  return (
+    <span style={{color:col,fontWeight:700,fontSize:12,...s}}>
+      {t.d>0
+        ? `残${t.d}日 ${String(t.h).padStart(2,'0')}:${String(t.m).padStart(2,'0')}`
+        : `残 ${String(t.h).padStart(2,'0')}:${String(t.m).padStart(2,'0')}:${String(t.s).padStart(2,'0')}`}
+    </span>
+  );
+}
 
-  const kpis = [
+/* ─── 即時購入確認モーダル ─── */
+function BuyNowModal({vehicle:v, onClose, onConfirm}) {
+  const [step, setStep] = useState(0);
+  const [note, setNote] = useState('');
+
+  if (step===1) return (
+    <div style={{position:'fixed',inset:0,background:'rgba(0,0,0,0.5)',zIndex:200,display:'flex',alignItems:'center',justifyContent:'center'}}>
+      <div style={{background:'#fff',borderRadius:14,padding:'40px 32px',maxWidth:440,width:'90%',textAlign:'center',boxShadow:'0 20px 60px rgba(0,0,0,0.2)'}}>
+        <div style={{width:64,height:64,borderRadius:'50%',background:C.success+'22',display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 20px',fontSize:32}}>✅</div>
+        <div style={{fontSize:20,fontWeight:800,marginBottom:8}}>即時購入申請が完了しました</div>
+        <div style={{fontSize:13,color:C.textMid,marginBottom:8}}>{v.maker} {v.name} {v.grade}</div>
+        <div style={{fontSize:28,fontWeight:800,color:C.success,marginBottom:20}}>{fmt(v.buyNowPrice)}</div>
+        <div style={{fontSize:12,color:C.textMid,marginBottom:28}}>担当者より1営業日以内にご連絡いたします。</div>
+        <div style={{display:'flex',gap:10,justifyContent:'center'}}>
+          <button onClick={onConfirm}
+            style={{background:C.success,color:'#fff',border:'none',borderRadius:8,padding:'10px 24px',fontSize:14,fontWeight:700,cursor:'pointer'}}>
+            閉じる
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <div style={{position:'fixed',inset:0,background:'rgba(0,0,0,0.5)',zIndex:200,display:'flex',alignItems:'center',justifyContent:'center'}}>
+      <div style={{background:'#fff',borderRadius:14,padding:'28px',maxWidth:480,width:'90%',boxShadow:'0 20px 60px rgba(0,0,0,0.2)'}}>
+        <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:20}}>
+          <div style={{fontSize:17,fontWeight:800}}>即時購入申請の確認</div>
+          <button onClick={onClose} style={{background:'none',border:'none',cursor:'pointer',fontSize:24,color:C.textMid,lineHeight:1}}>×</button>
+        </div>
+
+        <div style={{background:C.bg,borderRadius:10,padding:'16px',marginBottom:18}}>
+          <div style={{fontWeight:700,fontSize:15,marginBottom:12}}>{v.maker} {v.name} {v.grade}</div>
+          {[
+            ['登録年月',v.registration],
+            ['走行距離',`${v.mileage.toLocaleString()}km`],
+            ['外装/内装',`${v.exteriorScore} / ${v.interiorScore}`],
+            ['修復歴',v.repairHistory],
+            ['担当店舗',v.store],
+          ].map(([l,val])=>(
+            <div key={l} style={{display:'flex',justifyContent:'space-between',padding:'5px 0',borderBottom:`1px solid ${C.border}`}}>
+              <span style={{fontSize:12,color:C.textMid}}>{l}</span>
+              <span style={{fontSize:13,fontWeight:600}}>{val}</span>
+            </div>
+          ))}
+        </div>
+
+        <div style={{textAlign:'center',marginBottom:18,padding:'14px',background:C.success+'10',borderRadius:8,border:`1px solid ${C.success}40`}}>
+          <div style={{fontSize:12,color:C.textMid,marginBottom:4}}>即時購入価格</div>
+          <div style={{fontSize:30,fontWeight:900,color:C.success}}>{fmt(v.buyNowPrice)}</div>
+          <div style={{fontSize:11,color:C.textLight,marginTop:2}}>（税込）</div>
+        </div>
+
+        <div style={{marginBottom:18}}>
+          <div style={{fontSize:12,color:C.textMid,marginBottom:6}}>担当者へのメモ（任意）</div>
+          <textarea value={note} onChange={e=>setNote(e.target.value)}
+            placeholder="ご要望・ご質問があればご記入ください"
+            rows={3}
+            style={{width:'100%',border:`1px solid ${C.border}`,borderRadius:6,padding:'8px 10px',fontSize:13,resize:'vertical',boxSizing:'border-box',outline:'none'}}/>
+        </div>
+
+        <div style={{display:'flex',gap:10}}>
+          <button onClick={()=>setStep(1)}
+            style={{flex:1,height:44,background:C.success,color:'#fff',border:'none',borderRadius:8,fontSize:15,fontWeight:700,cursor:'pointer'}}>
+            申請する
+          </button>
+          <button onClick={onClose}
+            style={{flex:1,height:44,background:'#f1f5f9',color:C.textMid,border:'none',borderRadius:8,fontSize:14,cursor:'pointer'}}>
+            キャンセル
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── 即時購入 詳細画面 ─── */
+function DirectDetailScreen({vehicle:v, setScreen}) {
+  const [showModal, setShowModal] = useState(false);
+  const [ordered, setOrdered] = useState(false);
+  const [lightboxImg, setLightboxImg] = useState(null);
+  const photos = useVehiclePhotos(v||DIRECT_VEHICLES[0]);
+  if (!v) return <div style={{padding:24,color:C.textMid}}>車両情報がありません</div>;
+  const existOrder = MY_DIRECT_ORDERS.find(o=>o.vehicleId===v.id);
+
+  return (
+    <div style={{padding:24,display:'flex',flexDirection:'column',gap:16,maxWidth:1040,margin:'0 auto'}}>
+      <button onClick={()=>setScreen('unlisted-list')}
+        style={{display:'inline-flex',alignItems:'center',gap:6,background:'none',border:'none',cursor:'pointer',color:C.textMid,fontSize:13,padding:0,alignSelf:'flex-start',fontWeight:500}}>
+        ← 購入一覧に戻る
+      </button>
+
+      {lightboxImg !== null && (
+        <div onClick={()=>setLightboxImg(null)}
+          style={{position:'fixed',inset:0,background:'rgba(0,0,0,0.9)',zIndex:600,display:'flex',alignItems:'center',justifyContent:'center',cursor:'zoom-out'}}>
+          <img src={photos[lightboxImg]} alt="" style={{maxWidth:'90vw',maxHeight:'90vh',objectFit:'contain',borderRadius:4}}/>
+        </div>
+      )}
+
+      <div style={{display:'grid',gridTemplateColumns:'2fr 1fr',gap:16,alignItems:'start'}}>
+        <div style={{display:'flex',flexDirection:'column',gap:14}}>
+          {/* ヒーロー画像 */}
+          <div style={{borderRadius:10,overflow:'hidden',background:'#f1f5f9',height:290,position:'relative',cursor:photos.length?'zoom-in':'default'}}
+            onClick={()=>photos.length&&setLightboxImg(0)}>
+            {photos.length ? (
+              <img src={photos[0]} alt="" style={{width:'100%',height:'100%',objectFit:'cover'}}/>
+            ) : (
+              <div style={{width:'100%',height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:C.textLight,fontSize:13}}>写真準備中</div>
+            )}
+            <div style={{position:'absolute',top:12,left:12}}>
+              <TotalScoreBadge score={v.totalScore}/>
+            </div>
+            {!v.available && (
+              <div style={{position:'absolute',inset:0,background:'rgba(0,0,0,0.5)',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                <span style={{color:'#fff',fontSize:22,fontWeight:800}}>売約済み</span>
+              </div>
+            )}
+          </div>
+          {photos.length>1 && (
+            <div style={{display:'flex',gap:8,overflowX:'auto',paddingBottom:4}}>
+              {photos.slice(1).map((src,i)=>(
+                <img key={i} src={src} alt="" onClick={()=>setLightboxImg(i+1)}
+                  style={{width:80,height:56,objectFit:'cover',borderRadius:5,flexShrink:0,cursor:'zoom-in',border:`2px solid ${C.border}`}}/>
+              ))}
+            </div>
+          )}
+
+          {/* 基本情報 */}
+          <Card>
+            <div style={{fontWeight:700,fontSize:15,marginBottom:14,color:C.textDark}}>基本情報</div>
+            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'6px 20px'}}>
+              {[
+                ['メーカー',v.maker],['車種',v.name],['グレード',v.grade],
+                ['登録年月',v.registration],['走行距離',`${v.mileage.toLocaleString()}km`],
+                ['ボディカラー',v.color],['修復歴',v.repairHistory],
+                ['車検',`${v.inspectionExpiry} (${v.inspectionType})`],
+                ['保証書',v.warrantyBook?'あり':'なし'],['スペアキー',`${v.spareKey}本`],
+              ].map(([l,val])=>(
+                <div key={l} style={{display:'flex',justifyContent:'space-between',padding:'6px 0',borderBottom:`1px solid ${C.border}`}}>
+                  <span style={{fontSize:12,color:C.textMid}}>{l}</span>
+                  <span style={{fontSize:13,fontWeight:600}}>{val}</span>
+                </div>
+              ))}
+            </div>
+          </Card>
+
+          {/* コンディション */}
+          <ConditionCard vehicle={v}/>
+
+          {/* 装備品 */}
+          {v.equipment && v.equipment.length>0 && (
+            <Card>
+              <div style={{fontWeight:700,fontSize:15,marginBottom:12,color:C.textDark}}>装備・オプション</div>
+              <div style={{display:'flex',flexWrap:'wrap',gap:6}}>
+                {v.equipment.map(eq=>(
+                  <span key={eq} style={{background:C.info+'18',color:C.info,fontSize:12,padding:'4px 10px',borderRadius:20,fontWeight:500}}>{eq}</span>
+                ))}
+              </div>
+            </Card>
+          )}
+        </div>
+
+        {/* 右カラム：購入申請パネル */}
+        <div style={{position:'sticky',top:80}}>
+          <Card>
+            <div style={{fontSize:18,fontWeight:800,color:C.textDark,marginBottom:2}}>{v.maker} {v.name}</div>
+            <div style={{fontSize:13,color:C.textMid,marginBottom:16}}>{v.grade}</div>
+
+            <div style={{background:C.success+'10',border:`1px solid ${C.success}40`,borderRadius:8,padding:'16px',textAlign:'center',marginBottom:16}}>
+              <div style={{fontSize:11,color:C.textMid,marginBottom:4}}>即時購入価格</div>
+              <div style={{fontSize:34,fontWeight:900,color:C.success}}>{fmt(v.buyNowPrice)}</div>
+              <div style={{fontSize:11,color:C.textLight,marginTop:3}}>（税込）</div>
+            </div>
+
+            {v.aiPrediction && (
+              <div style={{background:'#EFF6FF',borderRadius:8,padding:'10px 12px',marginBottom:16}}>
+                <div style={{fontSize:11,color:C.info,fontWeight:700,marginBottom:6}}>⚡ AI相場予測</div>
+                <div style={{display:'flex',justifyContent:'space-between',fontSize:11,color:C.textMid}}>
+                  <span>下限 {fmt(v.aiPrediction.low)}</span>
+                  <span style={{fontWeight:700,color:C.info}}>中央値 {fmt(v.aiPrediction.mean)}</span>
+                  <span>上限 {fmt(v.aiPrediction.high)}</span>
+                </div>
+              </div>
+            )}
+
+            <div style={{marginBottom:14}}>
+              {ordered ? (
+                <div style={{background:C.success+'18',border:`1px solid ${C.success}`,borderRadius:8,padding:'12px',textAlign:'center'}}>
+                  <div style={{fontSize:14,fontWeight:700,color:C.success}}>✅ 即時購入申請済み</div>
+                  <div style={{fontSize:11,color:C.textMid,marginTop:4}}>担当者からご連絡します</div>
+                </div>
+              ) : existOrder ? (
+                <div style={{background:C.warning+'18',border:`1px solid ${C.warning}`,borderRadius:8,padding:'12px',textAlign:'center'}}>
+                  <div style={{fontSize:14,fontWeight:700,color:C.warning}}>{existOrder.status}</div>
+                  <div style={{fontSize:11,color:C.textMid,marginTop:4}}>申請日: {existOrder.requestTime}</div>
+                </div>
+              ) : (
+                <button disabled={!v.available} onClick={()=>setShowModal(true)}
+                  style={{width:'100%',height:48,background:v.available?C.success:'#ccc',color:'#fff',border:'none',
+                    borderRadius:8,fontSize:15,fontWeight:700,cursor:v.available?'pointer':'not-allowed'}}>
+                  {v.available?'即時購入を申請する':'売約済み'}
+                </button>
+              )}
+            </div>
+
+            <div style={{fontSize:11,color:C.textLight,textAlign:'center',marginBottom:16}}>
+              申請後、担当者より1営業日以内にご連絡します
+            </div>
+
+            <div style={{borderTop:`1px solid ${C.border}`,paddingTop:14}}>
+              <div style={{fontSize:11,color:C.textMid,marginBottom:4}}>担当</div>
+              <div style={{fontSize:14,fontWeight:700}}>{v.assignee}</div>
+              <div style={{fontSize:11,color:C.textMid}}>{v.store}</div>
+            </div>
+          </Card>
+        </div>
+      </div>
+
+      {showModal && (
+        <BuyNowModal vehicle={v} onClose={()=>setShowModal(false)}
+          onConfirm={()=>{setShowModal(false);setOrdered(true);}}/>
+      )}
+    </div>
+  );
+}
+
+function UnlistedList({setScreen, setSelectedUnlisted, setSelectedDirect, tab, setTab}) {
+  const [modal, setModal] = useState(null);
+  const [search, setSearch] = useState('');
+
+  const tabSt = active => ({
+    padding:'10px 20px',fontSize:14,fontWeight:active?700:500,
+    border:'none',background:'none',cursor:'pointer',
+    borderBottom:active?`2px solid ${C.blue}`:'2px solid transparent',
+    color:active?C.blue:C.textMid,transition:'all 0.15s',
+  });
+
+  /* ─── オークション KPI ─── */
+  const auctionKpis = [
     {label:'出品中',value:`${UNLISTED_VEHICLES.length}件`,icon:'package',color:C.textMid},
     {label:'入札中',value:'2件',icon:'flame',color:C.warning},
     {label:'取引中',value:'1件',icon:'list',color:C.info},
     {label:'今月の落札',value:'3件',icon:'checkCircle',color:C.info,highlight:true},
   ];
 
+  /* ─── 即時購入 KPI ─── */
+  const directAvail = DIRECT_VEHICLES.filter(v=>v.available).length;
+  const directOrders = MY_DIRECT_ORDERS.length;
+  const directPending = MY_DIRECT_ORDERS.filter(o=>o.status==='審査中').length;
+  const directKpis = [
+    {label:'掲載車両',value:`${DIRECT_VEHICLES.length}件`,icon:'package',color:C.textMid},
+    {label:'購入可能',value:`${directAvail}件`,icon:'checkCircle',color:C.success},
+    {label:'申請中',value:`${directPending}件`,icon:'clock',color:C.warning},
+    {label:'申請件数',value:`${directOrders}件`,icon:'list',color:C.info,highlight:true},
+  ];
+
+  const filteredDirect = DIRECT_VEHICLES.filter(v =>
+    !search || (v.maker+v.name+v.grade).includes(search)
+  );
+  const filteredAuction = UNLISTED_VEHICLES.filter(v =>
+    !search || (v.maker+v.name+v.grade).includes(search)
+  );
+
   return (
     <div style={{padding:24,display:'flex',flexDirection:'column',gap:16}}>
       {modal && <PurchaseModal vehicle={modal.vehicle} modalType={modal.type} onClose={() => setModal(null)}/>}
 
-      {/* KPIカード */}
-      <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:12}}>
-        {kpis.map(k => (
-          <Card key={k.label} style={{display:'flex',flexDirection:'column',gap:8}} p={16}>
-            <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-              <div style={{fontSize:12,color:C.textMid,fontWeight:500}}>{k.label}</div>
-              <Icon name={k.icon} size={16} color={k.color}/>
+      {/* タブヘッダー */}
+      <div style={{background:'#fff',borderRadius:10,border:`1px solid ${C.border}`,boxShadow:'0 1px 4px rgba(0,0,0,0.06)',overflow:'hidden'}}>
+        <div style={{borderBottom:`1px solid ${C.border}`,display:'flex',padding:'0 6px'}}>
+          <button style={tabSt(tab==='auction')} onClick={()=>setTab('auction')}>
+            🔨 オークション
+          </button>
+          <button style={tabSt(tab==='direct')} onClick={()=>setTab('direct')}>
+            ⚡ 即時購入
+          </button>
+        </div>
+
+        {/* KPIカード */}
+        <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:0}}>
+          {(tab==='auction'?auctionKpis:directKpis).map((k,i,arr) => (
+            <div key={k.label} style={{padding:'14px 18px',borderRight:i<arr.length-1?`1px solid ${C.border}`:'none',display:'flex',flexDirection:'column',gap:6}}>
+              <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+                <div style={{fontSize:11,color:C.textMid,fontWeight:500}}>{k.label}</div>
+                <Icon name={k.icon} size={14} color={k.color}/>
+              </div>
+              <div style={{fontSize:k.highlight?22:20,fontWeight:700,color:k.highlight?C.blue:C.text,letterSpacing:'-0.02em'}}>{k.value}</div>
             </div>
-            <div style={{fontSize:k.highlight?22:20,fontWeight:700,color:k.highlight?C.info:C.text,letterSpacing:'-0.02em'}}>{k.value}</div>
-          </Card>
-        ))}
+          ))}
+        </div>
       </div>
 
-      {/* フィルター */}
+      {/* 検索バー */}
       <Card>
-        <div style={{display:'flex',gap:12,flexWrap:'wrap',alignItems:'flex-end'}}>
-          <Input label="ブランド" value="" onChange={()=>{}} placeholder="例: フェラーリ" style={{width:160}}/>
-          <SelectField label="ステータス" value="" onChange={()=>{}} options={[{value:'',label:'すべて'},{value:'auction',label:'オークション中'}]} style={{width:150}}/>
-          <div style={{display:'flex',gap:8,alignItems:'flex-end'}}>
-            <Btn>絞り込み</Btn>
-            <Btn variant="ghost">クリア</Btn>
+        <div style={{display:'flex',gap:12,alignItems:'center',flexWrap:'wrap'}}>
+          <div style={{position:'relative',flex:1,minWidth:180}}>
+            <Icon name="search" size={14} color={C.textLight} style={{position:'absolute',left:10,top:'50%',transform:'translateY(-50%)',pointerEvents:'none'}}/>
+            <input value={search} onChange={e=>setSearch(e.target.value)}
+              placeholder={tab==='auction'?'メーカー・車種・グレードで検索':'メーカー・車種・グレードで検索'}
+              style={{width:'100%',height:36,border:`1px solid ${C.border}`,borderRadius:6,paddingLeft:30,paddingRight:10,fontSize:13,outline:'none',boxSizing:'border-box'}}/>
           </div>
+          {search && <Btn variant="ghost" onClick={()=>setSearch('')}>クリア</Btn>}
         </div>
       </Card>
 
-      {/* テーブル */}
-      <Card p={0}>
-        <table style={{width:'100%',borderCollapse:'collapse'}}>
-          <thead>
-            <tr style={{background:'#FAFAFA',borderBottom:`1px solid ${C.border}`}}>
-              {['','車両情報','現在入札価格','開始価格','終了日','アクション'].map(h => (
-                <th key={h} style={{padding:'10px 14px',textAlign:'left',fontSize:12,fontWeight:600,color:C.textMid,whiteSpace:'nowrap'}}>{h}</th>
+      {/* ─── オークション タブ ─── */}
+      {tab==='auction' && (
+        <Card p={0}>
+          <table style={{width:'100%',borderCollapse:'collapse'}}>
+            <thead>
+              <tr style={{background:'#FAFAFA',borderBottom:`1px solid ${C.border}`}}>
+                {['','車両情報','現在入札価格','開始価格','残り時間','アクション'].map(h => (
+                  <th key={h} style={{padding:'10px 14px',textAlign:'left',fontSize:12,fontWeight:600,color:C.textMid,whiteSpace:'nowrap'}}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {filteredAuction.map(v => (
+                <tr key={v.id} style={{borderBottom:`1px solid ${C.borderLight}`,background:'#fff'}}
+                  onMouseEnter={e => e.currentTarget.style.background='#F5F5F5'}
+                  onMouseLeave={e => e.currentTarget.style.background='#fff'}>
+                  <td style={{padding:'14px',width:130}}>
+                    <div style={{position:'relative',display:'inline-block'}}>
+                      <WikiImage wikiImg={v.wikiImg} fallback={v.img} style={{width:110,height:76,borderRadius:4,objectFit:'cover',display:'block',background:'#2a2a2a'}}/>
+                      <span style={{position:'absolute',bottom:4,left:4,background:C.blue,color:'#fff',fontSize:9,fontWeight:700,padding:'2px 6px',borderRadius:3}}>オークション</span>
+                    </div>
+                  </td>
+                  <td style={{padding:'14px'}}>
+                    <div style={{fontWeight:700,fontSize:15,color:C.blue,cursor:'pointer',display:'inline'}}
+                      onClick={() => { setSelectedUnlisted(v); setScreen('unlisted-detail'); }}
+                      onMouseEnter={e=>e.currentTarget.style.opacity='0.7'}
+                      onMouseLeave={e=>e.currentTarget.style.opacity='1'}>
+                      {v.maker} {v.name}
+                    </div>
+                    <div style={{fontSize:12,color:C.textMid,marginTop:2}}>{v.grade}</div>
+                    <div style={{fontSize:11,color:C.textMid,marginTop:1}}>{v.registration} · {v.mileage.toLocaleString()}km</div>
+                    {v.totalScore && <span style={{marginTop:4,display:'inline-block'}}><TotalScoreBadge score={v.totalScore}/></span>}
+                  </td>
+                  <td style={{padding:'14px'}}>
+                    <div style={{fontSize:16,fontWeight:700,color:C.red}}>{fmt(v.currentBid)}</div>
+                    <div style={{fontSize:11,color:C.textMid,marginTop:2}}>入札 {v.bidCount}件</div>
+                  </td>
+                  <td style={{padding:'14px',fontSize:13,fontWeight:600,color:C.text}}>{fmt(v.startPrice)}</td>
+                  <td style={{padding:'14px',whiteSpace:'nowrap'}}>
+                    <CountdownTimer endDate={v.endDate} style={{fontSize:13}}/>
+                    <div style={{fontSize:10,color:C.textLight,marginTop:2}}>{v.endDate}</div>
+                  </td>
+                  <td style={{padding:'14px'}}>
+                    <Btn style={{height:34,fontSize:12,background:C.blue}} onClick={() => setModal({vehicle:v, type:'auction'})}>入札する</Btn>
+                  </td>
+                </tr>
               ))}
-            </tr>
-          </thead>
-          <tbody>
-            {filtered.map(v => (
-              <tr key={v.id} style={{borderBottom:`1px solid ${C.borderLight}`,background:'#fff'}}
-                onMouseEnter={e => e.currentTarget.style.background='#F5F5F5'}
-                onMouseLeave={e => e.currentTarget.style.background='#fff'}>
-                <td style={{padding:'16px 14px',width:130,position:'relative'}}>
-                  <div style={{position:'relative',display:'inline-block'}}>
-                    <WikiImage wikiImg={v.wikiImg} fallback={v.img} style={{width:110,height:76,borderRadius:4,objectFit:'cover',display:'block',background:'#2a2a2a'}}/>
-                    <span style={{position:'absolute',bottom:4,left:4,background:C.blue,color:'#fff',fontSize:9,fontWeight:700,padding:'2px 6px',borderRadius:3}}>オークション</span>
+              {filteredAuction.length===0 && (
+                <tr><td colSpan={6} style={{padding:'40px',textAlign:'center',color:C.textMid}}>条件に一致する車両がありません</td></tr>
+              )}
+            </tbody>
+          </table>
+        </Card>
+      )}
+
+      {/* ─── 即時購入 タブ ─── */}
+      {tab==='direct' && (
+        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(280px,1fr))',gap:14}}>
+          {filteredDirect.map(v=>{
+            const order = MY_DIRECT_ORDERS.find(o=>o.vehicleId===v.id);
+            const statusColor = DIRECT_ORDER_STATUS_COLOR[order&&order.status]||null;
+            return (
+              <div key={v.id}
+                onClick={()=>{setSelectedDirect(v);setScreen('direct-detail');}}
+                style={{background:'#fff',borderRadius:10,boxShadow:'0 1px 4px rgba(0,0,0,0.08)',
+                  border:`1px solid ${C.border}`,cursor:'pointer',overflow:'hidden',
+                  opacity:v.available?1:0.7,transition:'box-shadow 0.15s,transform 0.15s'}}
+                onMouseEnter={e=>{if(v.available){e.currentTarget.style.boxShadow='0 6px 20px rgba(0,0,0,0.12)';e.currentTarget.style.transform='translateY(-2px)'}}}
+                onMouseLeave={e=>{e.currentTarget.style.boxShadow='0 1px 4px rgba(0,0,0,0.08)';e.currentTarget.style.transform='none'}}>
+                {/* サムネイル */}
+                <div style={{height:155,background:'#f1f5f9',position:'relative',overflow:'hidden',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                  <WikiImage wikiImg={v.wikiImg} fallback={v.img} style={{width:'100%',height:'100%',objectFit:'cover'}}/>
+                  <div style={{position:'absolute',top:8,left:8}}>
+                    <TotalScoreBadge score={v.totalScore}/>
                   </div>
-                </td>
-                <td style={{padding:'16px 14px'}}>
-                  <div style={{fontWeight:700,fontSize:15,color:C.blue,cursor:'pointer',display:'inline',transition:'opacity 0.15s'}}
-                    onClick={() => { setSelectedUnlisted(v); setScreen('unlisted-detail'); }}
-                    onMouseEnter={e=>e.currentTarget.style.opacity='0.7'}
-                    onMouseLeave={e=>e.currentTarget.style.opacity='1'}>
-                    {v.maker} {v.name}
+                  <div style={{position:'absolute',top:8,right:8,background:'rgba(5,150,105,0.85)',color:'#fff',fontSize:10,fontWeight:700,padding:'2px 8px',borderRadius:4}}>
+                    即時購入
                   </div>
-                  <div style={{fontSize:13,color:C.textMid,marginTop:3}}>{v.grade}</div>
-                  <div style={{fontSize:12,color:C.textMid,marginTop:2}}><span style={{fontSize:11,color:C.textLight}}>初度登録</span> {v.registration} {v.vin && <span style={{fontFamily:'monospace',marginLeft:6,color:C.textLight}}>…{v.vin.slice(-6)}</span>}</div>
-                  {v.color && (
-                    <div style={{display:'flex',alignItems:'center',gap:5,marginTop:3}}>
-                      <span style={{width:10,height:10,borderRadius:'50%',background:COLOR_FAMILY_HEX[v.colorFamily]||'#888',flexShrink:0,border:['ホワイト','シルバー'].includes(v.colorFamily)?`1px solid ${C.border}`:'none'}}/>
-                      <span style={{fontSize:11,color:C.textMid}}>{v.colorFamily}系 · {v.color}</span>
-                      {v.totalScore && <TotalScoreBadge score={v.totalScore}/>}
+                  {!v.available && (
+                    <div style={{position:'absolute',inset:0,background:'rgba(0,0,0,0.45)',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                      <span style={{color:'#fff',fontSize:14,fontWeight:700,background:'rgba(0,0,0,0.4)',padding:'4px 12px',borderRadius:4}}>売約済み</span>
                     </div>
                   )}
-                  <div style={{fontSize:13,color:C.textMid,marginTop:1}}>{v.mileage.toLocaleString()}km</div>
-                </td>
-                <td style={{padding:'16px 14px'}}>
-                  <div style={{fontSize:15,fontWeight:700,color:C.red}}>{fmt(v.currentBid)}</div>
-                  <div style={{fontSize:12,color:C.textMid,marginTop:2}}>入札 {v.bidCount}件</div>
-                </td>
-                <td style={{padding:'16px 14px',fontSize:14,fontWeight:600,color:C.text}}>{fmt(v.startPrice)}</td>
-                <td style={{padding:'16px 14px',fontSize:13,color:C.textMid,whiteSpace:'nowrap'}}>{v.endDate}</td>
-                <td style={{padding:'16px 14px'}}>
-                  <div style={{display:'flex',gap:4,flexWrap:'wrap'}}>
-                    <Btn style={{height:34,fontSize:12,background:C.blue}} onClick={() => setModal({vehicle:v, type:'auction'})}>入札する</Btn>
+                  {order && v.available && (
+                    <div style={{position:'absolute',bottom:8,left:8,background:statusColor,color:'#fff',fontSize:10,fontWeight:700,padding:'3px 8px',borderRadius:4}}>
+                      {order.status}
+                    </div>
+                  )}
+                </div>
+                {/* 情報 */}
+                <div style={{padding:'14px 14px 16px'}}>
+                  <div style={{fontSize:14,fontWeight:700,marginBottom:2}}>{v.maker} {v.name}</div>
+                  <div style={{fontSize:11,color:C.textMid,marginBottom:12}}>{v.grade} · {v.registration} · {v.mileage.toLocaleString()}km</div>
+                  <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-end'}}>
+                    <div>
+                      <div style={{fontSize:10,color:C.textMid,marginBottom:2}}>即時購入価格</div>
+                      <div style={{fontSize:20,fontWeight:800,color:C.success}}>{fmt(v.buyNowPrice)}</div>
+                    </div>
+                    <button disabled={!v.available}
+                      onClick={e=>{e.stopPropagation();setSelectedDirect(v);setScreen('direct-detail');}}
+                      style={{background:v.available?C.success:'#aaa',color:'#fff',border:'none',borderRadius:6,
+                        padding:'8px 14px',fontSize:13,fontWeight:600,cursor:v.available?'pointer':'not-allowed'}}>
+                      {v.available?'詳細・申請':'売約済み'}
+                    </button>
                   </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </Card>
+                </div>
+              </div>
+            );
+          })}
+          {filteredDirect.length===0 && (
+            <div style={{gridColumn:'1/-1',padding:'50px',textAlign:'center',color:C.textMid,background:'#fff',borderRadius:10,border:`1px solid ${C.border}`}}>
+              条件に一致する車両がありません
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
 
 
 /* ─── PURCHASE: 車両詳細 ─── */
-function UnlistedDetail({vehicle, setScreen, backTo}) {
+function UnlistedDetail({vehicle, setScreen}) {
   const v = vehicle || UNLISTED_VEHICLES[0];
   const [showChartModal, setShowChartModal] = useState(false);
   const [bidModal, setBidModal] = useState(false);
@@ -3037,10 +3626,10 @@ function UnlistedDetail({vehicle, setScreen, backTo}) {
 
       {/* ── 左カラム ── */}
       <div>
-        <button onClick={() => setScreen(backTo || 'unlisted-list')}
+        <button onClick={() => setScreen('unlisted-list')}
           style={{background:'none',border:'none',color:C.textMid,cursor:'pointer',
             fontSize:13,marginBottom:16,padding:0}}>
-          ← {backTo==='auction-list' ? 'オークション一覧に戻る' : '購入一覧に戻る'}
+          ← 購入一覧に戻る
         </button>
 
         {/* ライトボックス */}
@@ -3674,570 +4263,14 @@ const PAGE_TITLES = {
   'seller-list':'出品管理',
   'seller-detail':'車両詳細（出品）',
   'unlisted-list':'購入',
-  'unlisted-detail':'車両詳細（購入）',
+  'unlisted-detail':'車両詳細（オークション）',
+  'direct-detail':'車両詳細（即時購入）',
   'price-negotiation':'価格交渉',
-  'admin-dashboard':'ダッシュボード',
+  'admin-dashboard':'KPIダッシュボード',
   'admin-regional':'地域別価格分析',
   'appraisal-dashboard':'査定管理ダッシュボード',
-  'auction-list':'オークション一覧',
-  'auction-detail':'オークション詳細',
-  'direct-list':'直接購入',
-  'direct-detail':'車両詳細（直接購入）',
-  'my-orders':'マイ注文',
 };
 
-/* ─── カウントダウンタイマー ─── */
-function CountdownTimer({endDate}) {
-  const calc = () => {
-    const diff = new Date(endDate) - new Date();
-    if (diff <= 0) return {d:0,h:0,m:0,s:0,expired:true};
-    const d = Math.floor(diff/86400000);
-    const h = Math.floor((diff%86400000)/3600000);
-    const m = Math.floor((diff%3600000)/60000);
-    const s = Math.floor((diff%60000)/1000);
-    return {d,h,m,s,expired:false};
-  };
-  const [t, setT] = useState(calc());
-  useEffect(() => {
-    const id = setInterval(() => setT(calc()), 1000);
-    return () => clearInterval(id);
-  }, [endDate]);
-  if (t.expired) return <span style={{color:C.textLight,fontSize:12}}>終了</span>;
-  const urgent = t.d===0 && t.h<3;
-  const col = urgent ? C.danger : t.d===0 ? C.warning : '#e2e8f0';
-  return (
-    <span style={{color:col,fontWeight:700,fontSize:12}}>
-      {t.d>0
-        ? `残${t.d}日 ${String(t.h).padStart(2,'0')}:${String(t.m).padStart(2,'0')}`
-        : `残 ${String(t.h).padStart(2,'0')}:${String(t.m).padStart(2,'0')}:${String(t.s).padStart(2,'0')}`}
-    </span>
-  );
-}
-
-/* ─── オークション一覧 ─── */
-function AuctionListScreen({setScreen, setSelectedUnlisted}) {
-  const [search, setSearch] = useState('');
-  const [sort, setSort] = useState('endDate');
-  const [myBidOnly, setMyBidOnly] = useState(false);
-
-  const enriched = UNLISTED_VEHICLES.map(v => ({
-    ...v, myBid: MY_BIDS_DATA.find(b => b.vehicleId === v.id) || null,
-  }));
-
-  const vehicles = enriched.filter(v => {
-    if (search && !(v.maker+v.name).includes(search)) return false;
-    if (myBidOnly && !v.myBid) return false;
-    return true;
-  }).sort((a,b) => {
-    if (sort==='price') return (b.currentBid||0)-(a.currentBid||0);
-    if (sort==='bids') return b.bidCount-a.bidCount;
-    return new Date(a.endDate)-new Date(b.endDate);
-  });
-
-  const bidding = MY_BIDS_DATA.filter(b=>b.status==='入札中').length;
-  const winning = MY_BIDS_DATA.filter(b=>b.rank===1&&b.status==='入札中').length;
-  const pending = MY_BIDS_DATA.filter(b=>b.status==='落札確認待ち').length;
-
-  return (
-    <div style={{padding:24,display:'flex',flexDirection:'column',gap:16}}>
-      <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:12}}>
-        {[
-          {label:'出品中',value:`${UNLISTED_VEHICLES.length}件`,color:C.textMid},
-          {label:'入札中',value:`${bidding}件`,color:C.info},
-          {label:'最高入札中',value:`${winning}件`,color:C.success},
-          {label:'落札確認待ち',value:`${pending}件`,color:C.warning},
-        ].map(k=>(
-          <div key={k.label} style={{background:'#fff',borderRadius:10,padding:'14px 18px',boxShadow:'0 1px 4px rgba(0,0,0,0.07)',border:`1px solid ${C.border}`}}>
-            <div style={{fontSize:11,color:C.textMid,marginBottom:4}}>{k.label}</div>
-            <div style={{fontSize:22,fontWeight:800,color:k.color}}>{k.value}</div>
-          </div>
-        ))}
-      </div>
-
-      <div style={{background:'#fff',borderRadius:10,padding:'14px 16px',boxShadow:'0 1px 4px rgba(0,0,0,0.07)',border:`1px solid ${C.border}`}}>
-        <div style={{display:'flex',gap:10,alignItems:'center',flexWrap:'wrap'}}>
-          <div style={{position:'relative',flex:1,minWidth:160}}>
-            <Icon name="search" size={14} color={C.textLight} style={{position:'absolute',left:10,top:'50%',transform:'translateY(-50%)',pointerEvents:'none'}}/>
-            <input value={search} onChange={e=>setSearch(e.target.value)}
-              placeholder="メーカー・車種で検索"
-              style={{width:'100%',height:36,border:`1px solid ${C.border}`,borderRadius:6,paddingLeft:30,paddingRight:10,fontSize:13,outline:'none',boxSizing:'border-box'}}/>
-          </div>
-          <select value={sort} onChange={e=>setSort(e.target.value)}
-            style={{height:36,border:`1px solid ${C.border}`,borderRadius:6,padding:'0 10px',fontSize:13,background:'#fff',cursor:'pointer'}}>
-            <option value="endDate">終了が近い順</option>
-            <option value="price">入札額が高い順</option>
-            <option value="bids">入札数が多い順</option>
-          </select>
-          <label style={{display:'flex',alignItems:'center',gap:6,fontSize:13,cursor:'pointer',userSelect:'none',whiteSpace:'nowrap'}}>
-            <input type="checkbox" checked={myBidOnly} onChange={e=>setMyBidOnly(e.target.checked)}/>
-            自分の入札のみ
-          </label>
-        </div>
-      </div>
-
-      {vehicles.length===0 ? (
-        <div style={{background:'#fff',borderRadius:10,padding:'50px 0',textAlign:'center',color:C.textMid,border:`1px solid ${C.border}`}}>
-          条件に一致する車両がありません
-        </div>
-      ) : (
-        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(300px,1fr))',gap:14}}>
-          {vehicles.map(v=>{
-            const myBid = v.myBid;
-            const isLeading = myBid && myBid.rank===1 && myBid.status==='入札中';
-            const isBehind = myBid && myBid.rank!==1 && myBid.status==='入札中';
-            return (
-              <div key={v.id}
-                onClick={()=>{setSelectedUnlisted(v);setScreen('auction-detail');}}
-                style={{background:'#fff',borderRadius:10,boxShadow:'0 1px 4px rgba(0,0,0,0.08)',
-                  border:`2px solid ${isLeading?C.info:isBehind?C.danger:C.border}`,
-                  cursor:'pointer',overflow:'hidden',transition:'all 0.15s'}}
-                onMouseEnter={e=>e.currentTarget.style.boxShadow='0 6px 20px rgba(0,0,0,0.12)'}
-                onMouseLeave={e=>e.currentTarget.style.boxShadow='0 1px 4px rgba(0,0,0,0.08)'}>
-                <div style={{height:160,background:'#f1f5f9',position:'relative',overflow:'hidden',display:'flex',alignItems:'center',justifyContent:'center'}}>
-                  <WikiImage wikiImg={v.wikiImg} fallback={v.img} style={{width:'100%',height:'100%',objectFit:'cover'}}/>
-                  <div style={{position:'absolute',top:8,left:8}}>
-                    <TotalScoreBadge score={v.totalScore}/>
-                  </div>
-                  <div style={{position:'absolute',top:8,right:8,background:'rgba(0,0,0,0.65)',borderRadius:5,padding:'3px 8px'}}>
-                    <CountdownTimer endDate={v.endDate}/>
-                  </div>
-                  {myBid && (
-                    <div style={{position:'absolute',bottom:8,left:8,
-                      background:myBid.status==='落札確認待ち'?C.warning:isLeading?C.info:isBehind?C.danger:'#555',
-                      color:'#fff',fontSize:10,fontWeight:700,padding:'3px 8px',borderRadius:4}}>
-                      {myBid.status==='落札確認待ち'?'落札確認待ち':isLeading?'現在最高入札':'競り負け中'}
-                    </div>
-                  )}
-                </div>
-                <div style={{padding:'14px 14px 16px'}}>
-                  <div style={{fontSize:14,fontWeight:700,marginBottom:2}}>{v.maker} {v.name}</div>
-                  <div style={{fontSize:11,color:C.textMid,marginBottom:12}}>{v.grade} · {v.registration} · {v.mileage.toLocaleString()}km</div>
-                  <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-end'}}>
-                    <div>
-                      <div style={{fontSize:10,color:C.textMid,marginBottom:2}}>現在の入札額</div>
-                      <div style={{fontSize:20,fontWeight:800,color:C.info}}>{fmt(v.currentBid)}</div>
-                      <div style={{fontSize:10,color:C.textMid,marginTop:2}}>入札 {v.bidCount}件</div>
-                    </div>
-                    <div style={{textAlign:'right'}}>
-                      {myBid ? (
-                        <div>
-                          <div style={{fontSize:10,color:C.textMid}}>自分の入札</div>
-                          <div style={{fontSize:13,fontWeight:700,color:isLeading?C.info:C.danger}}>{fmt(myBid.bidAmount)}</div>
-                        </div>
-                      ) : (
-                        <button
-                          onClick={e=>{e.stopPropagation();setSelectedUnlisted(v);setScreen('auction-detail');}}
-                          style={{background:C.info,color:'#fff',border:'none',borderRadius:6,padding:'8px 16px',fontSize:13,fontWeight:600,cursor:'pointer'}}>
-                          入札する
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
-    </div>
-  );
-}
-
-/* ─── 直接購入 一覧 ─── */
-function DirectListScreen({setScreen, setSelectedDirect}) {
-  const [search, setSearch] = useState('');
-  const [availOnly, setAvailOnly] = useState(false);
-
-  const vehicles = DIRECT_VEHICLES.filter(v => {
-    if (search && !(v.maker+v.name+v.grade).includes(search)) return false;
-    if (availOnly && !v.available) return false;
-    return true;
-  });
-
-  const pendingCount = MY_ORDERS_DATA.filter(o=>o.status==='審査中').length;
-  const totalAmt = MY_ORDERS_DATA.filter(o=>o.status==='成約').reduce((s,o)=>s+o.price,0);
-
-  return (
-    <div style={{padding:24,display:'flex',flexDirection:'column',gap:16}}>
-      <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:12}}>
-        {[
-          {label:'掲載車両',value:`${DIRECT_VEHICLES.length}件`,color:C.textMid},
-          {label:'購入申請中',value:`${pendingCount}件`,color:C.warning},
-          {label:'注文合計',value:`${MY_ORDERS_DATA.length}件`,color:C.info},
-          {label:'成約総額',value:fmt(totalAmt),color:C.success},
-        ].map(k=>(
-          <div key={k.label} style={{background:'#fff',borderRadius:10,padding:'14px 18px',boxShadow:'0 1px 4px rgba(0,0,0,0.07)',border:`1px solid ${C.border}`}}>
-            <div style={{fontSize:11,color:C.textMid,marginBottom:4}}>{k.label}</div>
-            <div style={{fontSize:22,fontWeight:800,color:k.color}}>{k.value}</div>
-          </div>
-        ))}
-      </div>
-
-      <div style={{background:'#fff',borderRadius:10,padding:'14px 16px',boxShadow:'0 1px 4px rgba(0,0,0,0.07)',border:`1px solid ${C.border}`}}>
-        <div style={{display:'flex',gap:10,alignItems:'center',flexWrap:'wrap'}}>
-          <div style={{position:'relative',flex:1,minWidth:160}}>
-            <Icon name="search" size={14} color={C.textLight} style={{position:'absolute',left:10,top:'50%',transform:'translateY(-50%)',pointerEvents:'none'}}/>
-            <input value={search} onChange={e=>setSearch(e.target.value)}
-              placeholder="メーカー・車種・グレードで検索"
-              style={{width:'100%',height:36,border:`1px solid ${C.border}`,borderRadius:6,paddingLeft:30,paddingRight:10,fontSize:13,outline:'none',boxSizing:'border-box'}}/>
-          </div>
-          <label style={{display:'flex',alignItems:'center',gap:6,fontSize:13,cursor:'pointer',userSelect:'none',whiteSpace:'nowrap'}}>
-            <input type="checkbox" checked={availOnly} onChange={e=>setAvailOnly(e.target.checked)}/>
-            購入可能のみ
-          </label>
-        </div>
-      </div>
-
-      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(300px,1fr))',gap:14}}>
-        {vehicles.map(v=>{
-          const ordered = MY_ORDERS_DATA.find(o=>o.vehicleId===v.id);
-          return (
-            <div key={v.id}
-              onClick={()=>{setSelectedDirect(v);setScreen('direct-detail');}}
-              style={{background:'#fff',borderRadius:10,boxShadow:'0 1px 4px rgba(0,0,0,0.08)',
-                border:`1px solid ${C.border}`,cursor:'pointer',overflow:'hidden',transition:'all 0.15s',
-                opacity:v.available?1:0.65}}
-              onMouseEnter={e=>{if(v.available)e.currentTarget.style.boxShadow='0 6px 20px rgba(0,0,0,0.12)'}}
-              onMouseLeave={e=>e.currentTarget.style.boxShadow='0 1px 4px rgba(0,0,0,0.08)'}>
-              <div style={{height:160,background:'#f1f5f9',position:'relative',overflow:'hidden',display:'flex',alignItems:'center',justifyContent:'center'}}>
-                <WikiImage wikiImg={v.wikiImg} fallback={v.img} style={{width:'100%',height:'100%',objectFit:'cover'}}/>
-                <div style={{position:'absolute',top:8,left:8}}>
-                  <TotalScoreBadge score={v.totalScore}/>
-                </div>
-                {!v.available && (
-                  <div style={{position:'absolute',inset:0,background:'rgba(0,0,0,0.45)',display:'flex',alignItems:'center',justifyContent:'center'}}>
-                    <span style={{color:'#fff',fontSize:14,fontWeight:700,background:'rgba(0,0,0,0.4)',padding:'4px 12px',borderRadius:4}}>売約済み</span>
-                  </div>
-                )}
-                {ordered && v.available && (
-                  <div style={{position:'absolute',bottom:8,left:8,background:(ORDER_STATUS_COLOR[ordered.status]||C.textMid),
-                    color:'#fff',fontSize:10,fontWeight:700,padding:'3px 8px',borderRadius:4}}>
-                    {ordered.status}
-                  </div>
-                )}
-              </div>
-              <div style={{padding:'14px 14px 16px'}}>
-                <div style={{fontSize:14,fontWeight:700,marginBottom:2}}>{v.maker} {v.name}</div>
-                <div style={{fontSize:11,color:C.textMid,marginBottom:12}}>{v.grade} · {v.registration} · {v.mileage.toLocaleString()}km</div>
-                <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-end'}}>
-                  <div>
-                    <div style={{fontSize:10,color:C.textMid,marginBottom:2}}>即決価格</div>
-                    <div style={{fontSize:20,fontWeight:800,color:C.success}}>{fmt(v.buyNowPrice)}</div>
-                  </div>
-                  <button disabled={!v.available}
-                    onClick={e=>{e.stopPropagation();setSelectedDirect(v);setScreen('direct-detail');}}
-                    style={{background:v.available?C.success:'#ccc',color:'#fff',border:'none',borderRadius:6,
-                      padding:'8px 16px',fontSize:13,fontWeight:600,cursor:v.available?'pointer':'not-allowed'}}>
-                    {v.available?'購入申請':'売約済み'}
-                  </button>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-/* ─── 直接購入 詳細 ─── */
-function DirectDetailScreen({vehicle:v, setScreen}) {
-  const [showModal, setShowModal] = useState(false);
-  const [ordered, setOrdered] = useState(false);
-  if (!v) return <div style={{padding:24,color:C.textMid}}>車両情報がありません</div>;
-  const existOrder = MY_ORDERS_DATA.find(o=>o.vehicleId===v.id);
-
-  return (
-    <div style={{padding:24,display:'flex',flexDirection:'column',gap:16,maxWidth:960,margin:'0 auto'}}>
-      <button onClick={()=>setScreen('direct-list')}
-        style={{display:'inline-flex',alignItems:'center',gap:6,background:'none',border:'none',cursor:'pointer',color:C.textMid,fontSize:13,padding:0,alignSelf:'flex-start'}}>
-        ← 直接購入一覧に戻る
-      </button>
-
-      <div style={{display:'grid',gridTemplateColumns:'2fr 1fr',gap:16}}>
-        <div style={{display:'flex',flexDirection:'column',gap:14}}>
-          <div style={{borderRadius:10,overflow:'hidden',background:'#f1f5f9',height:280,position:'relative'}}>
-            <WikiImage wikiImg={v.wikiImg} fallback={v.img} style={{width:'100%',height:'100%',objectFit:'cover'}}/>
-            <div style={{position:'absolute',top:12,left:12}}>
-              <TotalScoreBadge score={v.totalScore}/>
-            </div>
-            {!v.available && (
-              <div style={{position:'absolute',inset:0,background:'rgba(0,0,0,0.5)',display:'flex',alignItems:'center',justifyContent:'center'}}>
-                <span style={{color:'#fff',fontSize:24,fontWeight:800}}>売約済み</span>
-              </div>
-            )}
-          </div>
-
-          <div style={{background:'#fff',borderRadius:10,padding:'18px 20px',border:`1px solid ${C.border}`}}>
-            <div style={{fontWeight:700,fontSize:15,marginBottom:14,color:C.textDark}}>基本情報</div>
-            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'6px 16px'}}>
-              {[
-                ['メーカー',v.maker],['車種',v.name],['グレード',v.grade],
-                ['登録年月',v.registration],['走行距離',`${v.mileage.toLocaleString()}km`],
-                ['色',v.color],['車検',`${v.inspectionExpiry} (${v.inspectionType})`],
-                ['修復歴',v.repairHistory],
-              ].map(([l,val])=>(
-                <div key={l} style={{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'6px 0',borderBottom:`1px solid ${C.border}`}}>
-                  <span style={{fontSize:12,color:C.textMid}}>{l}</span>
-                  <span style={{fontSize:13,fontWeight:600}}>{val}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <ConditionCard vehicle={v}/>
-
-          {v.equipment && v.equipment.length>0 && (
-            <div style={{background:'#fff',borderRadius:10,padding:'18px 20px',border:`1px solid ${C.border}`}}>
-              <div style={{fontWeight:700,fontSize:15,marginBottom:12,color:C.textDark}}>装備・オプション</div>
-              <div style={{display:'flex',flexWrap:'wrap',gap:6}}>
-                {v.equipment.map(eq=>(
-                  <span key={eq} style={{background:C.info+'18',color:C.info,fontSize:12,padding:'4px 10px',borderRadius:20,fontWeight:500}}>{eq}</span>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-
-        <div style={{display:'flex',flexDirection:'column',gap:14}}>
-          <div style={{background:'#fff',borderRadius:10,padding:'20px',border:`1px solid ${C.border}`,position:'sticky',top:80}}>
-            <div style={{fontSize:18,fontWeight:800,color:C.textDark,marginBottom:4}}>{v.maker} {v.name}</div>
-            <div style={{fontSize:13,color:C.textMid,marginBottom:20}}>{v.grade}</div>
-
-            <div style={{textAlign:'center',padding:'16px 0',marginBottom:16,borderTop:`1px solid ${C.border}`,borderBottom:`1px solid ${C.border}`}}>
-              <div style={{fontSize:12,color:C.textMid,marginBottom:6}}>即決価格</div>
-              <div style={{fontSize:34,fontWeight:900,color:C.success}}>{fmt(v.buyNowPrice)}</div>
-              <div style={{fontSize:11,color:C.textLight,marginTop:4}}>（税込）</div>
-            </div>
-
-            <div style={{marginBottom:16}}>
-              {ordered ? (
-                <div style={{background:C.success+'18',border:`1px solid ${C.success}`,borderRadius:8,padding:'12px',textAlign:'center'}}>
-                  <div style={{fontSize:14,fontWeight:700,color:C.success}}>✅ 購入申請済み</div>
-                  <div style={{fontSize:11,color:C.textMid,marginTop:4}}>担当者からご連絡します</div>
-                </div>
-              ) : existOrder ? (
-                <div style={{background:C.warning+'18',border:`1px solid ${C.warning}`,borderRadius:8,padding:'12px',textAlign:'center'}}>
-                  <div style={{fontSize:14,fontWeight:700,color:C.warning}}>{existOrder.status}</div>
-                  <div style={{fontSize:11,color:C.textMid,marginTop:4}}>申請日: {existOrder.requestTime}</div>
-                </div>
-              ) : (
-                <button disabled={!v.available} onClick={()=>setShowModal(true)}
-                  style={{width:'100%',height:48,background:v.available?C.success:'#ccc',color:'#fff',border:'none',
-                    borderRadius:8,fontSize:15,fontWeight:700,cursor:v.available?'pointer':'not-allowed'}}>
-                  {v.available?'購入申請する':'売約済み'}
-                </button>
-              )}
-            </div>
-
-            <div style={{fontSize:11,color:C.textLight,textAlign:'center',marginBottom:16}}>
-              申請後、担当者より1営業日以内にご連絡します
-            </div>
-
-            <div style={{borderTop:`1px solid ${C.border}`,paddingTop:14}}>
-              <div style={{fontSize:12,color:C.textMid,marginBottom:4}}>担当</div>
-              <div style={{fontSize:14,fontWeight:700}}>{v.assignee}</div>
-              <div style={{fontSize:11,color:C.textMid}}>{v.store}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {showModal && (
-        <BuyNowModal vehicle={v} onClose={()=>setShowModal(false)}
-          onConfirm={()=>{setShowModal(false);setOrdered(true);}}/>
-      )}
-    </div>
-  );
-}
-
-/* ─── 即決購入確認モーダル ─── */
-function BuyNowModal({vehicle:v, onClose, onConfirm}) {
-  const [step, setStep] = useState(0);
-  const [note, setNote] = useState('');
-
-  if (step===1) return (
-    <div style={{position:'fixed',inset:0,background:'rgba(0,0,0,0.5)',zIndex:200,display:'flex',alignItems:'center',justifyContent:'center'}}>
-      <div style={{background:'#fff',borderRadius:14,padding:'40px 32px',maxWidth:440,width:'90%',textAlign:'center',boxShadow:'0 20px 60px rgba(0,0,0,0.2)'}}>
-        <div style={{width:64,height:64,borderRadius:'50%',background:C.success+'22',display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 20px',fontSize:32}}>✅</div>
-        <div style={{fontSize:20,fontWeight:800,marginBottom:8}}>購入申請が完了しました</div>
-        <div style={{fontSize:13,color:C.textMid,marginBottom:8}}>{v.maker} {v.name} {v.grade}</div>
-        <div style={{fontSize:28,fontWeight:800,color:C.success,marginBottom:20}}>{fmt(v.buyNowPrice)}</div>
-        <div style={{fontSize:12,color:C.textMid,marginBottom:28}}>担当者より1営業日以内にご連絡いたします。</div>
-        <div style={{display:'flex',gap:10,justifyContent:'center'}}>
-          <button onClick={onConfirm}
-            style={{background:C.success,color:'#fff',border:'none',borderRadius:8,padding:'10px 24px',fontSize:14,fontWeight:700,cursor:'pointer'}}>
-            マイ注文を確認
-          </button>
-          <button onClick={onClose}
-            style={{background:'#f1f5f9',color:C.textMid,border:'none',borderRadius:8,padding:'10px 20px',fontSize:14,cursor:'pointer'}}>
-            閉じる
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-
-  return (
-    <div style={{position:'fixed',inset:0,background:'rgba(0,0,0,0.5)',zIndex:200,display:'flex',alignItems:'center',justifyContent:'center'}}>
-      <div style={{background:'#fff',borderRadius:14,padding:'28px',maxWidth:480,width:'90%',boxShadow:'0 20px 60px rgba(0,0,0,0.2)'}}>
-        <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:20}}>
-          <div style={{fontSize:17,fontWeight:800}}>購入申請の確認</div>
-          <button onClick={onClose} style={{background:'none',border:'none',cursor:'pointer',fontSize:24,color:C.textMid,lineHeight:1}}>×</button>
-        </div>
-
-        <div style={{background:C.bg,borderRadius:10,padding:'16px',marginBottom:20}}>
-          <div style={{fontWeight:700,fontSize:15,marginBottom:12}}>{v.maker} {v.name} {v.grade}</div>
-          {[
-            ['登録年月',v.registration],
-            ['走行距離',`${v.mileage.toLocaleString()}km`],
-            ['コンディション',`外装${v.exteriorScore} / 内装${v.interiorScore}`],
-            ['担当店舗',v.store],
-          ].map(([l,val])=>(
-            <div key={l} style={{display:'flex',justifyContent:'space-between',padding:'5px 0',borderBottom:`1px solid ${C.border}`}}>
-              <span style={{fontSize:12,color:C.textMid}}>{l}</span>
-              <span style={{fontSize:13,fontWeight:600}}>{val}</span>
-            </div>
-          ))}
-        </div>
-
-        <div style={{textAlign:'center',marginBottom:20,padding:'14px',background:C.success+'10',borderRadius:8,border:`1px solid ${C.success}40`}}>
-          <div style={{fontSize:12,color:C.textMid,marginBottom:4}}>即決価格</div>
-          <div style={{fontSize:30,fontWeight:900,color:C.success}}>{fmt(v.buyNowPrice)}</div>
-        </div>
-
-        <div style={{marginBottom:20}}>
-          <div style={{fontSize:12,color:C.textMid,marginBottom:6}}>担当者へのメモ（任意）</div>
-          <textarea value={note} onChange={e=>setNote(e.target.value)}
-            placeholder="ご要望・ご質問があればご記入ください"
-            rows={3}
-            style={{width:'100%',border:`1px solid ${C.border}`,borderRadius:6,padding:'8px 10px',fontSize:13,resize:'vertical',boxSizing:'border-box',outline:'none'}}/>
-        </div>
-
-        <div style={{display:'flex',gap:10}}>
-          <button onClick={()=>setStep(1)}
-            style={{flex:1,height:44,background:C.success,color:'#fff',border:'none',borderRadius:8,fontSize:15,fontWeight:700,cursor:'pointer'}}>
-            申請する
-          </button>
-          <button onClick={onClose}
-            style={{flex:1,height:44,background:'#f1f5f9',color:C.textMid,border:'none',borderRadius:8,fontSize:14,cursor:'pointer'}}>
-            キャンセル
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ─── マイ注文 ─── */
-function MyOrdersScreen({setScreen}) {
-  const [tab, setTab] = useState('bids');
-
-  const enrichedBids = MY_BIDS_DATA.map(b=>({
-    ...b, vehicle: UNLISTED_VEHICLES.find(v=>v.id===b.vehicleId)||null,
-  }));
-
-  const tabSt = active => ({
-    padding:'10px 24px',fontSize:14,fontWeight:active?700:400,
-    border:'none',background:'none',cursor:'pointer',
-    borderBottom:active?`2px solid ${C.primary}`:'2px solid transparent',
-    color:active?C.primary:C.textMid,transition:'all 0.15s',
-  });
-
-  return (
-    <div style={{padding:24,display:'flex',flexDirection:'column',gap:16}}>
-      <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:12}}>
-        {[
-          {label:'入札中',value:`${MY_BIDS_DATA.filter(b=>b.status==='入札中').length}件`,color:C.info},
-          {label:'落札確認待ち',value:`${MY_BIDS_DATA.filter(b=>b.status==='落札確認待ち').length}件`,color:C.warning},
-          {label:'購入申請中',value:`${MY_ORDERS_DATA.filter(o=>o.status==='審査中').length}件`,color:C.warning},
-          {label:'成約',value:`${MY_ORDERS_DATA.filter(o=>o.status==='成約').length}件`,color:C.success},
-        ].map(k=>(
-          <div key={k.label} style={{background:'#fff',borderRadius:10,padding:'14px 18px',boxShadow:'0 1px 4px rgba(0,0,0,0.07)',border:`1px solid ${C.border}`}}>
-            <div style={{fontSize:11,color:C.textMid,marginBottom:4}}>{k.label}</div>
-            <div style={{fontSize:22,fontWeight:800,color:k.color}}>{k.value}</div>
-          </div>
-        ))}
-      </div>
-
-      <div style={{background:'#fff',borderRadius:10,border:`1px solid ${C.border}`,overflow:'hidden',boxShadow:'0 1px 4px rgba(0,0,0,0.07)'}}>
-        <div style={{borderBottom:`1px solid ${C.border}`,display:'flex',padding:'0 4px'}}>
-          <button style={tabSt(tab==='bids')} onClick={()=>setTab('bids')}>
-            入札履歴 ({MY_BIDS_DATA.length})
-          </button>
-          <button style={tabSt(tab==='orders')} onClick={()=>setTab('orders')}>
-            購入申請 ({MY_ORDERS_DATA.length})
-          </button>
-        </div>
-
-        {tab==='bids' ? (
-          <div>
-            {enrichedBids.map(b=>{
-              const vc = b.vehicle;
-              const sc = BID_STATUS_COLOR[b.status]||C.textMid;
-              return (
-                <div key={b.id} style={{padding:'16px 20px',borderBottom:`1px solid ${C.border}`,display:'flex',gap:14,alignItems:'center'}}>
-                  <div style={{width:80,height:60,borderRadius:6,background:'#f1f5f9',overflow:'hidden',flexShrink:0}}>
-                    {vc && <WikiImage wikiImg={vc.wikiImg} fallback={vc.img} style={{width:'100%',height:'100%',objectFit:'cover'}}/>}
-                  </div>
-                  <div style={{flex:1,minWidth:0}}>
-                    <div style={{fontSize:14,fontWeight:700,marginBottom:2}}>
-                      {vc ? `${vc.maker} ${vc.name}` : `車両ID: ${b.vehicleId}`}
-                    </div>
-                    <div style={{fontSize:11,color:C.textMid,marginBottom:6}}>
-                      {vc ? `${vc.grade} · ${vc.registration} · ${vc.mileage.toLocaleString()}km` : ''}
-                    </div>
-                    <div style={{display:'flex',gap:6,alignItems:'center',flexWrap:'wrap'}}>
-                      <span style={{background:sc+'18',color:sc,fontSize:11,fontWeight:700,padding:'2px 8px',borderRadius:4}}>{b.status}</span>
-                      <span style={{fontSize:11,color:C.textLight}}>{b.bidTime}</span>
-                      {b.rank===1 && b.status==='入札中' && (
-                        <span style={{background:C.info+'18',color:C.info,fontSize:11,fontWeight:700,padding:'2px 8px',borderRadius:4}}>最高入札中</span>
-                      )}
-                    </div>
-                  </div>
-                  <div style={{textAlign:'right',flexShrink:0}}>
-                    <div style={{fontSize:11,color:C.textMid,marginBottom:3}}>入札額</div>
-                    <div style={{fontSize:18,fontWeight:800,color:sc}}>{fmt(b.bidAmount)}</div>
-                    {vc && b.status==='入札中' && (
-                      <div style={{fontSize:11,color:C.textMid,marginTop:2}}>現在: {fmt(vc.currentBid)}</div>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        ) : (
-          <div>
-            {MY_ORDERS_DATA.map(o=>{
-              const sc = ORDER_STATUS_COLOR[o.status]||C.textMid;
-              return (
-                <div key={o.id} style={{padding:'16px 20px',borderBottom:`1px solid ${C.border}`,display:'flex',gap:14,alignItems:'center'}}>
-                  <div style={{width:80,height:60,borderRadius:6,background:'#f1f5f9',overflow:'hidden',flexShrink:0,
-                    display:'flex',alignItems:'center',justifyContent:'center',color:C.textLight,fontSize:10}}>
-                    写真なし
-                  </div>
-                  <div style={{flex:1,minWidth:0}}>
-                    <div style={{fontSize:14,fontWeight:700,marginBottom:2}}>{o.maker} {o.name}</div>
-                    <div style={{fontSize:11,color:C.textMid,marginBottom:6}}>{o.grade} · {o.store}</div>
-                    <div style={{display:'flex',gap:6,alignItems:'center',flexWrap:'wrap'}}>
-                      <span style={{background:sc+'18',color:sc,fontSize:11,fontWeight:700,padding:'2px 8px',borderRadius:4}}>{o.status}</span>
-                      <span style={{fontSize:11,color:C.textLight}}>申請: {o.requestTime}</span>
-                    </div>
-                  </div>
-                  <div style={{textAlign:'right',flexShrink:0}}>
-                    <div style={{fontSize:11,color:C.textMid,marginBottom:3}}>申請価格</div>
-                    <div style={{fontSize:18,fontWeight:800,color:sc}}>{fmt(o.price)}</div>
-                    <div style={{fontSize:10,color:C.textLight,marginTop:2}}>{o.id}</div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
 
 /* ─── APP ROOT ─── */
 function App() {
@@ -4248,6 +4281,7 @@ function App() {
   const [selectedUnlisted, setSelectedUnlisted] = useState(null);
   const [selectedDirect, setSelectedDirect] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [unlistedTab, setUnlistedTab] = useState('auction');
 
   const handleLogin = r => {
     setRole(r);
@@ -4269,14 +4303,10 @@ function App() {
       case 'mypage': return <MyPage/>;
       case 'seller-list': return <SellerList setScreen={setScreen} setSelectedVehicle={setSelectedVehicle}/>;
       case 'seller-detail': return <SellerDetail vehicle={selectedVehicle} setScreen={setScreen}/>;
-      case 'unlisted-list': return <UnlistedList setScreen={setScreen} setSelectedUnlisted={setSelectedUnlisted}/>;
+      case 'unlisted-list': return <UnlistedList setScreen={setScreen} setSelectedUnlisted={setSelectedUnlisted} setSelectedDirect={setSelectedDirect} tab={unlistedTab} setTab={setUnlistedTab}/>;
       case 'unlisted-detail': return <UnlistedDetail vehicle={selectedUnlisted} setScreen={setScreen}/>;
-      case 'price-negotiation': return <PriceNegotiation vehicle={selectedUnlisted} setScreen={setScreen}/>;
-      case 'auction-list': return <AuctionListScreen setScreen={setScreen} setSelectedUnlisted={setSelectedUnlisted}/>;
-      case 'auction-detail': return <UnlistedDetail vehicle={selectedUnlisted} setScreen={setScreen} backTo="auction-list"/>;
-      case 'direct-list': return <DirectListScreen setScreen={setScreen} setSelectedDirect={setSelectedDirect}/>;
       case 'direct-detail': return <DirectDetailScreen vehicle={selectedDirect} setScreen={setScreen}/>;
-      case 'my-orders': return <MyOrdersScreen setScreen={setScreen}/>;
+      case 'price-negotiation': return <PriceNegotiation vehicle={selectedUnlisted} setScreen={setScreen}/>;
       case 'admin-dashboard': return <AdminDashboard setScreen={setScreen}/>;
       case 'admin-regional': return <AdminRegional/>;
       default: return <HomeScreen setScreen={setScreen}/>;
@@ -4284,7 +4314,7 @@ function App() {
   };
 
   const title = screen === 'home' ? '' : (PAGE_TITLES[screen] || 'OnePrice');
-  const purchaseScreens = ['unlisted-list','unlisted-detail','price-negotiation','auction-list','auction-detail','direct-list','direct-detail','my-orders'];
+  const purchaseScreens = ['unlisted-list','unlisted-detail','direct-detail','price-negotiation'];
   const accentColor = purchaseScreens.includes(screen) ? C.blue : C.red;
 
   return (
