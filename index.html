@@ -205,18 +205,18 @@ function Icon({name, size=18, color='currentColor', strokeWidth=1.75, style:s, f
 
 /* ─── MOCK DATA ─── */
 const VEHICLES = [
-  {id:8,appraisalNo:'2603050036218',maker:'フォルクスワーゲン',name:'ゴルフ',grade:'TSI Comfortline',vin:'WVWZZZAUZNW100108',registration:'2025-03',mileage:10000,meterCheck:'未交換',color:'ディープブラックパールエフェクト',colorFamily:'ブラック',inspectionExpiry:'2028-03',inspectionType:'継続',exteriorScore:'B',interiorScore:'B',totalScore:'4',repairHistory:'なし',warrantyBook:true,spareKey:2,equipment:['純正ナビ','バックカメラ','ETC2.0','パノラミックルーフ'],damageNote:'左リアドア微細傷あり',store:'渋谷本店',assignee:'鈴木 一郎',appraisalStatus:'交渉済',contractStatus:'不成約',price:2500000,marketPrice:2000000,marketSpread:0.50,type:'auction',bids:0,endDate:'2026-06-01',listed:false,photosDir:'pictures/golf_imgs',wikiImg:'pictures/golf_imgs/golf_2829.jpg',img:'pictures/golf_imgs/golf_2829.jpg',photos:['pictures/golf_imgs/golf_2829.jpg','pictures/golf_imgs/golf_2830.jpg','pictures/golf_imgs/golf_2831.jpg','pictures/golf_imgs/golf_2832.jpg','pictures/golf_imgs/golf_2833.jpg']},
-  {id:1,appraisalNo:'2605130036214',maker:'アウディ',name:'SQ7',grade:'ベースグレード',vin:'WAUZZZ4MXPD030170',registration:'2023-10',mileage:22222,meterCheck:'未交換',color:'グラシアホワイトパールエフェクト',colorFamily:'ホワイト',inspectionExpiry:'2027-10',inspectionType:'継続',exteriorScore:'B',interiorScore:'A',totalScore:'4.5',repairHistory:'なし',warrantyBook:true,spareKey:1,equipment:['純正ナビ','全周囲カメラ','ETC2.0','パワーシート','地デジ'],damageNote:'フロントバンパー軽微な擦り傷',store:'札幌北口店',assignee:'田中 健二',appraisalStatus:'交渉済',contractStatus:'成約',price:8500000,marketPrice:8800000,marketSpread:-0.03,type:'auction',bids:7,endDate:'2026-07-29',listed:true,photosDir:'pictures/sq7_imgs',wikiImg:'pictures/sq7_imgs/39537.jpeg',img:'pictures/sq7_imgs/39537.jpeg',photos:['pictures/sq7_imgs/39537.jpeg','pictures/sq7_imgs/39538.jpeg','pictures/sq7_imgs/39539.jpeg','pictures/sq7_imgs/39541.jpeg','pictures/sq7_imgs/39542.jpeg']},
-  {id:2,appraisalNo:'2605220036216',maker:'ランドローバー',name:'レンジローバースポーツ',grade:'P400 HSE Dynamic',vin:'SALWA2AU0MA123456',registration:'2021-06',mileage:32000,meterCheck:'未交換',color:'アルティカレッドメタリック',colorFamily:'レッド',inspectionExpiry:'2026-06',inspectionType:'継続',exteriorScore:'C',interiorScore:'B',totalScore:'3.5',repairHistory:'あり',warrantyBook:true,spareKey:1,equipment:['純正ナビ','全周囲カメラ','ETC2.0','パワーシート','サンルーフ'],damageNote:'リアバンパー修復歴あり（詳細は査定票参照）',store:'渋谷本店',assignee:'鈴木 一郎',appraisalStatus:'交渉済',contractStatus:'返信なし',price:7200000,marketPrice:7500000,marketSpread:-0.04,type:'auction',bids:4,endDate:'2026-06-16',listed:false,photosDir:'pictures/rrs_imgs',wikiImg:'pictures/rrs_imgs/46038.jpeg',img:'pictures/rrs_imgs/46038.jpeg',photos:['pictures/rrs_imgs/46038.jpeg','pictures/rrs_imgs/46039.jpeg','pictures/rrs_imgs/46041.jpeg','pictures/rrs_imgs/46042.jpeg','pictures/rrs_imgs/46044.jpeg']},
-  {id:3,appraisalNo:'2605220036215',maker:'ベントレー',name:'ベンテイガ',grade:'V8',vin:'SCBBB53W6BC012345',registration:'2022-03',mileage:18500,meterCheck:'未交換',color:'マグノーリアパールエフェクト',colorFamily:'ホワイト',inspectionExpiry:'2027-03',inspectionType:'継続',exteriorScore:'B',interiorScore:'A',totalScore:'5',repairHistory:'なし',warrantyBook:true,spareKey:2,equipment:['純正ナビ','全周囲カメラ','ETC2.0','パワーシート','地デジ'],damageNote:'なし',store:'渋谷本店',assignee:'佐藤 美咲',appraisalStatus:'商談中',contractStatus:'交渉中',price:14500000,marketPrice:14800000,marketSpread:-0.02,type:'auction',bids:0,endDate:'2026-07-28',listed:true,photosDir:'pictures/bentayga_imgs',wikiImg:'pictures/bentayga_imgs/26186.jpeg',img:'pictures/bentayga_imgs/26186.jpeg',photos:['pictures/bentayga_imgs/26186.jpeg','pictures/bentayga_imgs/26190.jpeg','pictures/bentayga_imgs/26191.jpeg','pictures/bentayga_imgs/26192.jpeg','pictures/bentayga_imgs/26194.jpeg']},
-  {id:4,appraisalNo:'2512250010471',maker:'マセラティ',name:'レヴァンテ',grade:'GT ハイブリッド',vin:'ZAM57YSL0N1234567',registration:'2021-04',mileage:41000,meterCheck:'未交換',color:'ロッソフィエラ',colorFamily:'レッド',inspectionExpiry:'2026-04',inspectionType:'継続',exteriorScore:'C',interiorScore:'C',totalScore:'3',repairHistory:'なし',warrantyBook:false,spareKey:1,equipment:['純正ナビ','バックカメラ','ETC2.0'],damageNote:'ドア複数箇所に小傷・シート擦れあり',store:'新宿南口店',assignee:'山本 拓也',appraisalStatus:'商談中',contractStatus:null,price:9800000,marketPrice:9500000,marketSpread:0.03,type:'auction',bids:3,endDate:'2026-06-17',listed:false,photosDir:'pictures/levante_imgs',wikiImg:'pictures/levante_imgs/15590.jpeg',img:'pictures/levante_imgs/15590.jpeg',photos:['pictures/levante_imgs/15590.jpeg','pictures/levante_imgs/15591.jpeg','pictures/levante_imgs/15595.jpeg']},
-  {id:5,appraisalNo:'2410130034135',maker:'フォルクスワーゲン',name:'ゴルフR',grade:'2.0 TSI 4MOTION',vin:'WVWZZZAUZNW200135',registration:'2022-11',mileage:18000,meterCheck:'未交換',color:'ラピスブルーメタリック',colorFamily:'ブルー',inspectionExpiry:'2027-11',inspectionType:'継続',exteriorScore:'B',interiorScore:'B',totalScore:'4',repairHistory:'なし',warrantyBook:true,spareKey:2,equipment:['純正ナビ','バックカメラ','ETC2.0'],damageNote:'なし',store:'梅田グランド店',assignee:'中村 雄一',appraisalStatus:'交渉済',contractStatus:'不成約',price:4800000,marketPrice:4900000,marketSpread:-0.02,type:'auction',bids:5,endDate:'2026-08-05',listed:true,photosDir:'pictures/golf_r_imgs',wikiImg:'pictures/golf_r_imgs/33485.jpeg',img:'pictures/golf_r_imgs/33485.jpeg',photos:['pictures/golf_r_imgs/33485.jpeg','pictures/golf_r_imgs/33488.jpeg','pictures/golf_r_imgs/33491.jpeg','pictures/golf_r_imgs/33492.jpeg','pictures/golf_r_imgs/33493.jpeg']},
-  {id:6,appraisalNo:'2605010012345',maker:'アウディ',name:'RS6 アバント',grade:'パフォーマンス',vin:'WUAZZZF22SN900398',registration:'2024-10',mileage:8259,meterCheck:'未交換',color:'ノガロブルーパールエフェクト',colorFamily:'ブルー',inspectionExpiry:'2028-10',inspectionType:'継続',exteriorScore:'A',interiorScore:'A',totalScore:'6',repairHistory:'なし',warrantyBook:true,spareKey:2,equipment:['純正ナビ','全周囲カメラ','ETC2.0','パワーシート','パノラミックルーフ','地デジ'],damageNote:'なし',store:'川越インター店',assignee:'高橋 さくら',appraisalStatus:'交渉済',contractStatus:'成約',price:14800000,marketPrice:15200000,marketSpread:-0.03,type:'auction',bids:6,endDate:'2026-06-20',listed:false,photosDir:'pictures/rs6_imgs',wikiImg:'pictures/rs6_imgs/46216.jpeg',img:'pictures/rs6_imgs/46216.jpeg',photos:['pictures/rs6_imgs/46216.jpeg','pictures/rs6_imgs/46217.jpeg','pictures/rs6_imgs/46220.jpeg','pictures/rs6_imgs/46221.jpeg','pictures/rs6_imgs/46222.jpeg']},
-  {id:7,appraisalNo:'2605050023456',maker:'ランドローバー',name:'ディフェンダー',grade:'110 P400 X',vin:'SALLD2FX0NA123456',registration:'2022-01',mileage:12000,meterCheck:'未交換',color:'コルティナグレーメタリック',colorFamily:'グレー',inspectionExpiry:'2027-01',inspectionType:'継続',exteriorScore:'B',interiorScore:'B',totalScore:'4',repairHistory:'なし',warrantyBook:true,spareKey:2,equipment:['純正ナビ','全周囲カメラ','ETC2.0','パワーシート','サンルーフ'],damageNote:'なし',store:'横浜港北店',assignee:'伊藤 誠',appraisalStatus:'商談中',contractStatus:'交渉中',price:11200000,marketPrice:11500000,marketSpread:-0.03,type:'auction',bids:18,endDate:'2026-07-30',listed:true,photosDir:'pictures/defender_imgs',wikiImg:'pictures/defender_imgs/23627.jpeg',img:'pictures/defender_imgs/23627.jpeg',photos:['pictures/defender_imgs/23627.jpeg','pictures/defender_imgs/23628.jpeg','pictures/defender_imgs/23629.jpeg','pictures/defender_imgs/23630.jpeg','pictures/defender_imgs/23631.jpeg']},
-  {id:101,appraisalNo:'2605200099001',maker:'フェラーリ',name:'ローマ',grade:'クーペ',vin:'ZFF96NLA0N0248901',registration:'2022-09',mileage:5800,meterCheck:'未交換',color:'ロッソコルサ',colorFamily:'レッド',inspectionExpiry:'2027-09',inspectionType:'継続',exteriorScore:'A',interiorScore:'A',totalScore:'6',repairHistory:'なし',warrantyBook:true,spareKey:2,equipment:['純正ナビ','バックカメラ','ETC2.0','パワーシート','地デジ'],damageNote:'なし',store:'渋谷本店',assignee:'佐藤 美咲',appraisalStatus:'査定済',contractStatus:null,price:18000000,marketPrice:18500000,marketSpread:-0.03,type:'direct',bids:0,endDate:'2026-06-22',listed:false,photosDir:'pictures/roma_imgs',wikiImg:'',img:'',photos:[]},
-  {id:102,appraisalNo:'2605180099002',maker:'フェラーリ',name:'プロサングエ',grade:'ベースグレード',vin:'ZFF06VTJ00030001',registration:'2023-04',mileage:7200,meterCheck:'未交換',color:'ブルーツール',colorFamily:'ブルー',inspectionExpiry:'2028-04',inspectionType:'継続',exteriorScore:'A',interiorScore:'A',totalScore:'5',repairHistory:'なし',warrantyBook:true,spareKey:2,equipment:['純正ナビ','全周囲カメラ','ETC2.0','パワーシート','パノラミックルーフ','地デジ'],damageNote:'なし',store:'川越インター店',assignee:'高橋 さくら',appraisalStatus:'査定済',contractStatus:null,price:36000000,marketPrice:35000000,marketSpread:0.03,type:'direct',bids:0,endDate:'2026-06-25',listed:false,photosDir:'pictures/purosangue_imgs',wikiImg:'',img:'',photos:[]},
-  {id:103,appraisalNo:'2605150099003',maker:'マセラティ',name:'グレカーレ',grade:'GT',vin:'ZAM57YSL0P1098765',registration:'2023-01',mileage:9100,meterCheck:'未交換',color:'ビアンコアリタ',colorFamily:'ホワイト',inspectionExpiry:'2028-01',inspectionType:'継続',exteriorScore:'A',interiorScore:'A',totalScore:'S',repairHistory:'なし',warrantyBook:true,spareKey:2,equipment:['純正ナビ','全周囲カメラ','ETC2.0','パワーシート','パノラミックルーフ','地デジ'],damageNote:'なし',store:'新宿南口店',assignee:'山本 拓也',appraisalStatus:'交渉済',contractStatus:'成約',price:12800000,marketPrice:12000000,marketSpread:0.07,type:'auction',bids:0,endDate:'2026-08-10',listed:true,photosDir:'pictures/grecale_imgs',wikiImg:'',img:'',photos:[]},
-  {id:104,appraisalNo:'2605100099004',maker:'メルセデス・AMG',name:'GLC 43',grade:'4マチック クーペ',vin:'W1N253302N4567890',registration:'2021-12',mileage:28500,meterCheck:'未交換',color:'グラファイトグレーメタリック',colorFamily:'グレー',inspectionExpiry:'2026-12',inspectionType:'継続',exteriorScore:'C',interiorScore:'B',totalScore:'3.5',repairHistory:'なし',warrantyBook:true,spareKey:1,equipment:['純正ナビ','バックカメラ','ETC2.0','パワーシート'],damageNote:'左フロントフェンダー擦り傷（軽微）',store:'横浜港北店',assignee:'伊藤 誠',appraisalStatus:'交渉済',contractStatus:'返信なし',price:7800000,marketPrice:7600000,marketSpread:0.03,type:'auction',bids:2,endDate:'2026-07-28',listed:true,photosDir:'pictures/glc43_imgs',wikiImg:'',img:'',photos:[]},
+  {id:8,appraisalNo:'2603050036218',maker:'フォルクスワーゲン',name:'ゴルフ',grade:'TSI Comfortline',vin:'WVWZZZAUZNW100108',registration:'2025-03',mileage:10000,meterCheck:'未交換',color:'ディープブラックパールエフェクト',colorFamily:'ブラック',inspectionExpiry:'2028-03',inspectionType:'継続',exteriorScore:'B',interiorScore:'B',totalScore:'4',repairHistory:'なし',warrantyBook:true,spareKey:2,equipment:['純正ナビ','バックカメラ','ETC2.0','パノラミックルーフ'],damageNote:'左リアドア微細傷あり',store:'渋谷本店',assignee:'鈴木 一郎',appraisalStatus:'交渉済',contractStatus:'不成約',price:2500000,retailPrice:2850000,auctionPrice:2510000,marketPrice:2000000,marketSpread:0.50,type:'auction',bids:0,endDate:'2026-06-01',listed:false,photosDir:'pictures/golf_imgs',wikiImg:'pictures/golf_imgs/golf_2829.jpg',img:'pictures/golf_imgs/golf_2829.jpg',photos:['pictures/golf_imgs/golf_2829.jpg','pictures/golf_imgs/golf_2830.jpg','pictures/golf_imgs/golf_2831.jpg','pictures/golf_imgs/golf_2832.jpg','pictures/golf_imgs/golf_2833.jpg']},
+  {id:1,appraisalNo:'2605130036214',maker:'アウディ',name:'SQ7',grade:'ベースグレード',vin:'WAUZZZ4MXPD030170',registration:'2023-10',mileage:22222,meterCheck:'未交換',color:'グラシアホワイトパールエフェクト',colorFamily:'ホワイト',inspectionExpiry:'2027-10',inspectionType:'継続',exteriorScore:'B',interiorScore:'A',totalScore:'4.5',repairHistory:'なし',warrantyBook:true,spareKey:1,equipment:['純正ナビ','全周囲カメラ','ETC2.0','パワーシート','地デジ'],damageNote:'フロントバンパー軽微な擦り傷',store:'札幌北口店',assignee:'田中 健二',appraisalStatus:'交渉済',contractStatus:'成約',price:8500000,retailPrice:9270000,auctionPrice:8440000,marketPrice:8800000,marketSpread:-0.03,type:'auction',bids:7,endDate:'2026-07-29',listed:true,photosDir:'pictures/sq7_imgs',wikiImg:'pictures/sq7_imgs/39537.jpeg',img:'pictures/sq7_imgs/39537.jpeg',photos:['pictures/sq7_imgs/39537.jpeg','pictures/sq7_imgs/39538.jpeg','pictures/sq7_imgs/39539.jpeg','pictures/sq7_imgs/39541.jpeg','pictures/sq7_imgs/39542.jpeg']},
+  {id:2,appraisalNo:'2605220036216',maker:'ランドローバー',name:'レンジローバースポーツ',grade:'P400 HSE Dynamic',vin:'SALWA2AU0MA123456',registration:'2021-06',mileage:32000,meterCheck:'未交換',color:'アルティカレッドメタリック',colorFamily:'レッド',inspectionExpiry:'2026-06',inspectionType:'継続',exteriorScore:'C',interiorScore:'B',totalScore:'3.5',repairHistory:'あり',warrantyBook:true,spareKey:1,equipment:['純正ナビ','全周囲カメラ','ETC2.0','パワーシート','サンルーフ'],damageNote:'リアバンパー修復歴あり（詳細は査定票参照）',store:'渋谷本店',assignee:'鈴木 一郎',appraisalStatus:'交渉済',contractStatus:'返信なし',price:7200000,retailPrice:8710000,auctionPrice:7490000,marketPrice:7500000,marketSpread:-0.04,type:'auction',bids:4,endDate:'2026-06-16',listed:false,photosDir:'pictures/rrs_imgs',wikiImg:'pictures/rrs_imgs/46038.jpeg',img:'pictures/rrs_imgs/46038.jpeg',photos:['pictures/rrs_imgs/46038.jpeg','pictures/rrs_imgs/46039.jpeg','pictures/rrs_imgs/46041.jpeg','pictures/rrs_imgs/46042.jpeg','pictures/rrs_imgs/46044.jpeg']},
+  {id:3,appraisalNo:'2605220036215',maker:'ベントレー',name:'ベンテイガ',grade:'V8',vin:'SCBBB53W6BC012345',registration:'2022-03',mileage:18500,meterCheck:'未交換',color:'マグノーリアパールエフェクト',colorFamily:'ホワイト',inspectionExpiry:'2027-03',inspectionType:'継続',exteriorScore:'B',interiorScore:'A',totalScore:'5',repairHistory:'なし',warrantyBook:true,spareKey:2,equipment:['純正ナビ','全周囲カメラ','ETC2.0','パワーシート','地デジ'],damageNote:'なし',store:'渋谷本店',assignee:'佐藤 美咲',appraisalStatus:'商談中',contractStatus:'交渉中',price:14500000,retailPrice:15370000,auctionPrice:14290000,marketPrice:14800000,marketSpread:-0.02,type:'auction',bids:0,endDate:'2026-07-28',listed:true,photosDir:'pictures/bentayga_imgs',wikiImg:'pictures/bentayga_imgs/26186.jpeg',img:'pictures/bentayga_imgs/26186.jpeg',photos:['pictures/bentayga_imgs/26186.jpeg','pictures/bentayga_imgs/26190.jpeg','pictures/bentayga_imgs/26191.jpeg','pictures/bentayga_imgs/26192.jpeg','pictures/bentayga_imgs/26194.jpeg']},
+  {id:4,appraisalNo:'2512250010471',maker:'マセラティ',name:'レヴァンテ',grade:'GT ハイブリッド',vin:'ZAM57YSL0N1234567',registration:'2021-04',mileage:41000,meterCheck:'未交換',color:'ロッソフィエラ',colorFamily:'レッド',inspectionExpiry:'2026-04',inspectionType:'継続',exteriorScore:'C',interiorScore:'C',totalScore:'3',repairHistory:'なし',warrantyBook:false,spareKey:1,equipment:['純正ナビ','バックカメラ','ETC2.0'],damageNote:'ドア複数箇所に小傷・シート擦れあり',store:'新宿南口店',assignee:'山本 拓也',appraisalStatus:'商談中',contractStatus:null,price:9800000,retailPrice:9510000,auctionPrice:9030000,marketPrice:9500000,marketSpread:0.03,type:'auction',bids:3,endDate:'2026-06-17',listed:false,photosDir:'pictures/levante_imgs',wikiImg:'pictures/levante_imgs/15590.jpeg',img:'pictures/levante_imgs/15590.jpeg',photos:['pictures/levante_imgs/15590.jpeg','pictures/levante_imgs/15591.jpeg','pictures/levante_imgs/15595.jpeg']},
+  {id:5,appraisalNo:'2410130034135',maker:'フォルクスワーゲン',name:'ゴルフR',grade:'2.0 TSI 4MOTION',vin:'WVWZZZAUZNW200135',registration:'2022-11',mileage:18000,meterCheck:'未交換',color:'ラピスブルーメタリック',colorFamily:'ブルー',inspectionExpiry:'2027-11',inspectionType:'継続',exteriorScore:'B',interiorScore:'B',totalScore:'4',repairHistory:'なし',warrantyBook:true,spareKey:2,equipment:['純正ナビ','バックカメラ','ETC2.0'],damageNote:'なし',store:'梅田グランド店',assignee:'中村 雄一',appraisalStatus:'交渉済',contractStatus:'不成約',price:4800000,retailPrice:5620000,auctionPrice:5000000,marketPrice:4900000,marketSpread:-0.02,type:'auction',bids:5,endDate:'2026-08-05',listed:true,photosDir:'pictures/golf_r_imgs',wikiImg:'pictures/golf_r_imgs/33485.jpeg',img:'pictures/golf_r_imgs/33485.jpeg',photos:['pictures/golf_r_imgs/33485.jpeg','pictures/golf_r_imgs/33488.jpeg','pictures/golf_r_imgs/33491.jpeg','pictures/golf_r_imgs/33492.jpeg','pictures/golf_r_imgs/33493.jpeg']},
+  {id:6,appraisalNo:'2605010012345',maker:'アウディ',name:'RS6 アバント',grade:'パフォーマンス',vin:'WUAZZZF22SN900398',registration:'2024-10',mileage:8259,meterCheck:'未交換',color:'ノガロブルーパールエフェクト',colorFamily:'ブルー',inspectionExpiry:'2028-10',inspectionType:'継続',exteriorScore:'A',interiorScore:'A',totalScore:'6',repairHistory:'なし',warrantyBook:true,spareKey:2,equipment:['純正ナビ','全周囲カメラ','ETC2.0','パワーシート','パノラミックルーフ','地デジ'],damageNote:'なし',store:'川越インター店',assignee:'高橋 さくら',appraisalStatus:'交渉済',contractStatus:'成約',price:14800000,retailPrice:16430000,auctionPrice:14790000,marketPrice:15200000,marketSpread:-0.03,type:'auction',bids:6,endDate:'2026-06-20',listed:false,photosDir:'pictures/rs6_imgs',wikiImg:'pictures/rs6_imgs/46216.jpeg',img:'pictures/rs6_imgs/46216.jpeg',photos:['pictures/rs6_imgs/46216.jpeg','pictures/rs6_imgs/46217.jpeg','pictures/rs6_imgs/46220.jpeg','pictures/rs6_imgs/46221.jpeg','pictures/rs6_imgs/46222.jpeg']},
+  {id:7,appraisalNo:'2605050023456',maker:'ランドローバー',name:'ディフェンダー',grade:'110 P400 X',vin:'SALLD2FX0NA123456',registration:'2022-01',mileage:12000,meterCheck:'未交換',color:'コルティナグレーメタリック',colorFamily:'グレー',inspectionExpiry:'2027-01',inspectionType:'継続',exteriorScore:'B',interiorScore:'B',totalScore:'4',repairHistory:'なし',warrantyBook:true,spareKey:2,equipment:['純正ナビ','全周囲カメラ','ETC2.0','パワーシート','サンルーフ'],damageNote:'なし',store:'横浜港北店',assignee:'伊藤 誠',appraisalStatus:'商談中',contractStatus:'交渉中',price:11200000,retailPrice:13330000,auctionPrice:11600000,marketPrice:11500000,marketSpread:-0.03,type:'auction',bids:18,endDate:'2026-07-30',listed:true,photosDir:'pictures/defender_imgs',wikiImg:'pictures/defender_imgs/23627.jpeg',img:'pictures/defender_imgs/23627.jpeg',photos:['pictures/defender_imgs/23627.jpeg','pictures/defender_imgs/23628.jpeg','pictures/defender_imgs/23629.jpeg','pictures/defender_imgs/23630.jpeg','pictures/defender_imgs/23631.jpeg']},
+  {id:101,appraisalNo:'2605200099001',maker:'フェラーリ',name:'ローマ',grade:'クーペ',vin:'ZFF96NLA0N0248901',registration:'2022-09',mileage:5800,meterCheck:'未交換',color:'ロッソコルサ',colorFamily:'レッド',inspectionExpiry:'2027-09',inspectionType:'継続',exteriorScore:'A',interiorScore:'A',totalScore:'6',repairHistory:'なし',warrantyBook:true,spareKey:2,equipment:['純正ナビ','バックカメラ','ETC2.0','パワーシート','地デジ'],damageNote:'なし',store:'渋谷本店',assignee:'佐藤 美咲',appraisalStatus:'査定済',contractStatus:null,price:18000000,retailPrice:19440000,auctionPrice:17880000,marketPrice:18500000,marketSpread:-0.03,type:'direct',bids:0,endDate:'2026-06-22',listed:false,photosDir:'pictures/roma_imgs',wikiImg:'',img:'',photos:[]},
+  {id:102,appraisalNo:'2605180099002',maker:'フェラーリ',name:'プロサングエ',grade:'ベースグレード',vin:'ZFF06VTJ00030001',registration:'2023-04',mileage:7200,meterCheck:'未交換',color:'ブルーツール',colorFamily:'ブルー',inspectionExpiry:'2028-04',inspectionType:'継続',exteriorScore:'A',interiorScore:'A',totalScore:'5',repairHistory:'なし',warrantyBook:true,spareKey:2,equipment:['純正ナビ','全周囲カメラ','ETC2.0','パワーシート','パノラミックルーフ','地デジ'],damageNote:'なし',store:'川越インター店',assignee:'高橋 さくら',appraisalStatus:'査定済',contractStatus:null,price:36000000,retailPrice:37800000,auctionPrice:35530000,marketPrice:35000000,marketSpread:0.03,type:'direct',bids:0,endDate:'2026-06-25',listed:false,photosDir:'pictures/purosangue_imgs',wikiImg:'',img:'',photos:[]},
+  {id:103,appraisalNo:'2605150099003',maker:'マセラティ',name:'グレカーレ',grade:'GT',vin:'ZAM57YSL0P1098765',registration:'2023-01',mileage:9100,meterCheck:'未交換',color:'ビアンコアリタ',colorFamily:'ホワイト',inspectionExpiry:'2028-01',inspectionType:'継続',exteriorScore:'A',interiorScore:'A',totalScore:'S',repairHistory:'なし',warrantyBook:true,spareKey:2,equipment:['純正ナビ','全周囲カメラ','ETC2.0','パワーシート','パノラミックルーフ','地デジ'],damageNote:'なし',store:'新宿南口店',assignee:'山本 拓也',appraisalStatus:'交渉済',contractStatus:'成約',price:12800000,retailPrice:15740000,auctionPrice:13380000,marketPrice:12000000,marketSpread:0.07,type:'auction',bids:0,endDate:'2026-08-10',listed:true,photosDir:'pictures/grecale_imgs',wikiImg:'',img:'',photos:[]},
+  {id:104,appraisalNo:'2605100099004',maker:'メルセデス・AMG',name:'GLC 43',grade:'4マチック クーペ',vin:'W1N253302N4567890',registration:'2021-12',mileage:28500,meterCheck:'未交換',color:'グラファイトグレーメタリック',colorFamily:'グレー',inspectionExpiry:'2026-12',inspectionType:'継続',exteriorScore:'C',interiorScore:'B',totalScore:'3.5',repairHistory:'なし',warrantyBook:true,spareKey:1,equipment:['純正ナビ','バックカメラ','ETC2.0','パワーシート'],damageNote:'左フロントフェンダー擦り傷（軽微）',store:'横浜港北店',assignee:'伊藤 誠',appraisalStatus:'交渉済',contractStatus:'返信なし',price:7800000,retailPrice:7330000,auctionPrice:7040000,marketPrice:7600000,marketSpread:0.03,type:'auction',bids:2,endDate:'2026-07-28',listed:true,photosDir:'pictures/glc43_imgs',wikiImg:'',img:'',photos:[]},
 ];
 
 const APPRAISAL_STATUS_COLORS = {
@@ -2092,62 +2092,61 @@ function StatCard({label, value, unit, color, sub, onClick}) {
   );
 }
 
-/* ファネル1段分 */
-function FunnelStep({label, count, base, prev, color, note, last, onClick}) {
-  const [hov, setHov] = useState(false);
-  const pctOfBase = base ? Math.round(count / base * 100) : 0;
-  const conv = prev != null && prev > 0 ? Math.round(count / prev * 100) : null;
-  return (
-    <div onClick={count>0?onClick:undefined}
-      onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}
-      style={{marginBottom:last?0:6,cursor:(onClick&&count>0)?'pointer':'default',
-        borderRadius:6,padding:'4px 6px',margin:`0 -6px ${last?0:6}px`,
-        background:hov&&count>0?C.bg:'transparent',transition:'background 0.15s'}}>
-      <div style={{display:'flex',alignItems:'baseline',marginBottom:5}}>
-        <span style={{fontSize:13,fontWeight:600,minWidth:96}}>{label}</span>
-        <span style={{fontSize:22,fontWeight:800,color,letterSpacing:'-0.02em'}}>{count}</span>
-        <span style={{fontSize:12,color:C.textMid,marginLeft:3}}>件</span>
-        {conv != null && (
-          <span style={{fontSize:12,marginLeft:10,color:conv>=60?C.success:conv>=40?C.warning:C.danger,fontWeight:700}}>
-            → {conv}%
-          </span>
-        )}
-        <span style={{marginLeft:'auto',fontSize:11,color:C.textLight}}>
-          {hov&&count>0&&onClick ? '該当を見る ›' : note}
-        </span>
-      </div>
-      <div style={{height:26,background:C.borderLight,borderRadius:4,overflow:'hidden'}}>
-        <div style={{height:'100%',width:`${Math.max(pctOfBase,2)}%`,background:color,borderRadius:4,
-          display:'flex',alignItems:'center',justifyContent:'flex-end',paddingRight:8,
-          transition:'width 0.3s'}}>
-          <span style={{fontSize:11,fontWeight:700,color:'#fff'}}>{pctOfBase}%</span>
-        </div>
-      </div>
-    </div>
-  );
-}
+/* 円グラフ（ドーナツ）：順序のないカテゴリの構成比を見せる。
+   工程順のデータには使わない（並べ替えの慣例と衝突するため） */
+/* 工程順の横棒：母数を1つの状態に排他分割して見せる。
+   順序のあるデータなので並べ替えず、工程どおりに上から並べる */
+function StageBars({total, segments, scaleByTotal, showZero, compact}) {
+  const [hov, setHov] = useState(null);
+  const shown = showZero ? segments : segments.filter(s => s.count > 0);
+  /* scaleByTotal: 母数を基準に伸ばす。2つ並べて比較するときに使う */
+  const max = scaleByTotal ? (total || 1) : Math.max(...shown.map(s => s.count), 1);
 
-/* 取りこぼしの内訳 */
-function LeakRow({label, count, base, color, desc, onClick}) {
-  const [hov, setHov] = useState(false);
-  const pct = base ? Math.round(count / base * 100) : 0;
-  const clickable = onClick && count > 0;
   return (
-    <div onClick={clickable?onClick:undefined}
-      onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}
-      style={{display:'flex',alignItems:'center',gap:10,padding:'9px 6px',margin:'0 -6px',
-        borderBottom:`1px solid ${C.borderLight}`,cursor:clickable?'pointer':'default',
-        background:hov&&clickable?C.bg:'transparent',borderRadius:6,transition:'background 0.15s'}}>
-      <span style={{width:8,height:8,borderRadius:'50%',background:color,flexShrink:0}}/>
-      <div style={{flex:1,minWidth:0}}>
-        <div style={{fontSize:13,fontWeight:600}}>{label}</div>
-        <div style={{fontSize:11,color:C.textLight,marginTop:1}}>
-          {hov&&clickable ? '該当を見る ›' : desc}
-        </div>
-      </div>
-      <div style={{textAlign:'right',flexShrink:0}}>
-        <div style={{fontSize:17,fontWeight:800,color}}>{count}<span style={{fontSize:11,fontWeight:500,color:C.textMid,marginLeft:2}}>件</span></div>
-        <div style={{fontSize:11,color:C.textLight}}>商談の{pct}%</div>
+    <div>
+      {shown.map((s,i) => {
+        const on = hov === i;
+        const pct = total ? Math.round(s.count / total * 100) : 0;
+        const zero = s.count === 0;
+        const clickable = !!s.onClick && !zero;
+        return (
+          <div key={s.label} onClick={clickable?s.onClick:undefined}
+            onMouseEnter={()=>setHov(i)} onMouseLeave={()=>setHov(null)}
+            style={{display:'flex',alignItems:'center',gap:compact?7:10,padding:compact?'5px 8px':'7px 8px',margin:'0 -8px',
+              borderRadius:6,cursor:clickable?'pointer':'default',opacity:zero?0.5:1,
+              background:on?s.color+'12':'transparent',transition:'background 0.15s'}}>
+            {/* ラベル */}
+            <div style={{width:compact?86:118,flexShrink:0,textAlign:'right'}}>
+              <div style={{fontSize:compact?12:13,fontWeight:on?700:500}}>{s.label}</div>
+            </div>
+            {/* バー */}
+            <div style={{flex:1,height:compact?20:24,background:C.borderLight,borderRadius:4,overflow:'hidden',minWidth:36}}>
+              {!zero && (
+                <div style={{height:'100%',width:`${Math.max(s.count/max*100,3)}%`,background:s.color,
+                  borderRadius:4,transition:'width 0.3s'}}/>
+              )}
+            </div>
+            {/* 数値 */}
+            <div style={{width:compact?56:74,flexShrink:0,display:'flex',alignItems:'baseline',justifyContent:'flex-end',gap:5}}>
+              <span style={{fontSize:compact?14:16,fontWeight:800,color:zero?C.textLight:s.color}}>{s.count}</span>
+              <span style={{fontSize:11,color:C.textMid,minWidth:28,textAlign:'right'}}>{pct}%</span>
+            </div>
+          </div>
+        );
+      })}
+      {/* 説明（ホバー中の行、なければ母数） */}
+      <div style={{marginTop:10,minHeight:30,padding:'7px 10px',borderRadius:6,
+        background:hov!=null?shown[hov].color+'10':C.bg,transition:'background 0.15s'}}>
+        {hov != null ? (
+          <span style={{fontSize:12,color:C.textMid}}>
+            {shown[hov].desc}
+            {shown[hov].onClick && (
+              <span style={{color:shown[hov].color,fontWeight:600,marginLeft:8}}>クリックで該当を表示 ›</span>
+            )}
+          </span>
+        ) : (
+          <span style={{fontSize:12,color:C.textLight}}>合計 {total}件（各案件は1つの状態にのみ該当）</span>
+        )}
       </div>
     </div>
   );
@@ -2213,7 +2212,7 @@ function DrillModal({drill, onClose, onPick}) {
             <table style={{width:'100%',borderCollapse:'collapse'}}>
               <thead style={{position:'sticky',top:0,zIndex:1}}>
                 <tr style={{background:'#FAFAFA',borderBottom:`2px solid ${C.border}`}}>
-                  {['車両 / 年式','店舗 / 担当者','査定','結果','経過'].map(h=>(
+                  {['車両 / 年式','店舗','査定額','小売に出す','AAに流す','状態','経過'].map(h=>(
                     <th key={h} style={{padding:'10px 14px',textAlign:'left',fontSize:12,fontWeight:600,color:C.textMid,whiteSpace:'nowrap'}}>{h}</th>
                   ))}
                 </tr>
@@ -2236,13 +2235,31 @@ function DrillModal({drill, onClose, onPick}) {
                         <div style={{fontSize:12}}>{v.store}</div>
                         <div style={{fontSize:11,color:C.textMid,marginTop:1}}>{v.assignee}</div>
                       </td>
-                      <td style={{padding:'11px 14px'}}>
-                        <StatusBadge status={v.appraisalStatus} type="appraisal"/>
+                      <td style={{padding:'11px 14px',fontSize:13,fontWeight:700,whiteSpace:'nowrap'}}>
+                        {v.price ? fmt(v.price) : <span style={{fontSize:12,color:C.textLight,fontWeight:400}}>—</span>}
                       </td>
+                      {[['retailPrice',C.info],['auctionPrice','#7C3AED']].map(([key,base]) => (
+                        <td key={key} style={{padding:'11px 14px',whiteSpace:'nowrap'}}>
+                          {v.price && v[key] ? (() => {
+                            const g = v[key] - v.price;
+                            const rate = Math.round(g / v[key] * 100);
+                            const col = g <= 0 ? C.danger : C.success;
+                            return (<>
+                              <div style={{fontSize:12,color:base}}>{fmt(v[key])}</div>
+                              <div style={{display:'flex',alignItems:'baseline',gap:5,marginTop:2}}>
+                                <span style={{fontSize:12,fontWeight:700,color:col}}>
+                                  {g>=0?'+':'−'}{Math.abs(g/10000).toLocaleString()}万
+                                </span>
+                                <span style={{fontSize:11,color:col,fontWeight:600}}>{rate}%</span>
+                              </div>
+                            </>);
+                          })() : <span style={{fontSize:12,color:C.textLight}}>—</span>}
+                        </td>
+                      ))}
                       <td style={{padding:'11px 14px'}}>
                         {v.contractStatus
                           ? <Badge color={(CONTRACT_STATUS_COLORS[v.contractStatus]||{}).bg || C.textMid}>{v.contractStatus}</Badge>
-                          : <span style={{fontSize:12,color:C.textLight}}>—</span>}
+                          : <StatusBadge status={v.appraisalStatus} type="appraisal"/>}
                       </td>
                       <td style={{padding:'11px 14px',fontSize:12,
                         color:alert?C.danger:C.textMid,fontWeight:alert?700:400}}>
@@ -2285,6 +2302,9 @@ function AdminDashboard({setScreen, setSelectedVehicle}) {
   const vReached  = [...vWon, ...vLost, ...vNoReply, ...vOngoing];
   const vStalled  = ALL_DASH.filter(v => (ELAPSED[v.id]||{}).level >= 2);
   const vLeak     = [...vNoReply, ...vLost];
+  /* 査定依頼を1件ずつ排他の状態に振り分ける（合計＝母数） */
+  const reachedIds = new Set(vReached.map(v => v.id));
+  const vIdle     = vDone.filter(v => !reachedIds.has(v.id));  // 査定は済んだが商談未着手
 
   const total=vAll.length, waiting=vWaiting.length, done=vDone.length;
   const won=vWon.length, lost=vLost.length, noReply=vNoReply.length;
@@ -2293,8 +2313,12 @@ function AdminDashboard({setScreen, setSelectedVehicle}) {
   /* ── 未入庫売買：売り ── */
   const vListed   = VEHICLES.filter(v => v.listed);
   const vReacted  = vListed.filter(v => v.bids > 0);
-  const vNoReact  = vListed.filter(v => !v.bids);
+  /* 掲載中の車両を1台ずつ排他の状態に振り分ける（成約が最優先） */
+  const vSellWonListed = vListed.filter(v => v.contractStatus === '成約');
   const vSellNego = vListed.filter(v => v.contractStatus === '交渉中');
+  const vSellRest = vListed.filter(v => !['成約','交渉中'].includes(v.contractStatus));
+  const vNoReact  = vSellRest.filter(v => !v.bids);   // 問合せゼロ
+  const vWaitingBuyer = vSellRest.filter(v => v.bids > 0); // 反応はあるが交渉前
   const vSellWon  = VEHICLES.filter(v => v.contractStatus === '成約');
   const listed=vListed, reacted=vReacted.length, sellNego=vSellNego.length, sellWon=vSellWon.length;
 
@@ -2308,6 +2332,45 @@ function AdminDashboard({setScreen, setSelectedVehicle}) {
 
   const negoRate = done ? Math.round(reached / done * 100) : 0;
   const winRate  = reached ? Math.round(won / reached * 100) : 0;
+
+  /* ── 出口から見た採算 ──
+     出口は2つ。小売（カーセンサー相場）と AA（オークション相場）。
+     どちらに出すかで採算が変わるため、両方を並べて比較する */
+  const vPriced = ALL_DASH.filter(v => v.price > 0 && v.retailPrice > 0 && v.auctionPrice > 0);
+  const gpRetail  = v => v.retailPrice  - v.price;
+  const gpAuction = v => v.auctionPrice - v.price;
+  const rRetail   = v => v.retailPrice  ? gpRetail(v)  / v.retailPrice  : 0;
+  const rAuction  = v => v.auctionPrice ? gpAuction(v) / v.auctionPrice : 0;
+
+  const buyTotal     = vPriced.reduce((s,v) => s + v.price, 0);
+  const retailTotal  = vPriced.reduce((s,v) => s + v.retailPrice, 0);
+  const auctionTotal = vPriced.reduce((s,v) => s + v.auctionPrice, 0);
+  const retailGross  = retailTotal  - buyTotal;
+  const auctionGross = auctionTotal - buyTotal;
+  const retailRate   = retailTotal  ? Math.round(retailGross  / retailTotal  * 100) : 0;
+  const auctionRate  = auctionTotal ? Math.round(auctionGross / auctionTotal * 100) : 0;
+
+  /* 出口の選択で3つに排他分割 */
+  const vBothOk   = vPriced.filter(v => gpRetail(v) > 0 && gpAuction(v) > 0);  // どちらでも黒字
+  const vRetailOk = vPriced.filter(v => gpRetail(v) > 0 && gpAuction(v) <= 0); // 小売なら黒字・AAだと赤字
+  const vBothNg   = vPriced.filter(v => gpRetail(v) <= 0);                     // 小売でも赤字
+  const vAucNg    = vPriced.filter(v => gpAuction(v) <= 0);                    // AAだと赤字（参考）
+
+  /* 店舗別の出口採算（本部が「どの店に話すか」を決めるための粒度） */
+  const exitStores = [...new Set(vPriced.map(v => v.store))];
+  const storeExit = exitStores.map(st => {
+    const rows = vPriced.filter(v => v.store === st);
+    const b  = rows.reduce((s,v) => s + v.price, 0);
+    const rt = rows.reduce((s,v) => s + v.retailPrice, 0);
+    const at = rows.reduce((s,v) => s + v.auctionPrice, 0);
+    return {
+      store: st, rows,
+      rRate: rt ? Math.round((rt-b)/rt*100) : 0,
+      aRate: at ? Math.round((at-b)/at*100) : 0,
+      ng: rows.filter(v => gpRetail(v) <= 0),   // 小売でも赤字＝本部が確認すべき案件
+    };
+  }).filter(s => s.rows.length > 0)
+    .sort((a,b) => b.ng.length - a.ng.length || a.rRate - b.rRate);
 
   const openV = (title, sub, rows) => setDrill({title, sub, rows, kind:'vehicle'});
   const openB = (title, sub, rows) => setDrill({title, sub, rows, kind:'bid'});
@@ -2331,40 +2394,26 @@ function AdminDashboard({setScreen, setSelectedVehicle}) {
           onClick={()=>openV('取りこぼした案件','返信なし・不成約（再商談の候補）',vLeak)}/>
       </div>
 
-      {/* 査定ファネル */}
-      <Card>
-        <div style={{display:'flex',alignItems:'baseline',marginBottom:16}}>
-          <div style={{fontWeight:700,fontSize:15}}>査定ファネル</div>
-          <span style={{fontSize:11,color:C.textMid,marginLeft:10}}>会社全体 · 母数 {total}件</span>
-        </div>
-        <FunnelStep label="査定依頼"  count={total}   base={total} prev={null}    color="#94A3B8" note={`未着手 ${waiting}件`}
-          onClick={()=>openV('査定依頼のすべて','会社全体',vAll)}/>
-        <FunnelStep label="査定完了"  count={done}    base={total} prev={total}   color={C.info}
-          onClick={()=>openV('査定が完了した案件',`査定依頼 ${total}件 のうち ${done}件`,vDone)}/>
-        <FunnelStep label="商談に到達" count={reached} base={total} prev={done}    color={C.primary}
-          onClick={()=>openV('商談に到達した案件',`査定完了 ${done}件 のうち ${reached}件`,vReached)}/>
-        <FunnelStep label="成約"      count={won}     base={total} prev={reached} color={C.success} last
-          onClick={()=>openV('成約した案件',`商談 ${reached}件 のうち ${won}件`,vWon)}/>
-      </Card>
-
-      {/* 取りこぼしの内訳 */}
+      {/* 査定の内訳 */}
       <Card>
         <div style={{display:'flex',alignItems:'baseline',marginBottom:6}}>
-          <div style={{fontWeight:700,fontSize:15}}>どこで落ちているか</div>
-          <span style={{fontSize:11,color:C.textMid,marginLeft:10}}>商談に到達した {reached}件 の内訳</span>
+          <div style={{fontWeight:700,fontSize:15}}>いま何がどうなっているか</div>
+          <span style={{fontSize:11,color:C.textMid,marginLeft:10}}>査定依頼 {total}件 の内訳（各案件は1つの状態にのみ該当）</span>
         </div>
-        <LeakRow label="返信なし" count={noReply} base={reached} color={C.danger}
-          desc="断られていない。再商談の一次候補"
-          onClick={()=>openV('返信なしの案件','断られていない。再商談の一次候補',vNoReply)}/>
-        <LeakRow label="不成約"   count={lost}    base={reached} color={C.warning}
-          desc="条件が合わなかった。相場が動けば再アプローチ可"
-          onClick={()=>openV('不成約の案件','条件が合わなかった案件',vLost)}/>
-        <LeakRow label="進行中"   count={ongoing} base={reached} color={C.info}
-          desc="まだ結果が出ていない"
-          onClick={()=>openV('進行中の案件','まだ結果が出ていない',vOngoing)}/>
-        <LeakRow label="成約"     count={won}     base={reached} color={C.success}
-          desc="—"
-          onClick={()=>openV('成約した案件','',vWon)}/>
+        <StageBars total={total} segments={[
+          {label:'未着手',        count:vWaiting.length, color:'#94A3B8', desc:'査定にまだ着手していない',
+           onClick:()=>openV('未着手の案件','査定にまだ着手していない',vWaiting)},
+          {label:'査定済・未商談', count:vIdle.length,    color:'#64748B', desc:'査定は終わったが商談に入っていない',
+           onClick:()=>openV('査定済だが商談に入っていない案件','商談への引き継ぎが止まっている',vIdle)},
+          {label:'商談進行中',    count:ongoing,         color:C.info,    desc:'まだ結果が出ていない',
+           onClick:()=>openV('商談が進行中の案件','まだ結果が出ていない',vOngoing)},
+          {label:'返信なし',      count:noReply,         color:C.danger,  desc:'断られていない。再商談の一次候補',
+           onClick:()=>openV('返信なしの案件','断られていない。再商談の一次候補',vNoReply)},
+          {label:'不成約',        count:lost,            color:C.warning, desc:'条件が合わなかった。相場が動けば再アプローチ可',
+           onClick:()=>openV('不成約の案件','条件が合わなかった案件',vLost)},
+          {label:'成約',          count:won,             color:C.success, desc:'商談がまとまった',
+           onClick:()=>openV('成約した案件','',vWon)},
+        ]}/>
         <div style={{marginTop:14,display:'flex',alignItems:'center',gap:10,
           padding:'10px 14px',background:stalled?C.dangerLight:C.bg,borderRadius:6}}>
           <Icon name="alert" size={16} color={stalled?C.danger:C.textLight}/>
@@ -2380,24 +2429,25 @@ function AdminDashboard({setScreen, setSelectedVehicle}) {
         <Card>
           <div style={{display:'flex',alignItems:'baseline',marginBottom:16}}>
             <div style={{fontWeight:700,fontSize:15}}>未入庫売買 / 売り</div>
-            <span style={{fontSize:11,color:C.textMid,marginLeft:10}}>母数 {listed.length}台</span>
+            <span style={{fontSize:11,color:C.textMid,marginLeft:10}}>掲載中 {listed.length}台 の内訳</span>
           </div>
-          <FunnelStep label="掲載中"   count={listed.length} base={listed.length} prev={null}          color="#94A3B8"
-            onClick={()=>openV('掲載中の車両','未入庫で出品している車両',vListed)}/>
-          <FunnelStep label="反応あり" count={reacted}       base={listed.length} prev={listed.length} color={C.info}
-            note={`反応なし ${listed.length-reacted}台`}
-            onClick={()=>openV('反応があった車両',`掲載 ${listed.length}台 のうち ${reacted}台`,vReacted)}/>
-          <FunnelStep label="交渉中"   count={sellNego}      base={listed.length} prev={reacted}       color={C.warning}
-            onClick={()=>openV('交渉中の車両','買い手と価格交渉に入っている',vSellNego)}/>
-          <FunnelStep label="成約"     count={sellWon}       base={listed.length} prev={null}          color={C.success} last
-            onClick={()=>openV('成約した車両','',vSellWon)}/>
-          {vNoReact.length>0 && (
-            <div style={{marginTop:12,display:'flex',alignItems:'center',gap:10,padding:'9px 12px',background:C.warningLight,borderRadius:6}}>
-              <Icon name="alert" size={15} color={C.warning}/>
-              <div style={{flex:1,fontSize:12,color:C.warning}}>
-                反応がない車両が <strong>{vNoReact.length}</strong> 台
+          <StageBars total={listed.length} segments={[
+            {label:'反応なし', count:vNoReact.length,  color:C.warning, desc:'問合せが1件も来ていない。値下げ・取り下げの判断が要る',
+             onClick:()=>openV('反応がない車両','値下げ・取り下げの判断が要る',vNoReact)},
+            {label:'反応あり', count:vWaitingBuyer.length, color:C.info, desc:'問合せは来たが交渉に入っていない',
+             onClick:()=>openV('反応はあるが交渉前の車両','問合せは来たが交渉に入っていない',vWaitingBuyer)},
+            {label:'交渉中',   count:sellNego,          color:'#7C3AED', desc:'買い手と価格交渉に入っている',
+             onClick:()=>openV('交渉中の車両','買い手と価格交渉に入っている',vSellNego)},
+            {label:'成約',     count:vSellWonListed.length, color:C.success, desc:'買い手が決まった',
+             onClick:()=>openV('成約した車両','掲載中のうち買い手が決まったもの',vSellWonListed)},
+          ]}/>
+          {vSellWon.length > vSellWonListed.length && (
+            <div style={{marginTop:12,display:'flex',alignItems:'center',gap:10,padding:'9px 12px',background:C.bg,borderRadius:6}}>
+              <Icon name="checkCircle" size={15} color={C.textMid}/>
+              <div style={{flex:1,fontSize:12,color:C.textMid}}>
+                掲載を終えた成約が別に <strong>{vSellWon.length - vSellWonListed.length}</strong> 台あります
               </div>
-              <Btn variant="ghost" onClick={()=>openV('反応がない車両','値下げ・取り下げの判断が要る',vNoReact)}>該当を見る</Btn>
+              <Btn variant="ghost" onClick={()=>openV('成約した車両のすべて','掲載を終えたものを含む',vSellWon)}>該当を見る</Btn>
             </div>
           )}
         </Card>
@@ -2405,19 +2455,118 @@ function AdminDashboard({setScreen, setSelectedVehicle}) {
         <Card>
           <div style={{display:'flex',alignItems:'baseline',marginBottom:16}}>
             <div style={{fontWeight:700,fontSize:15}}>未入庫売買 / 買い</div>
-            <span style={{fontSize:11,color:C.textMid,marginLeft:10}}>母数 {buyBase}件</span>
+            <span style={{fontSize:11,color:C.textMid,marginLeft:10}}>{buyBase}件 の内訳</span>
           </div>
-          <FunnelStep label="購入申請" count={applied} base={buyBase} prev={null}    color="#94A3B8"
-            onClick={()=>openB('購入申請中','即決価格で申請している案件',bApplied)}/>
-          <FunnelStep label="価格交渉" count={buyNego} base={buyBase} prev={null}    color={C.warning}
-            note="回答待ちを含む"
-            onClick={()=>openB('価格交渉中','交渉中・回答待ちの案件',bNego)}/>
-          <FunnelStep label="購入確定" count={buyWon}  base={buyBase} prev={null}    color={C.success}
-            onClick={()=>openB('購入が確定した案件','',bWon)}/>
-          <FunnelStep label="見送り"   count={buyDrop} base={buyBase} prev={null}    color={C.textLight} last
-            onClick={()=>openB('見送った案件','',bDrop)}/>
+          <StageBars total={buyBase} segments={[
+            {label:'購入申請', count:applied, color:'#94A3B8', desc:'即決価格で申請し、相手の回答を待っている',
+             onClick:()=>openB('購入申請中','即決価格で申請している案件',bApplied)},
+            {label:'価格交渉', count:buyNego, color:C.warning, desc:'交渉中・回答待ちの案件',
+             onClick:()=>openB('価格交渉中','交渉中・回答待ちの案件',bNego)},
+            {label:'購入確定', count:buyWon,  color:C.success, desc:'買い付けが決まった',
+             onClick:()=>openB('購入が確定した案件','',bWon)},
+            {label:'見送り',   count:buyDrop, color:C.textLight, desc:'条件が合わず降りた',
+             onClick:()=>openB('見送った案件','',bDrop)},
+          ]}/>
         </Card>
       </div>
+
+      {/* 出口から見た採算 */}
+      <Card>
+        <div style={{display:'flex',alignItems:'baseline',marginBottom:14}}>
+          <div style={{fontWeight:700,fontSize:15}}>出口から見た採算</div>
+          <span style={{fontSize:11,color:C.textMid,marginLeft:10}}>
+            小売（カーセンサー相場）と AA（オークション相場）の2つの出口で比べる · 対象 {vPriced.length}件
+          </span>
+        </div>
+
+        {/* 入口 */}
+        <div style={{padding:'12px 16px',border:`1px solid ${C.border}`,borderRadius:8,marginBottom:10}}>
+          <div style={{fontSize:11,color:C.textMid,marginBottom:4}}>査定額の合計（入口）</div>
+          <div style={{fontSize:20,fontWeight:800}}>{fmt(buyTotal)}</div>
+        </div>
+
+        {/* 出口2つを並べる */}
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10,marginBottom:18}}>
+          {[
+            {name:'小売に出す', sub:'カーセンサー相場', tot:retailTotal,  gross:retailGross,  rate:retailRate,  col:C.info},
+            {name:'AAに流す',   sub:'オークション相場',  tot:auctionTotal, gross:auctionGross, rate:auctionRate, col:'#7C3AED'},
+          ].map(x => {
+            const plus = x.gross >= 0;
+            return (
+              <div key={x.name} style={{border:`1px solid ${plus?x.col+'55':C.danger+'55'}`,borderRadius:8,overflow:'hidden'}}>
+                <div style={{padding:'10px 14px',background:x.col+'10',borderBottom:`1px solid ${C.border}`}}>
+                  <div style={{fontSize:13,fontWeight:700,color:x.col}}>{x.name}</div>
+                  <div style={{fontSize:10,color:C.textMid,marginTop:1}}>{x.sub}</div>
+                </div>
+                <div style={{padding:'12px 14px'}}>
+                  <div style={{fontSize:11,color:C.textMid}}>予想売価の合計</div>
+                  <div style={{fontSize:18,fontWeight:800,marginTop:2}}>{fmt(x.tot)}</div>
+                  <div style={{marginTop:10,paddingTop:10,borderTop:`1px solid ${C.borderLight}`}}>
+                    <div style={{fontSize:11,color:C.textMid}}>想定粗利</div>
+                    <div style={{display:'flex',alignItems:'baseline',gap:8,marginTop:2}}>
+                      <span style={{fontSize:18,fontWeight:800,color:plus?C.success:C.danger}}>
+                        {plus?'':'−'}{fmt(Math.abs(x.gross))}
+                      </span>
+                      <span style={{fontSize:14,fontWeight:700,color:plus?C.success:C.danger}}>{x.rate}%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* 店舗別（本部はここを見て、どの店に話すかを決める） */}
+        <div style={{fontSize:12,fontWeight:700,color:C.textMid,marginBottom:8}}>店舗別</div>
+        <table style={{width:'100%',borderCollapse:'collapse'}}>
+          <thead>
+            <tr style={{background:'#FAFAFA',borderBottom:`1px solid ${C.border}`}}>
+              {[['店舗','left'],['台数','right'],['小売なら','right'],['AAなら','right'],['どちらも赤字','right'],['','right']].map(([h,al],i)=>(
+                <th key={i} style={{padding:'9px 14px',textAlign:al,fontSize:12,fontWeight:600,color:C.textMid,whiteSpace:'nowrap'}}>{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {storeExit.map(s => (
+              <tr key={s.store} onClick={()=>openV(`${s.store}｜出口から見た採算`,`対象 ${s.rows.length}台`,s.rows)}
+                style={{borderBottom:`1px solid ${C.borderLight}`,cursor:'pointer',
+                  background:s.ng.length?'#FFFBFA':'#fff',transition:'background 0.15s'}}
+                onMouseEnter={e=>e.currentTarget.style.background=s.ng.length?'#FEE2E2':'#FAFAFA'}
+                onMouseLeave={e=>e.currentTarget.style.background=s.ng.length?'#FFFBFA':'#fff'}>
+                <td style={{padding:'11px 14px',fontWeight:700,fontSize:14}}>{s.store}</td>
+                <td style={{padding:'11px 14px',textAlign:'right',fontSize:13}}>{s.rows.length}</td>
+                <td style={{padding:'11px 14px',textAlign:'right'}}>
+                  <span style={{fontSize:14,fontWeight:800,color:s.rRate>=8?C.success:s.rRate>0?C.warning:C.danger}}>{s.rRate}%</span>
+                </td>
+                <td style={{padding:'11px 14px',textAlign:'right'}}>
+                  <span style={{fontSize:14,fontWeight:800,color:s.aRate>=8?C.success:s.aRate>0?C.warning:C.danger}}>{s.aRate}%</span>
+                </td>
+                <td style={{padding:'11px 14px',textAlign:'right'}}>
+                  {s.ng.length
+                    ? <Badge color={C.danger}>{s.ng.length}件</Badge>
+                    : <span style={{fontSize:13,color:C.textLight}}>0</span>}
+                </td>
+                <td style={{padding:'11px 14px',textAlign:'right'}}>
+                  <Icon name="chevronRight" size={15} color={C.textLight}/>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        {/* 22.6%赤字問題への手がかり */}
+        <div style={{marginTop:14,padding:'11px 14px',background:C.bg,borderRadius:6,
+          borderLeft:`3px solid ${C.warning}`,borderTopLeftRadius:0,borderBottomLeftRadius:0}}>
+          <div style={{fontSize:12,color:C.text,lineHeight:1.7}}>
+            AA基準では <strong style={{color:vAucNg.length?C.danger:C.success}}>{vAucNg.length}件</strong> が赤字ですが、
+            小売基準まで見ると <strong style={{color:vBothNg.length?C.danger:C.success}}>{vBothNg.length}件</strong> に減ります。
+          </div>
+          <div style={{fontSize:11,color:C.textMid,marginTop:5,lineHeight:1.6}}>
+            AAの相場だけで採算を測ると赤字が過大に見えます。出口を小売に取れるかどうかで判断が変わるため、
+            車両ごとの出口選択は査定画面で確認してください。
+          </div>
+        </div>
+      </Card>
 
       {drill && (
         <DrillModal drill={drill} onClose={()=>setDrill(null)}
@@ -3391,22 +3540,22 @@ function PriceNegotiation({vehicle, setScreen}) {
 
 /* ─── 査定管理ダッシュボード ─── */
 const DASH_VEHICLES = [
-  {id:201,vin:'WBA5A7C5XH123845',maker:'BMW',        name:'X5',              grade:'M50i xDrive',      registration:'2022-08',appraisalStatus:'査定待ち',store:'新宿南口店',    assignee:'山本 拓也',appraisalNo:'262010099201',mileage:18400,meterCheck:'未交換',color:'アルピンホワイト',colorFamily:'ホワイト',inspectionExpiry:'2027-08',inspectionType:'継続',price:9800000,bids:0,endDate:null,img:'',photos:[]},
-  {id:202,vin:'W1N2533699G299801',maker:'メルセデス', name:'GLE 400d',        grade:'4マチック クーペ', registration:'2023-03',appraisalStatus:'交渉済',contractStatus:'返信なし',  store:'渋谷本店',      assignee:'鈴木 一郎',appraisalNo:'262020099202',mileage:24100,meterCheck:'未交換',color:'オブシディアンブラック',colorFamily:'ブラック',inspectionExpiry:'2028-03',inspectionType:'継続',price:8200000,bids:0,endDate:null,img:'',photos:[]},
-  {id:203,vin:'WP1AB29P09LA51234',maker:'ポルシェ',   name:'カイエン',        grade:'GTS',              registration:'2021-11',appraisalStatus:'商談中',  store:'梅田グランド店',assignee:'中村 雄一',appraisalNo:'262030099203',mileage:31500,meterCheck:'未交換',color:'カレラホワイト',colorFamily:'ホワイト',inspectionExpiry:'2026-11',inspectionType:'継続',price:11500000,bids:0,endDate:null,img:'',photos:[]},
-  {id:204,vin:'YV1LC2DL8K1231441',maker:'ボルボ',     name:'XC90',            grade:'T8 AWD',           registration:'2023-06',appraisalStatus:'交渉済',contractStatus:'不成約',  store:'横浜港北店',    assignee:'伊藤 誠',appraisalNo:'262040099204',mileage:15800,meterCheck:'未交換',color:'デニムブルー',colorFamily:'ブルー',inspectionExpiry:'2028-06',inspectionType:'継続',price:7600000,bids:0,endDate:null,img:'',photos:[]},
-  {id:205,vin:'SADCK2BV3HA551821',maker:'ジャガー',   name:'F-PACE',          grade:'P400e HSE',        registration:'2022-04',appraisalStatus:'査定待ち',store:'川越インター店',assignee:'高橋 さくら',appraisalNo:'262050099205',mileage:28900,meterCheck:'未交換',color:'サントリーニブラック',colorFamily:'ブラック',inspectionExpiry:'2027-04',inspectionType:'継続',price:6800000,bids:0,endDate:null,img:'',photos:[]},
-  {id:206,vin:'JTJGY7AX1N4094123',maker:'レクサス',   name:'LX 600',          grade:'ベースグレード',   registration:'2023-01',appraisalStatus:'交渉済',contractStatus:'返信なし',  store:'札幌北口店',    assignee:'田中 健二',appraisalNo:'262060099206',mileage:9800,meterCheck:'未交換',color:'ソニックチタニウム',colorFamily:'シルバー',inspectionExpiry:'2028-01',inspectionType:'継続',price:13200000,bids:0,endDate:null,img:'',photos:[]},
-  {id:207,vin:'JTMHX3FJ0N4052145',maker:'トヨタ',     name:'ランドクルーザー',grade:'ZX',               registration:'2022-10',appraisalStatus:'査定待ち',store:'渋谷本店',      assignee:'佐藤 美咲',appraisalNo:'262070099207',mileage:21300,meterCheck:'未交換',color:'プレシャスホワイトパール',colorFamily:'ホワイト',inspectionExpiry:'2027-10',inspectionType:'継続',price:8900000,bids:0,endDate:null,img:'',photos:[]},
-  {id:208,vin:'WA1AVAF16ND016288',maker:'アウディ',   name:'Q8',              grade:'55 TFSI',          registration:'2023-05',appraisalStatus:'商談中',  store:'新宿南口店',    assignee:'山本 拓也',appraisalNo:'262080099208',mileage:12600,meterCheck:'未交換',color:'グレイシアホワイト',colorFamily:'ホワイト',inspectionExpiry:'2028-05',inspectionType:'継続',price:9400000,bids:0,endDate:null,img:'',photos:[]},
-  {id:209,vin:'WBS43AZ09RCT93901',maker:'BMW',        name:'M3 コンペ',       grade:'xDrive',           registration:'2024-02',appraisalStatus:'交渉済',contractStatus:'成約',  store:'渋谷本店',      assignee:'鈴木 一郎',appraisalNo:'262090099209',mileage:6400,meterCheck:'未交換',color:'ポルティマオブルー',colorFamily:'ブルー',inspectionExpiry:'2029-02',inspectionType:'継続',price:12100000,bids:0,endDate:null,img:'',photos:[]},
-  {id:210,vin:'ZAM57YSL0P1045321',maker:'マセラティ', name:'グレカーレ',      grade:'Modena',           registration:'2023-09',appraisalStatus:'査定待ち',store:'梅田グランド店',assignee:'中村 雄一',appraisalNo:'262100099210',mileage:11200,meterCheck:'未交換',color:'グリジオマラテア',colorFamily:'グレー',inspectionExpiry:'2028-09',inspectionType:'継続',price:10800000,bids:0,endDate:null,img:'',photos:[]},
-  {id:211,vin:'WVGZZZ7PZND005842',maker:'フォルクスワーゲン',name:'トゥアレグ',grade:'R eHybrid',      registration:'2022-07',appraisalStatus:'交渉済',contractStatus:'不成約',  store:'横浜港北店',    assignee:'伊藤 誠',appraisalNo:'262110099211',mileage:26700,meterCheck:'未交換',color:'ムーンストーングレー',colorFamily:'グレー',inspectionExpiry:'2027-07',inspectionType:'継続',price:7900000,bids:0,endDate:null,img:'',photos:[]},
-  {id:212,vin:'W1K2G6EB3NF813027',maker:'ベンツ',     name:'Eクラス',         grade:'E220d アバント',   registration:'2023-11',appraisalStatus:'交渉済',contractStatus:'返信なし',  store:'川越インター店',assignee:'高橋 さくら',appraisalNo:'262120099212',mileage:19500,meterCheck:'未交換',color:'オブシディアンブラック',colorFamily:'ブラック',inspectionExpiry:'2028-11',inspectionType:'継続',price:6400000,bids:0,endDate:null,img:'',photos:[]},
+  {id:201,vin:'WBA5A7C5XH123845',maker:'BMW',        name:'X5',              grade:'M50i xDrive',      registration:'2022-08',appraisalStatus:'査定待ち',store:'新宿南口店',    assignee:'山本 拓也',appraisalNo:'262010099201',mileage:18400,meterCheck:'未交換',color:'アルピンホワイト',colorFamily:'ホワイト',inspectionExpiry:'2027-08',inspectionType:'継続',price:9800000,retailPrice:10980000,auctionPrice:9770000,bids:0,endDate:null,img:'',photos:[]},
+  {id:202,vin:'W1N2533699G299801',maker:'メルセデス', name:'GLE 400d',        grade:'4マチック クーペ', registration:'2023-03',appraisalStatus:'交渉済',contractStatus:'返信なし',  store:'渋谷本店',      assignee:'鈴木 一郎',appraisalNo:'262020099202',mileage:24100,meterCheck:'未交換',color:'オブシディアンブラック',colorFamily:'ブラック',inspectionExpiry:'2028-03',inspectionType:'継続',price:8200000,retailPrice:9510000,auctionPrice:8270000,bids:0,endDate:null,img:'',photos:[]},
+  {id:203,vin:'WP1AB29P09LA51234',maker:'ポルシェ',   name:'カイエン',        grade:'GTS',              registration:'2021-11',appraisalStatus:'商談中',  store:'梅田グランド店',assignee:'中村 雄一',appraisalNo:'262030099203',mileage:31500,meterCheck:'未交換',color:'カレラホワイト',colorFamily:'ホワイト',inspectionExpiry:'2026-11',inspectionType:'継続',price:11500000,retailPrice:11040000,auctionPrice:10710000,bids:0,endDate:null,img:'',photos:[]},
+  {id:204,vin:'YV1LC2DL8K1231441',maker:'ボルボ',     name:'XC90',            grade:'T8 AWD',           registration:'2023-06',appraisalStatus:'交渉済',contractStatus:'不成約',  store:'横浜港北店',    assignee:'伊藤 誠',appraisalNo:'262040099204',mileage:15800,meterCheck:'未交換',color:'デニムブルー',colorFamily:'ブルー',inspectionExpiry:'2028-06',inspectionType:'継続',price:7600000,retailPrice:9120000,auctionPrice:7840000,bids:0,endDate:null,img:'',photos:[]},
+  {id:205,vin:'SADCK2BV3HA551821',maker:'ジャガー',   name:'F-PACE',          grade:'P400e HSE',        registration:'2022-04',appraisalStatus:'査定待ち',store:'川越インター店',assignee:'高橋 さくら',appraisalNo:'262050099205',mileage:28900,meterCheck:'未交換',color:'サントリーニブラック',colorFamily:'ブラック',inspectionExpiry:'2027-04',inspectionType:'継続',price:6800000,retailPrice:7410000,auctionPrice:6740000,bids:0,endDate:null,img:'',photos:[]},
+  {id:206,vin:'JTJGY7AX1N4094123',maker:'レクサス',   name:'LX 600',          grade:'ベースグレード',   registration:'2023-01',appraisalStatus:'交渉済',contractStatus:'返信なし',  store:'札幌北口店',    assignee:'田中 健二',appraisalNo:'262060099206',mileage:9800,meterCheck:'未交換',color:'ソニックチタニウム',colorFamily:'シルバー',inspectionExpiry:'2028-01',inspectionType:'継続',price:13200000,retailPrice:14120000,auctionPrice:13130000,bids:0,endDate:null,img:'',photos:[]},
+  {id:207,vin:'JTMHX3FJ0N4052145',maker:'トヨタ',     name:'ランドクルーザー',grade:'ZX',               registration:'2022-10',appraisalStatus:'査定待ち',store:'渋谷本店',      assignee:'佐藤 美咲',appraisalNo:'262070099207',mileage:21300,meterCheck:'未交換',color:'プレシャスホワイトパール',colorFamily:'ホワイト',inspectionExpiry:'2027-10',inspectionType:'継続',price:8900000,retailPrice:11130000,auctionPrice:9350000,bids:0,endDate:null,img:'',photos:[]},
+  {id:208,vin:'WA1AVAF16ND016288',maker:'アウディ',   name:'Q8',              grade:'55 TFSI',          registration:'2023-05',appraisalStatus:'商談中',  store:'新宿南口店',    assignee:'山本 拓也',appraisalNo:'262080099208',mileage:12600,meterCheck:'未交換',color:'グレイシアホワイト',colorFamily:'ホワイト',inspectionExpiry:'2028-05',inspectionType:'継続',price:9400000,retailPrice:10620000,auctionPrice:9560000,bids:0,endDate:null,img:'',photos:[]},
+  {id:209,vin:'WBS43AZ09RCT93901',maker:'BMW',        name:'M3 コンペ',       grade:'xDrive',           registration:'2024-02',appraisalStatus:'交渉済',contractStatus:'成約',  store:'渋谷本店',      assignee:'鈴木 一郎',appraisalNo:'262090099209',mileage:6400,meterCheck:'未交換',color:'ポルティマオブルー',colorFamily:'ブルー',inspectionExpiry:'2029-02',inspectionType:'継続',price:12100000,retailPrice:12580000,auctionPrice:11950000,bids:0,endDate:null,img:'',photos:[]},
+  {id:210,vin:'ZAM57YSL0P1045321',maker:'マセラティ', name:'グレカーレ',      grade:'Modena',           registration:'2023-09',appraisalStatus:'査定待ち',store:'梅田グランド店',assignee:'中村 雄一',appraisalNo:'262100099210',mileage:11200,meterCheck:'未交換',color:'グリジオマラテア',colorFamily:'グレー',inspectionExpiry:'2028-09',inspectionType:'継続',price:10800000,retailPrice:12740000,auctionPrice:11210000,bids:0,endDate:null,img:'',photos:[]},
+  {id:211,vin:'WVGZZZ7PZND005842',maker:'フォルクスワーゲン',name:'トゥアレグ',grade:'R eHybrid',      registration:'2022-07',appraisalStatus:'交渉済',contractStatus:'不成約',  store:'横浜港北店',    assignee:'伊藤 誠',appraisalNo:'262110099211',mileage:26700,meterCheck:'未交換',color:'ムーンストーングレー',colorFamily:'グレー',inspectionExpiry:'2027-07',inspectionType:'継続',price:7900000,retailPrice:7820000,auctionPrice:7660000,bids:0,endDate:null,img:'',photos:[]},
+  {id:212,vin:'W1K2G6EB3NF813027',maker:'ベンツ',     name:'Eクラス',         grade:'E220d アバント',   registration:'2023-11',appraisalStatus:'交渉済',contractStatus:'返信なし',  store:'川越インター店',assignee:'高橋 さくら',appraisalNo:'262120099212',mileage:19500,meterCheck:'未交換',color:'オブシディアンブラック',colorFamily:'ブラック',inspectionExpiry:'2028-11',inspectionType:'継続',price:6400000,retailPrice:7360000,auctionPrice:6550000,bids:0,endDate:null,img:'',photos:[]},
 ];
 
 const ALL_DASH = [
-  ...VEHICLES.map(v => ({id:v.id,vin:v.vin,maker:v.maker,name:v.name,grade:v.grade,registration:v.registration,appraisalStatus:v.appraisalStatus,contractStatus:v.contractStatus,store:v.store,assignee:v.assignee})),
+  ...VEHICLES.map(v => ({id:v.id,vin:v.vin,maker:v.maker,name:v.name,grade:v.grade,registration:v.registration,appraisalStatus:v.appraisalStatus,contractStatus:v.contractStatus,store:v.store,assignee:v.assignee,price:v.price,retailPrice:v.retailPrice,auctionPrice:v.auctionPrice})),
   ...DASH_VEHICLES,
 ];
 
@@ -3506,6 +3655,16 @@ function AppraisalDashboard({setScreen, setSelectedVehicle}) {
   );
 
   const elColor = lvl => lvl >= 2 ? C.danger : lvl === 1 ? C.warning : C.textMid;
+
+  /* 出口の比率：いま絞り込んでいる店舗の車両を、小売とAAのどちらに出すべきか */
+  const exitRows = baseDash.filter(v => v.price > 0 && v.retailPrice > 0 && v.auctionPrice > 0);
+  const exitBins = rate => [
+    {label:'粗利15%以上', pick:v => rate(v) >= 0.15,                  color:C.success},
+    {label:'8〜15%',     pick:v => rate(v) >= 0.08 && rate(v) < 0.15, color:C.info},
+    {label:'8%未満',     pick:v => rate(v) > 0    && rate(v) < 0.08,  color:C.warning},
+    {label:'赤字',       pick:v => rate(v) <= 0,                      color:C.danger},
+  ].map(b => ({...b, rows: exitRows.filter(b.pick)}));
+  const exitOnlyRetail = exitRows.filter(v => v.retailPrice > v.price && v.auctionPrice <= v.price);
 
 
   return (
@@ -3611,6 +3770,44 @@ function AppraisalDashboard({setScreen, setSelectedVehicle}) {
           );
         })}
       </div>
+
+      {/* 出口の比率（小売 / AA）── 自店舗の車両をどちらに出すべきか */}
+      {exitRows.length > 0 && (
+        <Card>
+          <div style={{display:'flex',alignItems:'baseline',marginBottom:14}}>
+            <div style={{fontWeight:700,fontSize:14}}>出口の比率</div>
+            <span style={{fontSize:11,color:C.textMid,marginLeft:10}}>
+              {storeFilter || '全店舗'} · 対象 {exitRows.length}台 ·
+              小売（カーセンサー相場）と AA（オークション相場）で粗利がどう変わるか
+            </span>
+          </div>
+          <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
+            {[
+              {name:'小売に出した場合', bins:exitBins(v=>(v.retailPrice-v.price)/v.retailPrice),   key:'小売'},
+              {name:'AAに流した場合',   bins:exitBins(v=>(v.auctionPrice-v.price)/v.auctionPrice), key:'AA'},
+            ].map(x => (
+              <div key={x.key} style={{border:`1px solid ${C.border}`,borderRadius:8,padding:'14px 16px'}}>
+                <div style={{fontSize:13,fontWeight:700,marginBottom:12}}>{x.name}</div>
+                {/* 儲かる順に上から並べる。左右で同じ基準（母数）に揃えて比較できるようにする */}
+                <StageBars total={exitRows.length} scaleByTotal showZero compact
+                  segments={x.bins.map(b => ({
+                    label:b.label, count:b.rows.length, color:b.color,
+                    desc:`${x.name}に${b.label}となる車両`,
+                  }))}/>
+              </div>
+            ))}
+          </div>
+          {exitOnlyRetail.length > 0 && (
+            <div style={{marginTop:14,display:'flex',alignItems:'center',gap:10,
+              padding:'10px 14px',background:C.warningLight,borderRadius:6}}>
+              <Icon name="alert" size={16} color={C.warning}/>
+              <div style={{fontSize:12,color:C.warning,lineHeight:1.6}}>
+                <strong>{exitOnlyRetail.length}台</strong> は小売なら黒字ですが、AAに流すと赤字になります
+              </div>
+            </div>
+          )}
+        </Card>
+      )}
 
       {/* 詳細テーブル */}
       <Card p={0}>
