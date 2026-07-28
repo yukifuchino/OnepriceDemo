@@ -312,6 +312,20 @@ const MY_BIDS = [
 /* ─── UTILS ─── */
 const fmt = n => '¥'+n.toLocaleString();
 
+/* 集計金額を日本語の単位で丸める。桁を数えずに大きさが掴めるようにする
+   例: 245,510,000 → 2億4,551万 ／ 9,030,000 → 903万 ／ 780,000 → 78万 */
+const fmtJP = (n, opt = {}) => {
+  const {sign = false} = opt;
+  const s = n < 0 ? '−' : (sign && n > 0 ? '+' : '');
+  const a = Math.abs(n);
+  if (a === 0) return s + '0円';
+  const oku = Math.floor(a / 100000000);
+  const man = Math.round((a - oku * 100000000) / 10000);
+  if (oku > 0) return s + oku + '億' + (man > 0 ? man.toLocaleString() + '万' : '');
+  if (man > 0) return s + man.toLocaleString() + '万';
+  return s + a.toLocaleString() + '円';
+};
+
 /* ─── WIKI IMAGE ─── */
 function WikiImage({wikiImg, fallback, style}) {
   return (
@@ -2071,8 +2085,11 @@ function SellerNewModal({vehicle, onClose, onList}) {
    単位  ：会社全体（店舗別・担当者別には降りない）        */
 
 /* 要約カード（クリックで該当案件） */
-function StatCard({label, value, unit, color, sub, onClick}) {
+function StatCard({label, value, unit, color, sub, onClick, delta, deltaUnit, lowerIsBetter}) {
   const [hov, setHov] = useState(false);
+  /* delta: 前期との差。lowerIsBetter のときは減った方が良い指標として色を反転する */
+  const good = delta == null ? null : (lowerIsBetter ? delta < 0 : delta > 0);
+  const flat = delta === 0;
   return (
     <div onClick={onClick}
       onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}
@@ -2080,8 +2097,17 @@ function StatCard({label, value, unit, color, sub, onClick}) {
         cursor:onClick?'pointer':'default',position:'relative',transition:'border-color 0.15s,box-shadow 0.15s',
         boxShadow:hov?`0 4px 14px ${color}22`:'none'}}>
       <div style={{fontSize:11,color:C.textMid,fontWeight:600,marginBottom:8}}>{label}</div>
-      <div style={{fontSize:30,fontWeight:800,color,letterSpacing:'-0.02em'}}>
-        {value}<span style={{fontSize:14,fontWeight:500,color:C.textMid}}>{unit}</span>
+      <div style={{display:'flex',alignItems:'baseline',gap:9}}>
+        <span style={{fontSize:30,fontWeight:800,color,letterSpacing:'-0.02em'}}>
+          {value}<span style={{fontSize:14,fontWeight:500,color:C.textMid}}>{unit}</span>
+        </span>
+        {delta != null && (
+          <span style={{fontSize:12,fontWeight:700,whiteSpace:'nowrap',
+            color: flat ? C.textLight : (good ? C.success : C.danger)}}>
+            {flat ? '±0' : `${delta>0?'▲':'▼'}${Math.abs(delta)}`}{flat?'':deltaUnit}
+            <span style={{fontSize:10,fontWeight:500,color:C.textLight,marginLeft:3}}>前期比</span>
+          </span>
+        )}
       </div>
       <div style={{fontSize:11,color:C.textLight,marginTop:6}}>{sub}</div>
       {onClick && (
@@ -2197,9 +2223,9 @@ function DrillModal({drill, onClose, onPick}) {
                     <td style={{padding:'11px 14px'}}>
                       <Badge color={b.kind==='即決'?C.success:'#7C3AED'}>{b.kind}</Badge>
                     </td>
-                    <td style={{padding:'11px 14px',fontSize:13,fontWeight:700}}>{fmt(b.askPrice)}</td>
+                    <td style={{padding:'11px 14px',fontSize:13,fontWeight:700}}>{fmtJP(b.askPrice)}</td>
                     <td style={{padding:'11px 14px',fontSize:13,color:'#7C3AED',fontWeight:b.myOffer?700:400}}>
-                      {b.myOffer?fmt(b.myOffer):<span style={{color:C.textLight,fontWeight:400}}>—</span>}
+                      {b.myOffer?fmtJP(b.myOffer):<span style={{color:C.textLight,fontWeight:400}}>—</span>}
                     </td>
                     <td style={{padding:'11px 14px'}}>
                       <Badge color={MY_BIDS_STATUS_COLOR[b.status]}>{b.status}</Badge>
@@ -2236,7 +2262,7 @@ function DrillModal({drill, onClose, onPick}) {
                         <div style={{fontSize:11,color:C.textMid,marginTop:1}}>{v.assignee}</div>
                       </td>
                       <td style={{padding:'11px 14px',fontSize:13,fontWeight:700,whiteSpace:'nowrap'}}>
-                        {v.price ? fmt(v.price) : <span style={{fontSize:12,color:C.textLight,fontWeight:400}}>—</span>}
+                        {v.price ? fmtJP(v.price) : <span style={{fontSize:12,color:C.textLight,fontWeight:400}}>—</span>}
                       </td>
                       {[['retailPrice',C.info],['auctionPrice','#7C3AED']].map(([key,base]) => (
                         <td key={key} style={{padding:'11px 14px',whiteSpace:'nowrap'}}>
@@ -2245,11 +2271,9 @@ function DrillModal({drill, onClose, onPick}) {
                             const rate = Math.round(g / v[key] * 100);
                             const col = g <= 0 ? C.danger : C.success;
                             return (<>
-                              <div style={{fontSize:12,color:base}}>{fmt(v[key])}</div>
+                              <div style={{fontSize:12,color:base}}>{fmtJP(v[key])}</div>
                               <div style={{display:'flex',alignItems:'baseline',gap:5,marginTop:2}}>
-                                <span style={{fontSize:12,fontWeight:700,color:col}}>
-                                  {g>=0?'+':'−'}{Math.abs(g/10000).toLocaleString()}万
-                                </span>
+                                <span style={{fontSize:12,fontWeight:700,color:col}}>{fmtJP(g,{sign:true})}</span>
                                 <span style={{fontSize:11,color:col,fontWeight:600}}>{rate}%</span>
                               </div>
                             </>);
@@ -2287,24 +2311,45 @@ function DrillModal({drill, onClose, onPick}) {
 function AdminDashboard({setScreen, setSelectedVehicle}) {
   /* クリックで開くドリルダウン { title, sub, rows, kind } */
   const [drill, setDrill] = useState(null);
+  const [period, setPeriod] = useState('月別');
+
+  /* ── 集計期間 ──
+     当期＝直近N日、前期＝その1つ前の同じ長さ。前期比の基準になる */
+  const span = PERIOD_MAX_DAYS[period] || 9999;
+  const daysAgo = v => (ELAPSED[v.id] || {}).daysAgo;
+  const inCur   = v => { const d = daysAgo(v); return d != null && d <= span; };
+  const inPrev  = v => { const d = daysAgo(v); return d != null && d > span && d <= span * 2; };
+
+  const CUR  = ALL_DASH.filter(inCur);
+  const PREV = ALL_DASH.filter(inPrev);
 
   /* ── 査定ファネル ──
      商談到達 = 商談中 + 結果が出たもの。内訳の合計が母数と必ず一致する */
   const isDone    = v => ['成約','不成約','返信なし'].includes(v.contractStatus);
-  const vAll      = ALL_DASH;
-  const vWaiting  = ALL_DASH.filter(v => v.appraisalStatus === '査定待ち');
-  const vDone     = ALL_DASH.filter(v => v.appraisalStatus !== '査定待ち');
-  const vWon      = ALL_DASH.filter(v => v.contractStatus === '成約');
-  const vLost     = ALL_DASH.filter(v => v.contractStatus === '不成約');
-  const vNoReply  = ALL_DASH.filter(v => v.contractStatus === '返信なし');
-  const vOngoing  = ALL_DASH.filter(v => !isDone(v) &&
-    (v.contractStatus === '交渉中' || ['商談中','交渉済','下書き'].includes(v.appraisalStatus)));
+  const isOngoing = v => !isDone(v) &&
+    (v.contractStatus === '交渉中' || ['商談中','交渉済','下書き'].includes(v.appraisalStatus));
+
+  const vAll      = CUR;
+  const vWaiting  = CUR.filter(v => v.appraisalStatus === '査定待ち');
+  const vDone     = CUR.filter(v => v.appraisalStatus !== '査定待ち');
+  const vWon      = CUR.filter(v => v.contractStatus === '成約');
+  const vLost     = CUR.filter(v => v.contractStatus === '不成約');
+  const vNoReply  = CUR.filter(v => v.contractStatus === '返信なし');
+  const vOngoing  = CUR.filter(isOngoing);
   const vReached  = [...vWon, ...vLost, ...vNoReply, ...vOngoing];
-  const vStalled  = ALL_DASH.filter(v => (ELAPSED[v.id]||{}).level >= 2);
+  const vStalled  = CUR.filter(v => (ELAPSED[v.id]||{}).level >= 2);
   const vLeak     = [...vNoReply, ...vLost];
   /* 査定依頼を1件ずつ排他の状態に振り分ける（合計＝母数） */
   const reachedIds = new Set(vReached.map(v => v.id));
   const vIdle     = vDone.filter(v => !reachedIds.has(v.id));  // 査定は済んだが商談未着手
+
+  /* 前期の同じ指標（前期比の分母） */
+  const pDone    = PREV.filter(v => v.appraisalStatus !== '査定待ち').length;
+  const pWon     = PREV.filter(v => v.contractStatus === '成約').length;
+  const pReached = PREV.filter(v => isDone(v) || isOngoing(v)).length;
+  const pLeak    = PREV.filter(v => ['返信なし','不成約'].includes(v.contractStatus)).length;
+  const pNegoRate = pDone ? Math.round(pReached / pDone * 100) : null;
+  const pWinRate  = pReached ? Math.round(pWon / pReached * 100) : null;
 
   const total=vAll.length, waiting=vWaiting.length, done=vDone.length;
   const won=vWon.length, lost=vLost.length, noReply=vNoReply.length;
@@ -2333,10 +2378,23 @@ function AdminDashboard({setScreen, setSelectedVehicle}) {
   const negoRate = done ? Math.round(reached / done * 100) : 0;
   const winRate  = reached ? Math.round(won / reached * 100) : 0;
 
+  /* ── 金額のパイプライン ──
+     件数ではなく金額で、いまどの段階にいくら乗っているかを見る */
+  const sum = rows => rows.reduce((s,v) => s + (v.price || 0), 0);
+  const pipe = [
+    {label:'査定中',   rows:[...vWaiting, ...vIdle], color:'#94A3B8', desc:'まだ商談に入っていない'},
+    {label:'商談中',   rows:vOngoing,                color:C.info,    desc:'結果待ち。ここが将来の売上'},
+    {label:'返信なし', rows:vNoReply,                color:C.danger,  desc:'止まっている金額。再商談で戻せる可能性がある'},
+    {label:'成約',     rows:vWon,                    color:C.success, desc:'確定した金額'},
+  ].map(p => ({...p, amount: sum(p.rows)}));
+  const pipeTotal = pipe.reduce((s,p) => s + p.amount, 0);
+  const prevWonAmt = sum(PREV.filter(v => v.contractStatus === '成約'));
+  const wonAmt = sum(vWon);
+
   /* ── 出口から見た採算 ──
      出口は2つ。小売（カーセンサー相場）と AA（オークション相場）。
      どちらに出すかで採算が変わるため、両方を並べて比較する */
-  const vPriced = ALL_DASH.filter(v => v.price > 0 && v.retailPrice > 0 && v.auctionPrice > 0);
+  const vPriced = CUR.filter(v => v.price > 0 && v.retailPrice > 0 && v.auctionPrice > 0);
   const gpRetail  = v => v.retailPrice  - v.price;
   const gpAuction = v => v.auctionPrice - v.price;
   const rRetail   = v => v.retailPrice  ? gpRetail(v)  / v.retailPrice  : 0;
@@ -2378,21 +2436,96 @@ function AdminDashboard({setScreen, setSelectedVehicle}) {
   return (
     <div style={{padding:24,display:'flex',flexDirection:'column',gap:16}}>
 
+      {/* 集計期間 */}
+      <Card>
+        <div style={{display:'flex',alignItems:'center',gap:12,flexWrap:'wrap'}}>
+          <span style={{fontSize:12,color:C.textMid,fontWeight:600}}>集計期間</span>
+          <div style={{display:'flex',background:'#F0F0F0',borderRadius:4,padding:3,gap:2}}>
+            {['日別','週別','月別','年別'].map(t => (
+              <button key={t} onClick={()=>setPeriod(t)}
+                style={{padding:'5px 16px',borderRadius:4,fontSize:12,fontWeight:600,cursor:'pointer',border:'none',
+                  background:period===t?'#fff':'transparent',
+                  color:period===t?C.text:C.textMid,
+                  boxShadow:period===t?'0 1px 3px rgba(0,0,0,0.12)':'none',transition:'all 0.15s'}}>
+                {t}
+              </button>
+            ))}
+          </div>
+          <span style={{fontSize:12,color:C.textMid}}>
+            直近{span >= 9999 ? '全期間' : `${span}日`} · 対象 <strong>{total}件</strong>
+            {PREV.length > 0 && <span style={{color:C.textLight}}>（前期 {PREV.length}件と比較）</span>}
+          </span>
+        </div>
+      </Card>
+
       {/* 歩留まりの要約（クリックで該当案件） */}
       <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:14}}>
         <StatCard label="商談化率" value={negoRate} unit="%"
           color={negoRate>=60?C.success:C.warning}
           sub={`査定完了 ${done}件 → 商談 ${reached}件`}
+          delta={pNegoRate!=null ? negoRate-pNegoRate : null} deltaUnit="pt"
           onClick={()=>openV('商談に到達した案件',`査定完了 ${done}件 のうち ${reached}件`,vReached)}/>
         <StatCard label="成約率" value={winRate} unit="%"
           color={winRate>=50?C.success:C.warning}
           sub={`商談 ${reached}件 → 成約 ${won}件`}
+          delta={pWinRate!=null ? winRate-pWinRate : null} deltaUnit="pt"
           onClick={()=>openV('成約した案件',`商談 ${reached}件 のうち ${won}件`,vWon)}/>
         <StatCard label="取りこぼし" value={lost+noReply} unit="件"
           color={C.danger}
           sub={<>うち返信なし <strong style={{color:C.danger}}>{noReply}</strong> 件</>}
+          delta={PREV.length ? (lost+noReply)-pLeak : null} deltaUnit="件" lowerIsBetter
           onClick={()=>openV('取りこぼした案件','返信なし・不成約（再商談の候補）',vLeak)}/>
       </div>
+
+      {/* 金額のパイプライン */}
+      <Card>
+        <div style={{display:'flex',alignItems:'baseline',marginBottom:14}}>
+          <div style={{fontWeight:700,fontSize:15}}>金額のパイプライン</div>
+          <span style={{fontSize:11,color:C.textMid,marginLeft:10}}>
+            査定額ベース · どの段階にいくら乗っているか
+          </span>
+          <span style={{marginLeft:'auto',fontSize:12,color:C.textMid}}>
+            合計 <strong style={{fontSize:15,color:C.text}}>{fmtJP(pipeTotal)}</strong>
+          </span>
+        </div>
+
+        {/* 1本の帯で構成を見せる */}
+        <div style={{display:'flex',height:34,borderRadius:6,overflow:'hidden',gap:2,background:C.borderLight,marginBottom:12}}>
+          {pipe.filter(p=>p.amount>0).map(p => (
+            <div key={p.label} onClick={()=>openV(`${p.label}の案件`,`${p.desc}｜${fmtJP(p.amount)}`,p.rows)}
+              title={`${p.label} ${fmtJP(p.amount)}`}
+              style={{width:`${p.amount/pipeTotal*100}%`,background:p.color,cursor:'pointer',
+                display:'flex',alignItems:'center',justifyContent:'center',minWidth:40}}>
+              <span style={{fontSize:11,fontWeight:700,color:'#fff'}}>{Math.round(p.amount/pipeTotal*100)}%</span>
+            </div>
+          ))}
+        </div>
+
+        <div style={{display:'grid',gridTemplateColumns:`repeat(${pipe.length},1fr)`,gap:10}}>
+          {pipe.map(p => (
+            <div key={p.label} onClick={()=>p.rows.length&&openV(`${p.label}の案件`,p.desc,p.rows)}
+              style={{border:`1px solid ${C.border}`,borderRadius:8,padding:'11px 13px',
+                borderTop:`3px solid ${p.color}`,borderTopLeftRadius:8,borderTopRightRadius:8,
+                cursor:p.rows.length?'pointer':'default'}}>
+              <div style={{fontSize:11,color:C.textMid,fontWeight:600}}>{p.label}</div>
+              <div style={{fontSize:16,fontWeight:800,color:p.color,marginTop:4,letterSpacing:'-0.02em'}}>
+                {fmtJP(p.amount)}
+              </div>
+              <div style={{fontSize:11,color:C.textLight,marginTop:3}}>{p.rows.length}件</div>
+            </div>
+          ))}
+        </div>
+
+        {prevWonAmt > 0 && (
+          <div style={{marginTop:12,padding:'9px 13px',background:C.bg,borderRadius:6,fontSize:12,color:C.textMid}}>
+            成約金額は前期 {fmtJP(prevWonAmt)} →
+            当期 <strong style={{color:C.text}}>{fmtJP(wonAmt)}</strong>
+            <span style={{marginLeft:8,fontWeight:700,color:wonAmt>=prevWonAmt?C.success:C.danger}}>
+              {fmtJP(wonAmt-prevWonAmt,{sign:true})}
+            </span>
+          </div>
+        )}
+      </Card>
 
       {/* 査定の内訳 */}
       <Card>
@@ -2429,7 +2562,7 @@ function AdminDashboard({setScreen, setSelectedVehicle}) {
         <Card>
           <div style={{display:'flex',alignItems:'baseline',marginBottom:16}}>
             <div style={{fontWeight:700,fontSize:15}}>未入庫売買 / 売り</div>
-            <span style={{fontSize:11,color:C.textMid,marginLeft:10}}>掲載中 {listed.length}台 の内訳</span>
+            <span style={{fontSize:11,color:C.textMid,marginLeft:10}}>掲載中 {listed.length}台 の内訳（現況・期間指定の対象外）</span>
           </div>
           <StageBars total={listed.length} segments={[
             {label:'反応なし', count:vNoReact.length,  color:C.warning, desc:'問合せが1件も来ていない。値下げ・取り下げの判断が要る',
@@ -2455,7 +2588,7 @@ function AdminDashboard({setScreen, setSelectedVehicle}) {
         <Card>
           <div style={{display:'flex',alignItems:'baseline',marginBottom:16}}>
             <div style={{fontWeight:700,fontSize:15}}>未入庫売買 / 買い</div>
-            <span style={{fontSize:11,color:C.textMid,marginLeft:10}}>{buyBase}件 の内訳</span>
+            <span style={{fontSize:11,color:C.textMid,marginLeft:10}}>{buyBase}件 の内訳（現況・期間指定の対象外）</span>
           </div>
           <StageBars total={buyBase} segments={[
             {label:'購入申請', count:applied, color:'#94A3B8', desc:'即決価格で申請し、相手の回答を待っている',
@@ -2482,7 +2615,7 @@ function AdminDashboard({setScreen, setSelectedVehicle}) {
         {/* 入口 */}
         <div style={{padding:'12px 16px',border:`1px solid ${C.border}`,borderRadius:8,marginBottom:10}}>
           <div style={{fontSize:11,color:C.textMid,marginBottom:4}}>査定額の合計（入口）</div>
-          <div style={{fontSize:20,fontWeight:800}}>{fmt(buyTotal)}</div>
+          <div style={{fontSize:20,fontWeight:800}}>{fmtJP(buyTotal)}</div>
         </div>
 
         {/* 出口2つを並べる */}
@@ -2500,12 +2633,12 @@ function AdminDashboard({setScreen, setSelectedVehicle}) {
                 </div>
                 <div style={{padding:'12px 14px'}}>
                   <div style={{fontSize:11,color:C.textMid}}>予想売価の合計</div>
-                  <div style={{fontSize:18,fontWeight:800,marginTop:2}}>{fmt(x.tot)}</div>
+                  <div style={{fontSize:18,fontWeight:800,marginTop:2}}>{fmtJP(x.tot)}</div>
                   <div style={{marginTop:10,paddingTop:10,borderTop:`1px solid ${C.borderLight}`}}>
                     <div style={{fontSize:11,color:C.textMid}}>想定粗利</div>
                     <div style={{display:'flex',alignItems:'baseline',gap:8,marginTop:2}}>
                       <span style={{fontSize:18,fontWeight:800,color:plus?C.success:C.danger}}>
-                        {plus?'':'−'}{fmt(Math.abs(x.gross))}
+                        {fmtJP(x.gross)}
                       </span>
                       <span style={{fontSize:14,fontWeight:700,color:plus?C.success:C.danger}}>{x.rate}%</span>
                     </div>
@@ -3552,6 +3685,15 @@ const DASH_VEHICLES = [
   {id:210,vin:'ZAM57YSL0P1045321',maker:'マセラティ', name:'グレカーレ',      grade:'Modena',           registration:'2023-09',appraisalStatus:'査定待ち',store:'梅田グランド店',assignee:'中村 雄一',appraisalNo:'262100099210',mileage:11200,meterCheck:'未交換',color:'グリジオマラテア',colorFamily:'グレー',inspectionExpiry:'2028-09',inspectionType:'継続',price:10800000,retailPrice:12740000,auctionPrice:11210000,bids:0,endDate:null,img:'',photos:[]},
   {id:211,vin:'WVGZZZ7PZND005842',maker:'フォルクスワーゲン',name:'トゥアレグ',grade:'R eHybrid',      registration:'2022-07',appraisalStatus:'交渉済',contractStatus:'不成約',  store:'横浜港北店',    assignee:'伊藤 誠',appraisalNo:'262110099211',mileage:26700,meterCheck:'未交換',color:'ムーンストーングレー',colorFamily:'グレー',inspectionExpiry:'2027-07',inspectionType:'継続',price:7900000,retailPrice:7820000,auctionPrice:7660000,bids:0,endDate:null,img:'',photos:[]},
   {id:212,vin:'W1K2G6EB3NF813027',maker:'ベンツ',     name:'Eクラス',         grade:'E220d アバント',   registration:'2023-11',appraisalStatus:'交渉済',contractStatus:'返信なし',  store:'川越インター店',assignee:'高橋 さくら',appraisalNo:'262120099212',mileage:19500,meterCheck:'未交換',color:'オブシディアンブラック',colorFamily:'ブラック',inspectionExpiry:'2028-11',inspectionType:'継続',price:6400000,retailPrice:7360000,auctionPrice:6550000,bids:0,endDate:null,img:'',photos:[]},
+  /* ── 前年度（比較用） ── */
+  {id:301,vin:'W1K2060461R123001',maker:'メルセデス',name:'C200 アバンギャルド',grade:'ベースグレード',registration:'2021-05',appraisalStatus:'交渉済',contractStatus:'成約',store:'川越インター店',assignee:'高橋 さくら',appraisalNo:'253010099301',mileage:24800,meterCheck:'未交換',color:'—',colorFamily:'',inspectionExpiry:'—',inspectionType:'継続',price:5200000,retailPrice:5510000,auctionPrice:4960000,bids:0,endDate:null,img:'',photos:[]},
+  {id:302,vin:'WBA5V12345A123002',maker:'BMW',name:'320i M Sport',grade:'ベースグレード',registration:'2021-09',appraisalStatus:'交渉済',contractStatus:'不成約',store:'渋谷本店',assignee:'鈴木 一郎',appraisalNo:'253020099302',mileage:31200,meterCheck:'未交換',color:'—',colorFamily:'',inspectionExpiry:'—',inspectionType:'継続',price:4900000,retailPrice:5100000,auctionPrice:4490000,bids:0,endDate:null,img:'',photos:[]},
+  {id:303,vin:'WAUZZZF40MA123003',maker:'アウディ',name:'A4 40TFSI',grade:'ベースグレード',registration:'2020-11',appraisalStatus:'交渉済',contractStatus:'返信なし',store:'札幌北口店',assignee:'田中 健二',appraisalNo:'253030099303',mileage:38500,meterCheck:'未交換',color:'—',colorFamily:'',inspectionExpiry:'—',inspectionType:'継続',price:4200000,retailPrice:4120000,auctionPrice:3540000,bids:0,endDate:null,img:'',photos:[]},
+  {id:304,vin:'YV1UZA8VCM1123004',maker:'ボルボ',name:'XC60 B5',grade:'ベースグレード',registration:'2021-03',appraisalStatus:'交渉済',contractStatus:'成約',store:'横浜港北店',assignee:'伊藤 誠',appraisalNo:'253040099304',mileage:27300,meterCheck:'未交換',color:'—',colorFamily:'',inspectionExpiry:'—',inspectionType:'継続',price:5600000,retailPrice:6100000,auctionPrice:5610000,bids:0,endDate:null,img:'',photos:[]},
+  {id:305,vin:'JTJBJRBZ102123005',maker:'レクサス',name:'NX 300h',grade:'ベースグレード',registration:'2020-07',appraisalStatus:'交渉済',contractStatus:'不成約',store:'新宿南口店',assignee:'山本 拓也',appraisalNo:'253050099305',mileage:42100,meterCheck:'未交換',color:'—',colorFamily:'',inspectionExpiry:'—',inspectionType:'継続',price:4700000,retailPrice:4790000,auctionPrice:4260000,bids:0,endDate:null,img:'',photos:[]},
+  {id:306,vin:'WP1AA2A50MLB123006',maker:'ポルシェ',name:'マカン',grade:'ベースグレード',registration:'2021-12',appraisalStatus:'交渉済',contractStatus:'成約',store:'梅田グランド店',assignee:'中村 雄一',appraisalNo:'253060099306',mileage:19800,meterCheck:'未交換',color:'—',colorFamily:'',inspectionExpiry:'—',inspectionType:'継続',price:8900000,retailPrice:10060000,auctionPrice:9460000,bids:0,endDate:null,img:'',photos:[]},
+  {id:307,vin:'WVWZZZAUZMP123007',maker:'VW',name:'ゴルフ ヴァリアント',grade:'ベースグレード',registration:'2020-04',appraisalStatus:'交渉済',contractStatus:'返信なし',store:'渋谷本店',assignee:'佐藤 美咲',appraisalNo:'253070099307',mileage:48600,meterCheck:'未交換',color:'—',colorFamily:'',inspectionExpiry:'—',inspectionType:'継続',price:2800000,retailPrice:2690000,auctionPrice:2290000,bids:0,endDate:null,img:'',photos:[]},
+  {id:308,vin:'SAJAB4AN8MC123008',maker:'ジャガー',name:'XE P250',grade:'ベースグレード',registration:'2021-06',appraisalStatus:'交渉済',contractStatus:'不成約',store:'川越インター店',assignee:'高橋 さくら',appraisalNo:'253080099308',mileage:35400,meterCheck:'未交換',color:'—',colorFamily:'',inspectionExpiry:'—',inspectionType:'継続',price:4400000,retailPrice:4440000,auctionPrice:3860000,bids:0,endDate:null,img:'',photos:[]},
 ];
 
 const ALL_DASH = [
@@ -3561,33 +3703,42 @@ const ALL_DASH = [
 
 /* daysAgo: 期間タブ絞り込み用（日別<=1, 週別<=7, 月別<=30, 年別=全件） */
 const ELAPSED = {
-  1:  {hours:2,   daysAgo:2.1,  label:'2時間経過',   level:0},
+  1:  {hours:2,   daysAgo:0.2,  label:'2時間経過',   level:0},
   2:  {hours:51,  daysAgo:2.1,  label:'2日放置',     level:2},
-  3:  {hours:5,   daysAgo:3.2,  label:'5時間経過',   level:0},
+  3:  {hours:5,   daysAgo:0.5,  label:'5時間経過',   level:0},
   4:  {hours:74,  daysAgo:3.1,  label:'3日放置',     level:2},
   5:  {hours:38,  daysAgo:1.6,  label:'1日半経過',   level:1},
   6:  {hours:6,   daysAgo:0.25, label:'6時間経過',   level:0},
-  7:  {hours:97,  daysAgo:4.0,  label:'4日放置',     level:2},
+  7:  {hours:97,  daysAgo:4,  label:'4日放置',     level:2},
   8:  {hours:13,  daysAgo:0.54, label:'13時間経過',  level:0},
   101:{hours:30,  daysAgo:1.3,  label:'1日放置',     level:1},
   102:{hours:7,   daysAgo:0.3,  label:'7時間経過',   level:0},
   103:{hours:55,  daysAgo:2.3,  label:'2日放置',     level:2},
   104:{hours:9,   daysAgo:0.4,  label:'9時間経過',   level:0},
-  201:{hours:26,  daysAgo:1.0,  label:'1日放置',     level:1},
-  202:{hours:3,   daysAgo:0.13, label:'3時間経過',   level:0},
-  203:{hours:121, daysAgo:5.0,  label:'5日放置',     level:2},
-  204:{hours:8,   daysAgo:6.0,  label:'8時間経過',   level:0},
-  205:{hours:72,  daysAgo:35.0, label:'3日放置',     level:2},
-  206:{hours:2,   daysAgo:0.08, label:'2時間経過',   level:0},
-  207:{hours:6,   daysAgo:40.0, label:'6時間経過',   level:0},
-  208:{hours:36,  daysAgo:1.5,  label:'1日半経過',   level:1},
-  209:{hours:4,   daysAgo:0.17, label:'4時間経過',   level:0},
-  210:{hours:51,  daysAgo:15.0, label:'2日放置',     level:2},
-  211:{hours:1,   daysAgo:7.0,  label:'1時間経過',   level:0},
-  212:{hours:10,  daysAgo:20.0, label:'10時間経過',  level:0},
+  201:{hours:26,  daysAgo:5.5,  label:'1日放置',     level:1},
+  202:{hours:3,   daysAgo:6.2, label:'3時間経過',   level:0},
+  203:{hours:121, daysAgo:8.5,  label:'5日放置',     level:2},
+  204:{hours:8,   daysAgo:9,  label:'8時間経過',   level:0},
+  205:{hours:72,  daysAgo:10.5, label:'3日放置',     level:2},
+  206:{hours:2,   daysAgo:11, label:'2時間経過',   level:0},
+  207:{hours:6,   daysAgo:12.5, label:'6時間経過',   level:0},
+  208:{hours:36,  daysAgo:13,  label:'1日半経過',   level:1},
+  209:{hours:4,   daysAgo:22, label:'4時間経過',   level:0},
+  210:{hours:51,  daysAgo:26, label:'2日放置',     level:2},
+  211:{hours:1,   daysAgo:34,  label:'1時間経過',   level:0},
+  212:{hours:10,  daysAgo:41, label:'10時間経過',  level:0},
+  /* ── 前年度（比較用） ── */
+  301:{hours:9840, daysAgo:410, label:'14ヶ月前', level:0},
+  302:{hours:10440, daysAgo:435, label:'15ヶ月前', level:0},
+  303:{hours:11280, daysAgo:470, label:'16ヶ月前', level:0},
+  304:{hours:12120, daysAgo:505, label:'17ヶ月前', level:0},
+  305:{hours:12960, daysAgo:540, label:'18ヶ月前', level:0},
+  306:{hours:13920, daysAgo:580, label:'19ヶ月前', level:0},
+  307:{hours:15120, daysAgo:630, label:'21ヶ月前', level:0},
+  308:{hours:16560, daysAgo:690, label:'23ヶ月前', level:0},
 };
 
-const PERIOD_MAX_DAYS = {'日別':1,'週別':7,'月別':30,'年別':9999};
+const PERIOD_MAX_DAYS = {'日別':1,'週別':7,'月別':30,'年別':365};
 
 function AppraisalDashboard({setScreen, setSelectedVehicle}) {
   const openVehicle = v => { setSelectedVehicle(v); setScreen('buyer-detail'); };
